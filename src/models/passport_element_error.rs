@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,47 +45,24 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// PassportElementError : This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:  * [PassportElementErrorDataField](https://core.telegram.org/bots/api/#passportelementerrordatafield) * [PassportElementErrorFrontSide](https://core.telegram.org/bots/api/#passportelementerrorfrontside) * [PassportElementErrorReverseSide](https://core.telegram.org/bots/api/#passportelementerrorreverseside) * [PassportElementErrorSelfie](https://core.telegram.org/bots/api/#passportelementerrorselfie) * [PassportElementErrorFile](https://core.telegram.org/bots/api/#passportelementerrorfile) * [PassportElementErrorFiles](https://core.telegram.org/bots/api/#passportelementerrorfiles) * [PassportElementErrorTranslationFile](https://core.telegram.org/bots/api/#passportelementerrortranslationfile) * [PassportElementErrorTranslationFiles](https://core.telegram.org/bots/api/#passportelementerrortranslationfiles) * [PassportElementErrorUnspecified](https://core.telegram.org/bots/api/#passportelementerrorunspecified)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PassportElementError {
-    /// Error source, must be *unspecified*
-    #[serde(rename = "source")]
-    pub source: String,
-    /// Type of element of the user's Telegram Passport which has the issue
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// Name of the data field which has the error
-    #[serde(rename = "field_name")]
-    pub field_name: String,
-    /// Base64-encoded data hash
-    #[serde(rename = "data_hash")]
-    pub data_hash: String,
-    /// Error message
-    #[serde(rename = "message")]
-    pub message: String,
-    /// Base64-encoded file hash
-    #[serde(rename = "file_hash")]
-    pub file_hash: String,
-    /// List of base64-encoded file hashes
-    #[serde(rename = "file_hashes")]
-    pub file_hashes: Vec<String>,
-    /// Base64-encoded element hash
-    #[serde(rename = "element_hash")]
-    pub element_hash: String,
+/// This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:  * [PassportElementErrorDataField](https://core.telegram.org/bots/api/#passportelementerrordatafield) * [PassportElementErrorFrontSide](https://core.telegram.org/bots/api/#passportelementerrorfrontside) * [PassportElementErrorReverseSide](https://core.telegram.org/bots/api/#passportelementerrorreverseside) * [PassportElementErrorSelfie](https://core.telegram.org/bots/api/#passportelementerrorselfie) * [PassportElementErrorFile](https://core.telegram.org/bots/api/#passportelementerrorfile) * [PassportElementErrorFiles](https://core.telegram.org/bots/api/#passportelementerrorfiles) * [PassportElementErrorTranslationFile](https://core.telegram.org/bots/api/#passportelementerrortranslationfile) * [PassportElementErrorTranslationFiles](https://core.telegram.org/bots/api/#passportelementerrortranslationfiles) * [PassportElementErrorUnspecified](https://core.telegram.org/bots/api/#passportelementerrorunspecified)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PassportElementError {
+    PassportElementErrorDataField(Box<models::PassportElementErrorDataField>),
+    PassportElementErrorFrontSide(Box<models::PassportElementErrorFrontSide>),
+    PassportElementErrorReverseSide(Box<models::PassportElementErrorReverseSide>),
+    PassportElementErrorSelfie(Box<models::PassportElementErrorSelfie>),
+    PassportElementErrorFile(Box<models::PassportElementErrorFile>),
+    PassportElementErrorFiles(Box<models::PassportElementErrorFiles>),
+    PassportElementErrorTranslationFile(Box<models::PassportElementErrorTranslationFile>),
+    PassportElementErrorTranslationFiles(Box<models::PassportElementErrorTranslationFiles>),
+    PassportElementErrorUnspecified(Box<models::PassportElementErrorUnspecified>),
 }
 
-impl PassportElementError {
-    /// This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:  * [PassportElementErrorDataField](https://core.telegram.org/bots/api/#passportelementerrordatafield) * [PassportElementErrorFrontSide](https://core.telegram.org/bots/api/#passportelementerrorfrontside) * [PassportElementErrorReverseSide](https://core.telegram.org/bots/api/#passportelementerrorreverseside) * [PassportElementErrorSelfie](https://core.telegram.org/bots/api/#passportelementerrorselfie) * [PassportElementErrorFile](https://core.telegram.org/bots/api/#passportelementerrorfile) * [PassportElementErrorFiles](https://core.telegram.org/bots/api/#passportelementerrorfiles) * [PassportElementErrorTranslationFile](https://core.telegram.org/bots/api/#passportelementerrortranslationfile) * [PassportElementErrorTranslationFiles](https://core.telegram.org/bots/api/#passportelementerrortranslationfiles) * [PassportElementErrorUnspecified](https://core.telegram.org/bots/api/#passportelementerrorunspecified)
-    pub fn new(source: String, r#type: String, field_name: String, data_hash: String, message: String, file_hash: String, file_hashes: Vec<String>, element_hash: String) -> PassportElementError {
-        PassportElementError {
-            source,
-            r#type,
-            field_name,
-            data_hash,
-            message,
-            file_hash,
-            file_hashes,
-            element_hash,
-        }
+impl Default for PassportElementError {
+    fn default() -> Self {
+        Self::PassportElementErrorDataField(Default::default())
     }
 }
 

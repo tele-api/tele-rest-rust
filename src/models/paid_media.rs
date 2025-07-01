@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,38 +45,18 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// PaidMedia : This object describes paid media. Currently, it can be one of  * [PaidMediaPreview](https://core.telegram.org/bots/api/#paidmediapreview) * [PaidMediaPhoto](https://core.telegram.org/bots/api/#paidmediaphoto) * [PaidMediaVideo](https://core.telegram.org/bots/api/#paidmediavideo)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PaidMedia {
-    /// Type of the paid media, always “video”
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// *Optional*. Media width as defined by the sender
-    #[serde(rename = "width", skip_serializing_if = "Option::is_none")]
-    pub width: Option<i32>,
-    /// *Optional*. Media height as defined by the sender
-    #[serde(rename = "height", skip_serializing_if = "Option::is_none")]
-    pub height: Option<i32>,
-    /// *Optional*. Duration of the media in seconds as defined by the sender
-    #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<i32>,
-    /// The photo
-    #[serde(rename = "photo")]
-    pub photo: Vec<models::PhotoSize>,
-    #[serde(rename = "video")]
-    pub video: Box<models::Video>,
+/// This object describes paid media. Currently, it can be one of  * [PaidMediaPreview](https://core.telegram.org/bots/api/#paidmediapreview) * [PaidMediaPhoto](https://core.telegram.org/bots/api/#paidmediaphoto) * [PaidMediaVideo](https://core.telegram.org/bots/api/#paidmediavideo)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PaidMedia {
+    PaidMediaPreview(Box<models::PaidMediaPreview>),
+    PaidMediaPhoto(Box<models::PaidMediaPhoto>),
+    PaidMediaVideo(Box<models::PaidMediaVideo>),
 }
 
-impl PaidMedia {
-    /// This object describes paid media. Currently, it can be one of  * [PaidMediaPreview](https://core.telegram.org/bots/api/#paidmediapreview) * [PaidMediaPhoto](https://core.telegram.org/bots/api/#paidmediaphoto) * [PaidMediaVideo](https://core.telegram.org/bots/api/#paidmediavideo)
-    pub fn new(r#type: String, photo: Vec<models::PhotoSize>, video: models::Video) -> PaidMedia {
-        PaidMedia {
-            r#type,
-            width: None,
-            height: None,
-            duration: None,
-            photo,
-            video: Box::new(video),
-        }
+impl Default for PaidMedia {
+    fn default() -> Self {
+        Self::PaidMediaPreview(Default::default())
     }
 }
 

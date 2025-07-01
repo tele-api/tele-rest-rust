@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,34 +45,18 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// ChatBoostSource : This object describes the source of a chat boost. It can be one of  * [ChatBoostSourcePremium](https://core.telegram.org/bots/api/#chatboostsourcepremium) * [ChatBoostSourceGiftCode](https://core.telegram.org/bots/api/#chatboostsourcegiftcode) * [ChatBoostSourceGiveaway](https://core.telegram.org/bots/api/#chatboostsourcegiveaway)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ChatBoostSource {
-    /// Source of the boost, always “giveaway”
-    #[serde(rename = "source")]
-    pub source: String,
-    #[serde(rename = "user")]
-    pub user: Box<models::User>,
-    /// Identifier of a message in the chat with the giveaway; the message could have been deleted already. May be 0 if the message isn't sent yet.
-    #[serde(rename = "giveaway_message_id")]
-    pub giveaway_message_id: i32,
-    /// *Optional*. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only
-    #[serde(rename = "prize_star_count", skip_serializing_if = "Option::is_none")]
-    pub prize_star_count: Option<i32>,
-    /// *Optional*. True, if the giveaway was completed, but there was no user to win the prize
-    #[serde(rename = "is_unclaimed", skip_serializing_if = "Option::is_none")]
-    pub is_unclaimed: Option<bool>,
+/// This object describes the source of a chat boost. It can be one of  * [ChatBoostSourcePremium](https://core.telegram.org/bots/api/#chatboostsourcepremium) * [ChatBoostSourceGiftCode](https://core.telegram.org/bots/api/#chatboostsourcegiftcode) * [ChatBoostSourceGiveaway](https://core.telegram.org/bots/api/#chatboostsourcegiveaway)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ChatBoostSource {
+    ChatBoostSourcePremium(Box<models::ChatBoostSourcePremium>),
+    ChatBoostSourceGiftCode(Box<models::ChatBoostSourceGiftCode>),
+    ChatBoostSourceGiveaway(Box<models::ChatBoostSourceGiveaway>),
 }
 
-impl ChatBoostSource {
-    /// This object describes the source of a chat boost. It can be one of  * [ChatBoostSourcePremium](https://core.telegram.org/bots/api/#chatboostsourcepremium) * [ChatBoostSourceGiftCode](https://core.telegram.org/bots/api/#chatboostsourcegiftcode) * [ChatBoostSourceGiveaway](https://core.telegram.org/bots/api/#chatboostsourcegiveaway)
-    pub fn new(source: String, user: models::User, giveaway_message_id: i32) -> ChatBoostSource {
-        ChatBoostSource {
-            source,
-            user: Box::new(user),
-            giveaway_message_id,
-            prize_star_count: None,
-            is_unclaimed: None,
-        }
+impl Default for ChatBoostSource {
+    fn default() -> Self {
+        Self::ChatBoostSourcePremium(Default::default())
     }
 }
 

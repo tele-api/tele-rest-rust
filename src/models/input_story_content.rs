@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,39 +45,17 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// InputStoryContent : This object describes the content of a story to post. Currently, it can be one of  * [InputStoryContentPhoto](https://core.telegram.org/bots/api/#inputstorycontentphoto) * [InputStoryContentVideo](https://core.telegram.org/bots/api/#inputstorycontentvideo)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct InputStoryContent {
-    /// Type of the content, must be *video*
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// The photo to post as a story. The photo must be of the size 1080x1920 and must not exceed 10 MB. The photo can't be reused and can only be uploaded as a new file, so you can pass “attach://\\<file\\_attach\\_name\\>” if the photo was uploaded using multipart/form-data under \\<file\\_attach\\_name\\>. [More information on Sending Files »](https://core.telegram.org/bots/api/#sending-files)
-    #[serde(rename = "photo")]
-    pub photo: String,
-    /// The video to post as a story. The video must be of the size 720x1280, streamable, encoded with H.265 codec, with key frames added each second in the MPEG4 format, and must not exceed 30 MB. The video can't be reused and can only be uploaded as a new file, so you can pass “attach://\\<file\\_attach\\_name\\>” if the video was uploaded using multipart/form-data under \\<file\\_attach\\_name\\>. [More information on Sending Files »](https://core.telegram.org/bots/api/#sending-files)
-    #[serde(rename = "video")]
-    pub video: String,
-    /// *Optional*. Precise duration of the video in seconds; 0-60
-    #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<f64>,
-    /// *Optional*. Timestamp in seconds of the frame that will be used as the static cover for the story. Defaults to 0.0.
-    #[serde(rename = "cover_frame_timestamp", skip_serializing_if = "Option::is_none")]
-    pub cover_frame_timestamp: Option<f64>,
-    /// *Optional*. Pass *True* if the video has no sound
-    #[serde(rename = "is_animation", skip_serializing_if = "Option::is_none")]
-    pub is_animation: Option<bool>,
+/// This object describes the content of a story to post. Currently, it can be one of  * [InputStoryContentPhoto](https://core.telegram.org/bots/api/#inputstorycontentphoto) * [InputStoryContentVideo](https://core.telegram.org/bots/api/#inputstorycontentvideo)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum InputStoryContent {
+    InputStoryContentPhoto(Box<models::InputStoryContentPhoto>),
+    InputStoryContentVideo(Box<models::InputStoryContentVideo>),
 }
 
-impl InputStoryContent {
-    /// This object describes the content of a story to post. Currently, it can be one of  * [InputStoryContentPhoto](https://core.telegram.org/bots/api/#inputstorycontentphoto) * [InputStoryContentVideo](https://core.telegram.org/bots/api/#inputstorycontentvideo)
-    pub fn new(r#type: String, photo: String, video: String) -> InputStoryContent {
-        InputStoryContent {
-            r#type,
-            photo,
-            video,
-            duration: None,
-            cover_frame_timestamp: None,
-            is_animation: None,
-        }
+impl Default for InputStoryContent {
+    fn default() -> Self {
+        Self::InputStoryContentPhoto(Default::default())
     }
 }
 

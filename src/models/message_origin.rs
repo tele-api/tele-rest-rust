@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,44 +45,19 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// MessageOrigin : This object describes the origin of a message. It can be one of  * [MessageOriginUser](https://core.telegram.org/bots/api/#messageoriginuser) * [MessageOriginHiddenUser](https://core.telegram.org/bots/api/#messageoriginhiddenuser) * [MessageOriginChat](https://core.telegram.org/bots/api/#messageoriginchat) * [MessageOriginChannel](https://core.telegram.org/bots/api/#messageoriginchannel)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct MessageOrigin {
-    /// Type of the message origin, always “channel”
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// Date the message was sent originally in Unix time
-    #[serde(rename = "date")]
-    pub date: i32,
-    #[serde(rename = "sender_user")]
-    pub sender_user: Box<models::User>,
-    /// Name of the user that sent the message originally
-    #[serde(rename = "sender_user_name")]
-    pub sender_user_name: String,
-    #[serde(rename = "sender_chat")]
-    pub sender_chat: Box<models::Chat>,
-    /// *Optional*. Signature of the original post author
-    #[serde(rename = "author_signature", skip_serializing_if = "Option::is_none")]
-    pub author_signature: Option<String>,
-    #[serde(rename = "chat")]
-    pub chat: Box<models::Chat>,
-    /// Unique message identifier inside the chat
-    #[serde(rename = "message_id")]
-    pub message_id: i32,
+/// This object describes the origin of a message. It can be one of  * [MessageOriginUser](https://core.telegram.org/bots/api/#messageoriginuser) * [MessageOriginHiddenUser](https://core.telegram.org/bots/api/#messageoriginhiddenuser) * [MessageOriginChat](https://core.telegram.org/bots/api/#messageoriginchat) * [MessageOriginChannel](https://core.telegram.org/bots/api/#messageoriginchannel)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum MessageOrigin {
+    MessageOriginUser(Box<models::MessageOriginUser>),
+    MessageOriginHiddenUser(Box<models::MessageOriginHiddenUser>),
+    MessageOriginChat(Box<models::MessageOriginChat>),
+    MessageOriginChannel(Box<models::MessageOriginChannel>),
 }
 
-impl MessageOrigin {
-    /// This object describes the origin of a message. It can be one of  * [MessageOriginUser](https://core.telegram.org/bots/api/#messageoriginuser) * [MessageOriginHiddenUser](https://core.telegram.org/bots/api/#messageoriginhiddenuser) * [MessageOriginChat](https://core.telegram.org/bots/api/#messageoriginchat) * [MessageOriginChannel](https://core.telegram.org/bots/api/#messageoriginchannel)
-    pub fn new(r#type: String, date: i32, sender_user: models::User, sender_user_name: String, sender_chat: models::Chat, chat: models::Chat, message_id: i32) -> MessageOrigin {
-        MessageOrigin {
-            r#type,
-            date,
-            sender_user: Box::new(sender_user),
-            sender_user_name,
-            sender_chat: Box::new(sender_chat),
-            author_signature: None,
-            chat: Box::new(chat),
-            message_id,
-        }
+impl Default for MessageOrigin {
+    fn default() -> Self {
+        Self::MessageOriginUser(Default::default())
     }
 }
 

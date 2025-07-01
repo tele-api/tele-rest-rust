@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,49 +45,19 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// BackgroundType : This object describes the type of a background. Currently, it can be one of  * [BackgroundTypeFill](https://core.telegram.org/bots/api/#backgroundtypefill) * [BackgroundTypeWallpaper](https://core.telegram.org/bots/api/#backgroundtypewallpaper) * [BackgroundTypePattern](https://core.telegram.org/bots/api/#backgroundtypepattern) * [BackgroundTypeChatTheme](https://core.telegram.org/bots/api/#backgroundtypechattheme)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct BackgroundType {
-    /// Type of the background, always “chat\\_theme”
-    #[serde(rename = "type")]
-    pub r#type: String,
-    #[serde(rename = "fill")]
-    pub fill: Box<models::BackgroundFill>,
-    /// Dimming of the background in dark themes, as a percentage; 0-100
-    #[serde(rename = "dark_theme_dimming")]
-    pub dark_theme_dimming: i32,
-    #[serde(rename = "document")]
-    pub document: Box<models::Document>,
-    /// *Optional*. *True*, if the wallpaper is downscaled to fit in a 450x450 square and then box-blurred with radius 12
-    #[serde(rename = "is_blurred", skip_serializing_if = "Option::is_none")]
-    pub is_blurred: Option<bool>,
-    /// *Optional*. *True*, if the background moves slightly when the device is tilted
-    #[serde(rename = "is_moving", skip_serializing_if = "Option::is_none")]
-    pub is_moving: Option<bool>,
-    /// Intensity of the pattern when it is shown above the filled background; 0-100
-    #[serde(rename = "intensity")]
-    pub intensity: i32,
-    /// *Optional*. *True*, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only
-    #[serde(rename = "is_inverted", skip_serializing_if = "Option::is_none")]
-    pub is_inverted: Option<bool>,
-    /// Name of the chat theme, which is usually an emoji
-    #[serde(rename = "theme_name")]
-    pub theme_name: String,
+/// This object describes the type of a background. Currently, it can be one of  * [BackgroundTypeFill](https://core.telegram.org/bots/api/#backgroundtypefill) * [BackgroundTypeWallpaper](https://core.telegram.org/bots/api/#backgroundtypewallpaper) * [BackgroundTypePattern](https://core.telegram.org/bots/api/#backgroundtypepattern) * [BackgroundTypeChatTheme](https://core.telegram.org/bots/api/#backgroundtypechattheme)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum BackgroundType {
+    BackgroundTypeFill(Box<models::BackgroundTypeFill>),
+    BackgroundTypeWallpaper(Box<models::BackgroundTypeWallpaper>),
+    BackgroundTypePattern(Box<models::BackgroundTypePattern>),
+    BackgroundTypeChatTheme(Box<models::BackgroundTypeChatTheme>),
 }
 
-impl BackgroundType {
-    /// This object describes the type of a background. Currently, it can be one of  * [BackgroundTypeFill](https://core.telegram.org/bots/api/#backgroundtypefill) * [BackgroundTypeWallpaper](https://core.telegram.org/bots/api/#backgroundtypewallpaper) * [BackgroundTypePattern](https://core.telegram.org/bots/api/#backgroundtypepattern) * [BackgroundTypeChatTheme](https://core.telegram.org/bots/api/#backgroundtypechattheme)
-    pub fn new(r#type: String, fill: models::BackgroundFill, dark_theme_dimming: i32, document: models::Document, intensity: i32, theme_name: String) -> BackgroundType {
-        BackgroundType {
-            r#type,
-            fill: Box::new(fill),
-            dark_theme_dimming,
-            document: Box::new(document),
-            is_blurred: None,
-            is_moving: None,
-            intensity,
-            is_inverted: None,
-            theme_name,
-        }
+impl Default for BackgroundType {
+    fn default() -> Self {
+        Self::BackgroundTypeFill(Default::default())
     }
 }
 

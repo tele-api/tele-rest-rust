@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,51 +45,19 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// SendMessagePostRequestReplyMarkup : Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct SendMessagePostRequestReplyMarkup {
-    /// Array of button rows, each represented by an Array of [InlineKeyboardButton](https://core.telegram.org/bots/api/#inlinekeyboardbutton) objects
-    #[serde(rename = "inline_keyboard")]
-    pub inline_keyboard: Vec<Vec<models::InlineKeyboardButton>>,
-    /// Array of button rows, each represented by an Array of [KeyboardButton](https://core.telegram.org/bots/api/#keyboardbutton) objects
-    #[serde(rename = "keyboard")]
-    pub keyboard: Vec<Vec<models::KeyboardButton>>,
-    /// *Optional*. Requests clients to always show the keyboard when the regular keyboard is hidden. Defaults to *false*, in which case the custom keyboard can be hidden and opened with a keyboard icon.
-    #[serde(rename = "is_persistent", skip_serializing_if = "Option::is_none")]
-    pub is_persistent: Option<bool>,
-    /// *Optional*. Requests clients to resize the keyboard vertically for optimal fit (e.g., make the keyboard smaller if there are just two rows of buttons). Defaults to *false*, in which case the custom keyboard is always of the same height as the app's standard keyboard.
-    #[serde(rename = "resize_keyboard", skip_serializing_if = "Option::is_none")]
-    pub resize_keyboard: Option<bool>,
-    /// *Optional*. Requests clients to hide the keyboard as soon as it's been used. The keyboard will still be available, but clients will automatically display the usual letter-keyboard in the chat - the user can press a special button in the input field to see the custom keyboard again. Defaults to *false*.
-    #[serde(rename = "one_time_keyboard", skip_serializing_if = "Option::is_none")]
-    pub one_time_keyboard: Option<bool>,
-    /// *Optional*. The placeholder to be shown in the input field when the reply is active; 1-64 characters
-    #[serde(rename = "input_field_placeholder", skip_serializing_if = "Option::is_none")]
-    pub input_field_placeholder: Option<String>,
-    /// *Optional*. Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the *text* of the [Message](https://core.telegram.org/bots/api/#message) object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
-    #[serde(rename = "selective", skip_serializing_if = "Option::is_none")]
-    pub selective: Option<bool>,
-    /// Requests clients to remove the custom keyboard (user will not be able to summon this keyboard; if you want to hide the keyboard from sight but keep it accessible, use *one\\_time\\_keyboard* in [ReplyKeyboardMarkup](https://core.telegram.org/bots/api/#replykeyboardmarkup))
-    #[serde(rename = "remove_keyboard")]
-    pub remove_keyboard: bool,
-    /// Shows reply interface to the user, as if they manually selected the bot's message and tapped 'Reply'
-    #[serde(rename = "force_reply")]
-    pub force_reply: bool,
+/// Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SendMessagePostRequestReplyMarkup {
+    InlineKeyboardMarkup(Box<models::InlineKeyboardMarkup>),
+    ReplyKeyboardMarkup(Box<models::ReplyKeyboardMarkup>),
+    ReplyKeyboardRemove(Box<models::ReplyKeyboardRemove>),
+    ForceReply(Box<models::ForceReply>),
 }
 
-impl SendMessagePostRequestReplyMarkup {
-    /// Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-    pub fn new(inline_keyboard: Vec<Vec<models::InlineKeyboardButton>>, keyboard: Vec<Vec<models::KeyboardButton>>, remove_keyboard: bool, force_reply: bool) -> SendMessagePostRequestReplyMarkup {
-        SendMessagePostRequestReplyMarkup {
-            inline_keyboard,
-            keyboard,
-            is_persistent: None,
-            resize_keyboard: None,
-            one_time_keyboard: None,
-            input_field_placeholder: None,
-            selective: None,
-            remove_keyboard,
-            force_reply,
-        }
+impl Default for SendMessagePostRequestReplyMarkup {
+    fn default() -> Self {
+        Self::InlineKeyboardMarkup(Default::default())
     }
 }
 

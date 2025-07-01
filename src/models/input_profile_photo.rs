@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,31 +45,17 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// InputProfilePhoto : This object describes a profile photo to set. Currently, it can be one of  * [InputProfilePhotoStatic](https://core.telegram.org/bots/api/#inputprofilephotostatic) * [InputProfilePhotoAnimated](https://core.telegram.org/bots/api/#inputprofilephotoanimated)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct InputProfilePhoto {
-    /// Type of the profile photo, must be *animated*
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// The static profile photo. Profile photos can't be reused and can only be uploaded as a new file, so you can pass “attach://\\<file\\_attach\\_name\\>” if the photo was uploaded using multipart/form-data under \\<file\\_attach\\_name\\>. [More information on Sending Files »](https://core.telegram.org/bots/api/#sending-files)
-    #[serde(rename = "photo")]
-    pub photo: String,
-    /// The animated profile photo. Profile photos can't be reused and can only be uploaded as a new file, so you can pass “attach://\\<file\\_attach\\_name\\>” if the photo was uploaded using multipart/form-data under \\<file\\_attach\\_name\\>. [More information on Sending Files »](https://core.telegram.org/bots/api/#sending-files)
-    #[serde(rename = "animation")]
-    pub animation: String,
-    /// *Optional*. Timestamp in seconds of the frame that will be used as the static profile photo. Defaults to 0.0.
-    #[serde(rename = "main_frame_timestamp", skip_serializing_if = "Option::is_none")]
-    pub main_frame_timestamp: Option<f64>,
+/// This object describes a profile photo to set. Currently, it can be one of  * [InputProfilePhotoStatic](https://core.telegram.org/bots/api/#inputprofilephotostatic) * [InputProfilePhotoAnimated](https://core.telegram.org/bots/api/#inputprofilephotoanimated)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum InputProfilePhoto {
+    InputProfilePhotoStatic(Box<models::InputProfilePhotoStatic>),
+    InputProfilePhotoAnimated(Box<models::InputProfilePhotoAnimated>),
 }
 
-impl InputProfilePhoto {
-    /// This object describes a profile photo to set. Currently, it can be one of  * [InputProfilePhotoStatic](https://core.telegram.org/bots/api/#inputprofilephotostatic) * [InputProfilePhotoAnimated](https://core.telegram.org/bots/api/#inputprofilephotoanimated)
-    pub fn new(r#type: String, photo: String, animation: String) -> InputProfilePhoto {
-        InputProfilePhoto {
-            r#type,
-            photo,
-            animation,
-            main_frame_timestamp: None,
-        }
+impl Default for InputProfilePhoto {
+    fn default() -> Self {
+        Self::InputProfilePhotoStatic(Default::default())
     }
 }
 
