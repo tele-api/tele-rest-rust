@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,26 +45,18 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// MenuButton : This object describes the bot's menu button in a private chat. It should be one of  * [MenuButtonCommands](https://core.telegram.org/bots/api/#menubuttoncommands) * [MenuButtonWebApp](https://core.telegram.org/bots/api/#menubuttonwebapp) * [MenuButtonDefault](https://core.telegram.org/bots/api/#menubuttondefault)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct MenuButton {
-    /// Type of the button, must be *default*
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// Text on the button
-    #[serde(rename = "text")]
-    pub text: String,
-    #[serde(rename = "web_app")]
-    pub web_app: Box<models::WebAppInfo>,
+/// This object describes the bot's menu button in a private chat. It should be one of  * [MenuButtonCommands](https://core.telegram.org/bots/api/#menubuttoncommands) * [MenuButtonWebApp](https://core.telegram.org/bots/api/#menubuttonwebapp) * [MenuButtonDefault](https://core.telegram.org/bots/api/#menubuttondefault)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum MenuButton {
+    MenuButtonCommands(Box<models::MenuButtonCommands>),
+    MenuButtonWebApp(Box<models::MenuButtonWebApp>),
+    MenuButtonDefault(Box<models::MenuButtonDefault>),
 }
 
-impl MenuButton {
-    /// This object describes the bot's menu button in a private chat. It should be one of  * [MenuButtonCommands](https://core.telegram.org/bots/api/#menubuttoncommands) * [MenuButtonWebApp](https://core.telegram.org/bots/api/#menubuttonwebapp) * [MenuButtonDefault](https://core.telegram.org/bots/api/#menubuttondefault)
-    pub fn new(r#type: String, text: String, web_app: models::WebAppInfo) -> MenuButton {
-        MenuButton {
-            r#type,
-            text,
-            web_app: Box::new(web_app),
-        }
+impl Default for MenuButton {
+    fn default() -> Self {
+        Self::MenuButtonCommands(Default::default())
     }
 }
 

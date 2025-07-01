@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,39 +45,18 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// BackgroundFill : This object describes the way a background is filled based on the selected colors. Currently, it can be one of  * [BackgroundFillSolid](https://core.telegram.org/bots/api/#backgroundfillsolid) * [BackgroundFillGradient](https://core.telegram.org/bots/api/#backgroundfillgradient) * [BackgroundFillFreeformGradient](https://core.telegram.org/bots/api/#backgroundfillfreeformgradient)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct BackgroundFill {
-    /// Type of the background fill, always “freeform\\_gradient”
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// The color of the background fill in the RGB24 format
-    #[serde(rename = "color")]
-    pub color: i32,
-    /// Top color of the gradient in the RGB24 format
-    #[serde(rename = "top_color")]
-    pub top_color: i32,
-    /// Bottom color of the gradient in the RGB24 format
-    #[serde(rename = "bottom_color")]
-    pub bottom_color: i32,
-    /// Clockwise rotation angle of the background fill in degrees; 0-359
-    #[serde(rename = "rotation_angle")]
-    pub rotation_angle: i32,
-    /// A list of the 3 or 4 base colors that are used to generate the freeform gradient in the RGB24 format
-    #[serde(rename = "colors")]
-    pub colors: Vec<i32>,
+/// This object describes the way a background is filled based on the selected colors. Currently, it can be one of  * [BackgroundFillSolid](https://core.telegram.org/bots/api/#backgroundfillsolid) * [BackgroundFillGradient](https://core.telegram.org/bots/api/#backgroundfillgradient) * [BackgroundFillFreeformGradient](https://core.telegram.org/bots/api/#backgroundfillfreeformgradient)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum BackgroundFill {
+    BackgroundFillSolid(Box<models::BackgroundFillSolid>),
+    BackgroundFillGradient(Box<models::BackgroundFillGradient>),
+    BackgroundFillFreeformGradient(Box<models::BackgroundFillFreeformGradient>),
 }
 
-impl BackgroundFill {
-    /// This object describes the way a background is filled based on the selected colors. Currently, it can be one of  * [BackgroundFillSolid](https://core.telegram.org/bots/api/#backgroundfillsolid) * [BackgroundFillGradient](https://core.telegram.org/bots/api/#backgroundfillgradient) * [BackgroundFillFreeformGradient](https://core.telegram.org/bots/api/#backgroundfillfreeformgradient)
-    pub fn new(r#type: String, color: i32, top_color: i32, bottom_color: i32, rotation_angle: i32, colors: Vec<i32>) -> BackgroundFill {
-        BackgroundFill {
-            r#type,
-            color,
-            top_color,
-            bottom_color,
-            rotation_angle,
-            colors,
-        }
+impl Default for BackgroundFill {
+    fn default() -> Self {
+        Self::BackgroundFillSolid(Default::default())
     }
 }
 

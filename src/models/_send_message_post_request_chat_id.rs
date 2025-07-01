@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,15 +45,17 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// SendMessagePostRequestChatId : Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct SendMessagePostRequestChatId {
+/// Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SendMessagePostRequestChatId {
+    Integer(i32),
+    String(String),
 }
 
-impl SendMessagePostRequestChatId {
-    /// Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-    pub fn new() -> SendMessagePostRequestChatId {
-        SendMessagePostRequestChatId {
-        }
+impl Default for SendMessagePostRequestChatId {
+    fn default() -> Self {
+        Self::Integer(Default::default())
     }
 }
 

@@ -1,10 +1,9 @@
 [package]
 name = "tele_rest"
 version = "9.0.0"
-authors = ["CtrlX <gitctrlx@gmail.com>"]
-description = "Auto-generated OpenAPI schema"
-# Override this license by providing a License Object in the OpenAPI.
-license = "Unlicense"
+authors = ["gitctrlx@gmail.com"]
+description = "The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ."
+license = "Apache-2.0"
 edition = "2024"
 
 [dependencies]

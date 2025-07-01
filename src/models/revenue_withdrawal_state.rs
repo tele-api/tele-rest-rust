@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,27 +45,18 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// RevenueWithdrawalState : This object describes the state of a revenue withdrawal operation. Currently, it can be one of  * [RevenueWithdrawalStatePending](https://core.telegram.org/bots/api/#revenuewithdrawalstatepending) * [RevenueWithdrawalStateSucceeded](https://core.telegram.org/bots/api/#revenuewithdrawalstatesucceeded) * [RevenueWithdrawalStateFailed](https://core.telegram.org/bots/api/#revenuewithdrawalstatefailed)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct RevenueWithdrawalState {
-    /// Type of the state, always “failed”
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// Date the withdrawal was completed in Unix time
-    #[serde(rename = "date")]
-    pub date: i32,
-    /// An HTTPS URL that can be used to see transaction details
-    #[serde(rename = "url")]
-    pub url: String,
+/// This object describes the state of a revenue withdrawal operation. Currently, it can be one of  * [RevenueWithdrawalStatePending](https://core.telegram.org/bots/api/#revenuewithdrawalstatepending) * [RevenueWithdrawalStateSucceeded](https://core.telegram.org/bots/api/#revenuewithdrawalstatesucceeded) * [RevenueWithdrawalStateFailed](https://core.telegram.org/bots/api/#revenuewithdrawalstatefailed)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RevenueWithdrawalState {
+    RevenueWithdrawalStatePending(Box<models::RevenueWithdrawalStatePending>),
+    RevenueWithdrawalStateSucceeded(Box<models::RevenueWithdrawalStateSucceeded>),
+    RevenueWithdrawalStateFailed(Box<models::RevenueWithdrawalStateFailed>),
 }
 
-impl RevenueWithdrawalState {
-    /// This object describes the state of a revenue withdrawal operation. Currently, it can be one of  * [RevenueWithdrawalStatePending](https://core.telegram.org/bots/api/#revenuewithdrawalstatepending) * [RevenueWithdrawalStateSucceeded](https://core.telegram.org/bots/api/#revenuewithdrawalstatesucceeded) * [RevenueWithdrawalStateFailed](https://core.telegram.org/bots/api/#revenuewithdrawalstatefailed)
-    pub fn new(r#type: String, date: i32, url: String) -> RevenueWithdrawalState {
-        RevenueWithdrawalState {
-            r#type,
-            date,
-            url,
-        }
+impl Default for RevenueWithdrawalState {
+    fn default() -> Self {
+        Self::RevenueWithdrawalStatePending(Default::default())
     }
 }
 

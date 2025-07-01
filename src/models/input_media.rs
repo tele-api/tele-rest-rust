@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,83 +45,20 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// InputMedia : This object represents the content of a media message to be sent. It should be one of  * [InputMediaAnimation](https://core.telegram.org/bots/api/#inputmediaanimation) * [InputMediaDocument](https://core.telegram.org/bots/api/#inputmediadocument) * [InputMediaAudio](https://core.telegram.org/bots/api/#inputmediaaudio) * [InputMediaPhoto](https://core.telegram.org/bots/api/#inputmediaphoto) * [InputMediaVideo](https://core.telegram.org/bots/api/#inputmediavideo)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct InputMedia {
-    /// Type of the result, must be *video*
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// File to send. Pass a file\\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://\\<file\\_attach\\_name\\>” to upload a new one using multipart/form-data under \\<file\\_attach\\_name\\> name. [More information on Sending Files »](https://core.telegram.org/bots/api/#sending-files)
-    #[serde(rename = "media")]
-    pub media: String,
-    /// *Optional*. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://\\<file\\_attach\\_name\\>” if the thumbnail was uploaded using multipart/form-data under \\<file\\_attach\\_name\\>. [More information on Sending Files »](https://core.telegram.org/bots/api/#sending-files)
-    #[serde(rename = "thumbnail", skip_serializing_if = "Option::is_none")]
-    pub thumbnail: Option<String>,
-    /// *Optional*. Caption of the video to be sent, 0-1024 characters after entities parsing
-    #[serde(rename = "caption", skip_serializing_if = "Option::is_none")]
-    pub caption: Option<String>,
-    /// *Optional*. Mode for parsing entities in the video caption. See [formatting options](https://core.telegram.org/bots/api/#formatting-options) for more details.
-    #[serde(rename = "parse_mode", skip_serializing_if = "Option::is_none")]
-    pub parse_mode: Option<String>,
-    /// *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\\_mode*
-    #[serde(rename = "caption_entities", skip_serializing_if = "Option::is_none")]
-    pub caption_entities: Option<Vec<models::MessageEntity>>,
-    /// *Optional*. Pass *True*, if the caption must be shown above the message media
-    #[serde(rename = "show_caption_above_media", skip_serializing_if = "Option::is_none")]
-    pub show_caption_above_media: Option<bool>,
-    /// *Optional*. Video width
-    #[serde(rename = "width", skip_serializing_if = "Option::is_none")]
-    pub width: Option<i32>,
-    /// *Optional*. Video height
-    #[serde(rename = "height", skip_serializing_if = "Option::is_none")]
-    pub height: Option<i32>,
-    /// *Optional*. Video duration in seconds
-    #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<i32>,
-    /// *Optional*. Pass *True* if the video needs to be covered with a spoiler animation
-    #[serde(rename = "has_spoiler", skip_serializing_if = "Option::is_none")]
-    pub has_spoiler: Option<bool>,
-    /// *Optional*. Disables automatic server-side content type detection for files uploaded using multipart/form-data. Always *True*, if the document is sent as part of an album.
-    #[serde(rename = "disable_content_type_detection", skip_serializing_if = "Option::is_none")]
-    pub disable_content_type_detection: Option<bool>,
-    /// *Optional*. Performer of the audio
-    #[serde(rename = "performer", skip_serializing_if = "Option::is_none")]
-    pub performer: Option<String>,
-    /// *Optional*. Title of the audio
-    #[serde(rename = "title", skip_serializing_if = "Option::is_none")]
-    pub title: Option<String>,
-    /// *Optional*. Cover for the video in the message. Pass a file\\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://\\<file\\_attach\\_name\\>” to upload a new one using multipart/form-data under \\<file\\_attach\\_name\\> name. [More information on Sending Files »](https://core.telegram.org/bots/api/#sending-files)
-    #[serde(rename = "cover", skip_serializing_if = "Option::is_none")]
-    pub cover: Option<String>,
-    /// *Optional*. Start timestamp for the video in the message
-    #[serde(rename = "start_timestamp", skip_serializing_if = "Option::is_none")]
-    pub start_timestamp: Option<i32>,
-    /// *Optional*. Pass *True* if the uploaded video is suitable for streaming
-    #[serde(rename = "supports_streaming", skip_serializing_if = "Option::is_none")]
-    pub supports_streaming: Option<bool>,
+/// This object represents the content of a media message to be sent. It should be one of  * [InputMediaAnimation](https://core.telegram.org/bots/api/#inputmediaanimation) * [InputMediaDocument](https://core.telegram.org/bots/api/#inputmediadocument) * [InputMediaAudio](https://core.telegram.org/bots/api/#inputmediaaudio) * [InputMediaPhoto](https://core.telegram.org/bots/api/#inputmediaphoto) * [InputMediaVideo](https://core.telegram.org/bots/api/#inputmediavideo)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum InputMedia {
+    InputMediaAnimation(Box<models::InputMediaAnimation>),
+    InputMediaDocument(Box<models::InputMediaDocument>),
+    InputMediaAudio(Box<models::InputMediaAudio>),
+    InputMediaPhoto(Box<models::InputMediaPhoto>),
+    InputMediaVideo(Box<models::InputMediaVideo>),
 }
 
-impl InputMedia {
-    /// This object represents the content of a media message to be sent. It should be one of  * [InputMediaAnimation](https://core.telegram.org/bots/api/#inputmediaanimation) * [InputMediaDocument](https://core.telegram.org/bots/api/#inputmediadocument) * [InputMediaAudio](https://core.telegram.org/bots/api/#inputmediaaudio) * [InputMediaPhoto](https://core.telegram.org/bots/api/#inputmediaphoto) * [InputMediaVideo](https://core.telegram.org/bots/api/#inputmediavideo)
-    pub fn new(r#type: String, media: String) -> InputMedia {
-        InputMedia {
-            r#type,
-            media,
-            thumbnail: None,
-            caption: None,
-            parse_mode: None,
-            caption_entities: None,
-            show_caption_above_media: None,
-            width: None,
-            height: None,
-            duration: None,
-            has_spoiler: None,
-            disable_content_type_detection: None,
-            performer: None,
-            title: None,
-            cover: None,
-            start_timestamp: None,
-            supports_streaming: None,
-        }
+impl Default for InputMedia {
+    fn default() -> Self {
+        Self::InputMediaAnimation(Default::default())
     }
 }
 

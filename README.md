@@ -1,13 +1,15 @@
 # Rust API client for tele_rest
 
-Auto-generated OpenAPI schema
+The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram.
+To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 
+For more information, please visit [https://github.com/gitctrlx](https://github.com/gitctrlx)
 
 ## Overview
 
 - API version: 9.0.0
 - Package version: 9.0.0
-- Build date: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+- Build date: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 
 ## Installation
 
@@ -617,5 +619,5 @@ cargo doc --open
 
 ## Author
 
-
+gitctrlx@gmail.com
 

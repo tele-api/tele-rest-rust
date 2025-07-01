@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,26 +45,22 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// BotCommandScope : This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:  * [BotCommandScopeDefault](https://core.telegram.org/bots/api/#botcommandscopedefault) * [BotCommandScopeAllPrivateChats](https://core.telegram.org/bots/api/#botcommandscopeallprivatechats) * [BotCommandScopeAllGroupChats](https://core.telegram.org/bots/api/#botcommandscopeallgroupchats) * [BotCommandScopeAllChatAdministrators](https://core.telegram.org/bots/api/#botcommandscopeallchatadministrators) * [BotCommandScopeChat](https://core.telegram.org/bots/api/#botcommandscopechat) * [BotCommandScopeChatAdministrators](https://core.telegram.org/bots/api/#botcommandscopechatadministrators) * [BotCommandScopeChatMember](https://core.telegram.org/bots/api/#botcommandscopechatmember)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct BotCommandScope {
-    /// Scope type, must be *chat\\_member*
-    #[serde(rename = "type")]
-    pub r#type: String,
-    #[serde(rename = "chat_id")]
-    pub chat_id: Box<models::RestrictChatMemberPostRequestChatId>,
-    /// Unique identifier of the target user
-    #[serde(rename = "user_id")]
-    pub user_id: i32,
+/// This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:  * [BotCommandScopeDefault](https://core.telegram.org/bots/api/#botcommandscopedefault) * [BotCommandScopeAllPrivateChats](https://core.telegram.org/bots/api/#botcommandscopeallprivatechats) * [BotCommandScopeAllGroupChats](https://core.telegram.org/bots/api/#botcommandscopeallgroupchats) * [BotCommandScopeAllChatAdministrators](https://core.telegram.org/bots/api/#botcommandscopeallchatadministrators) * [BotCommandScopeChat](https://core.telegram.org/bots/api/#botcommandscopechat) * [BotCommandScopeChatAdministrators](https://core.telegram.org/bots/api/#botcommandscopechatadministrators) * [BotCommandScopeChatMember](https://core.telegram.org/bots/api/#botcommandscopechatmember)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum BotCommandScope {
+    BotCommandScopeDefault(Box<models::BotCommandScopeDefault>),
+    BotCommandScopeAllPrivateChats(Box<models::BotCommandScopeAllPrivateChats>),
+    BotCommandScopeAllGroupChats(Box<models::BotCommandScopeAllGroupChats>),
+    BotCommandScopeAllChatAdministrators(Box<models::BotCommandScopeAllChatAdministrators>),
+    BotCommandScopeChat(Box<models::BotCommandScopeChat>),
+    BotCommandScopeChatAdministrators(Box<models::BotCommandScopeChatAdministrators>),
+    BotCommandScopeChatMember(Box<models::BotCommandScopeChatMember>),
 }
 
-impl BotCommandScope {
-    /// This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:  * [BotCommandScopeDefault](https://core.telegram.org/bots/api/#botcommandscopedefault) * [BotCommandScopeAllPrivateChats](https://core.telegram.org/bots/api/#botcommandscopeallprivatechats) * [BotCommandScopeAllGroupChats](https://core.telegram.org/bots/api/#botcommandscopeallgroupchats) * [BotCommandScopeAllChatAdministrators](https://core.telegram.org/bots/api/#botcommandscopeallchatadministrators) * [BotCommandScopeChat](https://core.telegram.org/bots/api/#botcommandscopechat) * [BotCommandScopeChatAdministrators](https://core.telegram.org/bots/api/#botcommandscopechatadministrators) * [BotCommandScopeChatMember](https://core.telegram.org/bots/api/#botcommandscopechatmember)
-    pub fn new(r#type: String, chat_id: models::RestrictChatMemberPostRequestChatId, user_id: i32) -> BotCommandScope {
-        BotCommandScope {
-            r#type,
-            chat_id: Box::new(chat_id),
-            user_id,
-        }
+impl Default for BotCommandScope {
+    fn default() -> Self {
+        Self::BotCommandScopeDefault(Default::default())
     }
 }
 

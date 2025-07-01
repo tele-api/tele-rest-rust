@@ -1,13 +1,13 @@
 //! # Telegram Bot API - REST API Client
 //! 
-//! Auto-generated OpenAPI schema
+//! The Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. To learn how to create and set up a bot, please consult our Introduction to Bots and Bot FAQ.
 //! 
 //! ## Metadata
 //!   
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:14:23.986122366Z[Etc/UTC]
+//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -45,61 +45,20 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// StoryAreaType : Describes the type of a clickable area on a story. Currently, it can be one of  * [StoryAreaTypeLocation](https://core.telegram.org/bots/api/#storyareatypelocation) * [StoryAreaTypeSuggestedReaction](https://core.telegram.org/bots/api/#storyareatypesuggestedreaction) * [StoryAreaTypeLink](https://core.telegram.org/bots/api/#storyareatypelink) * [StoryAreaTypeWeather](https://core.telegram.org/bots/api/#storyareatypeweather) * [StoryAreaTypeUniqueGift](https://core.telegram.org/bots/api/#storyareatypeuniquegift)
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct StoryAreaType {
-    /// Type of the area, always “unique\\_gift”
-    #[serde(rename = "type")]
-    pub r#type: String,
-    /// Location latitude in degrees
-    #[serde(rename = "latitude")]
-    pub latitude: f64,
-    /// Location longitude in degrees
-    #[serde(rename = "longitude")]
-    pub longitude: f64,
-    #[serde(rename = "address", skip_serializing_if = "Option::is_none")]
-    pub address: Option<Box<models::LocationAddress>>,
-    #[serde(rename = "reaction_type")]
-    pub reaction_type: Box<models::ReactionType>,
-    /// *Optional*. Pass *True* if the reaction area has a dark background
-    #[serde(rename = "is_dark", skip_serializing_if = "Option::is_none")]
-    pub is_dark: Option<bool>,
-    /// *Optional*. Pass *True* if reaction area corner is flipped
-    #[serde(rename = "is_flipped", skip_serializing_if = "Option::is_none")]
-    pub is_flipped: Option<bool>,
-    /// HTTP or tg:// URL to be opened when the area is clicked
-    #[serde(rename = "url")]
-    pub url: String,
-    /// Temperature, in degree Celsius
-    #[serde(rename = "temperature")]
-    pub temperature: f64,
-    /// Emoji representing the weather
-    #[serde(rename = "emoji")]
-    pub emoji: String,
-    /// A color of the area background in the ARGB format
-    #[serde(rename = "background_color")]
-    pub background_color: i32,
-    /// Unique name of the gift
-    #[serde(rename = "name")]
-    pub name: String,
+/// Describes the type of a clickable area on a story. Currently, it can be one of  * [StoryAreaTypeLocation](https://core.telegram.org/bots/api/#storyareatypelocation) * [StoryAreaTypeSuggestedReaction](https://core.telegram.org/bots/api/#storyareatypesuggestedreaction) * [StoryAreaTypeLink](https://core.telegram.org/bots/api/#storyareatypelink) * [StoryAreaTypeWeather](https://core.telegram.org/bots/api/#storyareatypeweather) * [StoryAreaTypeUniqueGift](https://core.telegram.org/bots/api/#storyareatypeuniquegift)
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum StoryAreaType {
+    StoryAreaTypeLocation(Box<models::StoryAreaTypeLocation>),
+    StoryAreaTypeSuggestedReaction(Box<models::StoryAreaTypeSuggestedReaction>),
+    StoryAreaTypeLink(Box<models::StoryAreaTypeLink>),
+    StoryAreaTypeWeather(Box<models::StoryAreaTypeWeather>),
+    StoryAreaTypeUniqueGift(Box<models::StoryAreaTypeUniqueGift>),
 }
 
-impl StoryAreaType {
-    /// Describes the type of a clickable area on a story. Currently, it can be one of  * [StoryAreaTypeLocation](https://core.telegram.org/bots/api/#storyareatypelocation) * [StoryAreaTypeSuggestedReaction](https://core.telegram.org/bots/api/#storyareatypesuggestedreaction) * [StoryAreaTypeLink](https://core.telegram.org/bots/api/#storyareatypelink) * [StoryAreaTypeWeather](https://core.telegram.org/bots/api/#storyareatypeweather) * [StoryAreaTypeUniqueGift](https://core.telegram.org/bots/api/#storyareatypeuniquegift)
-    pub fn new(r#type: String, latitude: f64, longitude: f64, reaction_type: models::ReactionType, url: String, temperature: f64, emoji: String, background_color: i32, name: String) -> StoryAreaType {
-        StoryAreaType {
-            r#type,
-            latitude,
-            longitude,
-            address: None,
-            reaction_type: Box::new(reaction_type),
-            is_dark: None,
-            is_flipped: None,
-            url,
-            temperature,
-            emoji,
-            background_color,
-            name,
-        }
+impl Default for StoryAreaType {
+    fn default() -> Self {
+        Self::StoryAreaTypeLocation(Default::default())
     }
 }
 
