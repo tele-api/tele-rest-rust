@@ -7,7 +7,7 @@
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-02T07:03:16.715318580Z[Etc/UTC]
+//! - **Modified**: 2025-07-02T09:17:04.370667370Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -51,12 +51,12 @@ pub struct BotCommandScopeChatAdministrators {
     #[serde(rename = "type")]
     pub r#type: String,
     #[serde(rename = "chat_id")]
-    pub chat_id: Box<models::PostRestrictChatMemberRequestChatId>,
+    pub chat_id: Box<models::BotCommandScopeChatChatId>,
 }
 
 impl BotCommandScopeChatAdministrators {
     /// Represents the [scope](https://core.telegram.org/bots/api/#botcommandscope) of bot commands, covering all administrators of a specific group or supergroup chat.
-    pub fn new(r#type: String, chat_id: models::PostRestrictChatMemberRequestChatId) -> BotCommandScopeChatAdministrators {
+    pub fn new(r#type: String, chat_id: models::BotCommandScopeChatChatId) -> BotCommandScopeChatAdministrators {
         BotCommandScopeChatAdministrators {
             r#type,
             chat_id: Box::new(chat_id),

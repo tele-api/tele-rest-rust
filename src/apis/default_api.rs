@@ -7,7 +7,7 @@
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-02T07:03:16.715318580Z[Etc/UTC]
+//! - **Modified**: 2025-07-02T09:17:04.370667370Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -86,17 +86,17 @@ pub trait DefaultApi: Send + Sync {
     /// POST /approveChatJoinRequest
     ///
     /// Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the *can\\_invite\\_users* administrator right. Returns *True* on success.
-    async fn post_approve_chat_join_request<'chat_id, 'user_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, user_id: i32) -> Result<ResponseContent<PostApproveChatJoinRequestSuccess>, Error<PostApproveChatJoinRequestError>>;
+    async fn post_approve_chat_join_request<'chat_id, 'user_id>(&self, chat_id: models::models::SendMessageRequestChatId, user_id: i32) -> Result<ResponseContent<PostApproveChatJoinRequestSuccess>, Error<PostApproveChatJoinRequestError>>;
 
     /// POST /banChatMember
     ///
     /// Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless [unbanned](https://core.telegram.org/bots/api/#unbanchatmember) first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_ban_chat_member<'chat_id, 'user_id, 'until_date, 'revoke_messages>(&self, chat_id: models::models::PostBanChatMemberRequestChatId, user_id: i32, until_date: Option<i32>, revoke_messages: Option<bool>) -> Result<ResponseContent<PostBanChatMemberSuccess>, Error<PostBanChatMemberError>>;
+    async fn post_ban_chat_member<'chat_id, 'user_id, 'until_date, 'revoke_messages>(&self, chat_id: models::models::BanChatMemberRequestChatId, user_id: i32, until_date: Option<i32>, revoke_messages: Option<bool>) -> Result<ResponseContent<PostBanChatMemberSuccess>, Error<PostBanChatMemberError>>;
 
     /// POST /banChatSenderChat
     ///
     /// Use this method to ban a channel chat in a supergroup or a channel. Until the chat is [unbanned](https://core.telegram.org/bots/api/#unbanchatsenderchat), the owner of the banned chat won't be able to send messages on behalf of **any of their channels**. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_ban_chat_sender_chat<'chat_id, 'sender_chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, sender_chat_id: i32) -> Result<ResponseContent<PostBanChatSenderChatSuccess>, Error<PostBanChatSenderChatError>>;
+    async fn post_ban_chat_sender_chat<'chat_id, 'sender_chat_id>(&self, chat_id: models::models::SendMessageRequestChatId, sender_chat_id: i32) -> Result<ResponseContent<PostBanChatSenderChatSuccess>, Error<PostBanChatSenderChatError>>;
 
     /// POST /close
     ///
@@ -106,12 +106,12 @@ pub trait DefaultApi: Send + Sync {
     /// POST /closeForumTopic
     ///
     /// Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights, unless it is the creator of the topic. Returns *True* on success.
-    async fn post_close_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32) -> Result<ResponseContent<PostCloseForumTopicSuccess>, Error<PostCloseForumTopicError>>;
+    async fn post_close_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32) -> Result<ResponseContent<PostCloseForumTopicSuccess>, Error<PostCloseForumTopicError>>;
 
     /// POST /closeGeneralForumTopic
     ///
     /// Use this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. Returns *True* on success.
-    async fn post_close_general_forum_topic<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostCloseGeneralForumTopicSuccess>, Error<PostCloseGeneralForumTopicError>>;
+    async fn post_close_general_forum_topic<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostCloseGeneralForumTopicSuccess>, Error<PostCloseGeneralForumTopicError>>;
 
     /// POST /convertGiftToStars
     ///
@@ -121,27 +121,27 @@ pub trait DefaultApi: Send + Sync {
     /// POST /copyMessage
     ///
     /// Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz [poll](https://core.telegram.org/bots/api/#poll) can be copied only if the value of the field *correct\\_option\\_id* is known to the bot. The method is analogous to the method [forwardMessage](https://core.telegram.org/bots/api/#forwardmessage), but the copied message doesn't have a link to the original message. Returns the [MessageId](https://core.telegram.org/bots/api/#messageid) of the sent message on success.
-    async fn post_copy_message<'chat_id, 'from_chat_id, 'message_id, 'message_thread_id, 'video_start_timestamp, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, from_chat_id: models::models::PostForwardMessageRequestFromChatId, message_id: i32, message_thread_id: Option<i32>, video_start_timestamp: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostCopyMessageSuccess>, Error<PostCopyMessageError>>;
+    async fn post_copy_message<'chat_id, 'from_chat_id, 'message_id, 'message_thread_id, 'video_start_timestamp, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, from_chat_id: models::models::ForwardMessageRequestFromChatId, message_id: i32, message_thread_id: Option<i32>, video_start_timestamp: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostCopyMessageSuccess>, Error<PostCopyMessageError>>;
 
     /// POST /copyMessages
     ///
     /// Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz [poll](https://core.telegram.org/bots/api/#poll) can be copied only if the value of the field *correct\\_option\\_id* is known to the bot. The method is analogous to the method [forwardMessages](https://core.telegram.org/bots/api/#forwardmessages), but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of [MessageId](https://core.telegram.org/bots/api/#messageid) of the sent messages is returned.
-    async fn post_copy_messages<'chat_id, 'from_chat_id, 'message_ids, 'message_thread_id, 'disable_notification, 'protect_content, 'remove_caption>(&self, chat_id: models::models::PostSendMessageRequestChatId, from_chat_id: models::models::PostForwardMessagesRequestFromChatId, message_ids: Vec<i32>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, remove_caption: Option<bool>) -> Result<ResponseContent<PostCopyMessagesSuccess>, Error<PostCopyMessagesError>>;
+    async fn post_copy_messages<'chat_id, 'from_chat_id, 'message_ids, 'message_thread_id, 'disable_notification, 'protect_content, 'remove_caption>(&self, chat_id: models::models::SendMessageRequestChatId, from_chat_id: models::models::ForwardMessagesRequestFromChatId, message_ids: Vec<i32>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, remove_caption: Option<bool>) -> Result<ResponseContent<PostCopyMessagesSuccess>, Error<PostCopyMessagesError>>;
 
     /// POST /createChatInviteLink
     ///
     /// Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method [revokeChatInviteLink](https://core.telegram.org/bots/api/#revokechatinvitelink). Returns the new invite link as [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_create_chat_invite_link<'chat_id, 'name, 'expire_date, 'member_limit, 'creates_join_request>(&self, chat_id: models::models::PostSendMessageRequestChatId, name: Option<&'name str>, expire_date: Option<i32>, member_limit: Option<i32>, creates_join_request: Option<bool>) -> Result<ResponseContent<PostCreateChatInviteLinkSuccess>, Error<PostCreateChatInviteLinkError>>;
+    async fn post_create_chat_invite_link<'chat_id, 'name, 'expire_date, 'member_limit, 'creates_join_request>(&self, chat_id: models::models::SendMessageRequestChatId, name: Option<&'name str>, expire_date: Option<i32>, member_limit: Option<i32>, creates_join_request: Option<bool>) -> Result<ResponseContent<PostCreateChatInviteLinkSuccess>, Error<PostCreateChatInviteLinkError>>;
 
     /// POST /createChatSubscriptionInviteLink
     ///
     /// Use this method to create a [subscription invite link](https://telegram.org/blog/superchannels-star-reactions-subscriptions#star-subscriptions) for a channel chat. The bot must have the *can\\_invite\\_users* administrator rights. The link can be edited using the method [editChatSubscriptionInviteLink](https://core.telegram.org/bots/api/#editchatsubscriptioninvitelink) or revoked using the method [revokeChatInviteLink](https://core.telegram.org/bots/api/#revokechatinvitelink). Returns the new invite link as a [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_create_chat_subscription_invite_link<'chat_id, 'subscription_period, 'subscription_price, 'name>(&self, chat_id: models::models::PostCreateChatSubscriptionInviteLinkRequestChatId, subscription_period: i32, subscription_price: i32, name: Option<&'name str>) -> Result<ResponseContent<PostCreateChatSubscriptionInviteLinkSuccess>, Error<PostCreateChatSubscriptionInviteLinkError>>;
+    async fn post_create_chat_subscription_invite_link<'chat_id, 'subscription_period, 'subscription_price, 'name>(&self, chat_id: models::models::CreateChatSubscriptionInviteLinkRequestChatId, subscription_period: i32, subscription_price: i32, name: Option<&'name str>) -> Result<ResponseContent<PostCreateChatSubscriptionInviteLinkSuccess>, Error<PostCreateChatSubscriptionInviteLinkError>>;
 
     /// POST /createForumTopic
     ///
     /// Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. Returns information about the created topic as a [ForumTopic](https://core.telegram.org/bots/api/#forumtopic) object.
-    async fn post_create_forum_topic<'chat_id, 'name, 'icon_color, 'icon_custom_emoji_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, name: &'name str, icon_color: Option<i32>, icon_custom_emoji_id: Option<&'icon_custom_emoji_id str>) -> Result<ResponseContent<PostCreateForumTopicSuccess>, Error<PostCreateForumTopicError>>;
+    async fn post_create_forum_topic<'chat_id, 'name, 'icon_color, 'icon_custom_emoji_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, name: &'name str, icon_color: Option<i32>, icon_custom_emoji_id: Option<&'icon_custom_emoji_id str>) -> Result<ResponseContent<PostCreateForumTopicSuccess>, Error<PostCreateForumTopicError>>;
 
     /// POST /createInvoiceLink
     ///
@@ -156,37 +156,37 @@ pub trait DefaultApi: Send + Sync {
     /// POST /declineChatJoinRequest
     ///
     /// Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the *can\\_invite\\_users* administrator right. Returns *True* on success.
-    async fn post_decline_chat_join_request<'chat_id, 'user_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, user_id: i32) -> Result<ResponseContent<PostDeclineChatJoinRequestSuccess>, Error<PostDeclineChatJoinRequestError>>;
+    async fn post_decline_chat_join_request<'chat_id, 'user_id>(&self, chat_id: models::models::SendMessageRequestChatId, user_id: i32) -> Result<ResponseContent<PostDeclineChatJoinRequestSuccess>, Error<PostDeclineChatJoinRequestError>>;
 
     /// POST /deleteBusinessMessages
     ///
-    /// Delete messages on behalf of a business account. Requires the *can\\_delete\\_sent\\_messages* business bot right to delete messages sent by the bot itself, or the *can\\_delete\\_all\\_messages* business bot right to delete any message. Returns *True* on success.
+    /// Delete messages on behalf of a business account. Requires the *can\\_delete\\_outgoing\\_messages* business bot right to delete messages sent by the bot itself, or the *can\\_delete\\_all\\_messages* business bot right to delete any message. Returns *True* on success.
     async fn post_delete_business_messages<'business_connection_id, 'message_ids>(&self, business_connection_id: &'business_connection_id str, message_ids: Vec<i32>) -> Result<ResponseContent<PostDeleteBusinessMessagesSuccess>, Error<PostDeleteBusinessMessagesError>>;
 
     /// POST /deleteChatPhoto
     ///
     /// Use this method to delete a chat photo. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_delete_chat_photo<'chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId) -> Result<ResponseContent<PostDeleteChatPhotoSuccess>, Error<PostDeleteChatPhotoError>>;
+    async fn post_delete_chat_photo<'chat_id>(&self, chat_id: models::models::SendMessageRequestChatId) -> Result<ResponseContent<PostDeleteChatPhotoSuccess>, Error<PostDeleteChatPhotoError>>;
 
     /// POST /deleteChatStickerSet
     ///
     /// Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field *can\\_set\\_sticker\\_set* optionally returned in [getChat](https://core.telegram.org/bots/api/#getchat) requests to check if the bot can use this method. Returns *True* on success.
-    async fn post_delete_chat_sticker_set<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostDeleteChatStickerSetSuccess>, Error<PostDeleteChatStickerSetError>>;
+    async fn post_delete_chat_sticker_set<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostDeleteChatStickerSetSuccess>, Error<PostDeleteChatStickerSetError>>;
 
     /// POST /deleteForumTopic
     ///
     /// Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_delete\\_messages* administrator rights. Returns *True* on success.
-    async fn post_delete_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32) -> Result<ResponseContent<PostDeleteForumTopicSuccess>, Error<PostDeleteForumTopicError>>;
+    async fn post_delete_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32) -> Result<ResponseContent<PostDeleteForumTopicSuccess>, Error<PostDeleteForumTopicError>>;
 
     /// POST /deleteMessage
     ///
     /// Use this method to delete a message, including service messages, with the following limitations:   \\- A message can only be deleted if it was sent less than 48 hours ago.   \\- Service messages about a supergroup, channel, or forum topic creation can't be deleted.   \\- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.   \\- Bots can delete outgoing messages in private chats, groups, and supergroups.   \\- Bots can delete incoming messages in private chats.   \\- Bots granted *can\\_post\\_messages* permissions can delete outgoing messages in channels.   \\- If the bot is an administrator of a group, it can delete any message there.   \\- If the bot has *can\\_delete\\_messages* permission in a supergroup or a channel, it can delete any message there.   Returns *True* on success.
-    async fn post_delete_message<'chat_id, 'message_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_id: i32) -> Result<ResponseContent<PostDeleteMessageSuccess>, Error<PostDeleteMessageError>>;
+    async fn post_delete_message<'chat_id, 'message_id>(&self, chat_id: models::models::SendMessageRequestChatId, message_id: i32) -> Result<ResponseContent<PostDeleteMessageSuccess>, Error<PostDeleteMessageError>>;
 
     /// POST /deleteMessages
     ///
     /// Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns *True* on success.
-    async fn post_delete_messages<'chat_id, 'message_ids>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_ids: Vec<i32>) -> Result<ResponseContent<PostDeleteMessagesSuccess>, Error<PostDeleteMessagesError>>;
+    async fn post_delete_messages<'chat_id, 'message_ids>(&self, chat_id: models::models::SendMessageRequestChatId, message_ids: Vec<i32>) -> Result<ResponseContent<PostDeleteMessagesSuccess>, Error<PostDeleteMessagesError>>;
 
     /// POST /deleteMyCommands
     ///
@@ -216,47 +216,47 @@ pub trait DefaultApi: Send + Sync {
     /// POST /editChatInviteLink
     ///
     /// Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_edit_chat_invite_link<'chat_id, 'invite_link, 'name, 'expire_date, 'member_limit, 'creates_join_request>(&self, chat_id: models::models::PostSendMessageRequestChatId, invite_link: &'invite_link str, name: Option<&'name str>, expire_date: Option<i32>, member_limit: Option<i32>, creates_join_request: Option<bool>) -> Result<ResponseContent<PostEditChatInviteLinkSuccess>, Error<PostEditChatInviteLinkError>>;
+    async fn post_edit_chat_invite_link<'chat_id, 'invite_link, 'name, 'expire_date, 'member_limit, 'creates_join_request>(&self, chat_id: models::models::SendMessageRequestChatId, invite_link: &'invite_link str, name: Option<&'name str>, expire_date: Option<i32>, member_limit: Option<i32>, creates_join_request: Option<bool>) -> Result<ResponseContent<PostEditChatInviteLinkSuccess>, Error<PostEditChatInviteLinkError>>;
 
     /// POST /editChatSubscriptionInviteLink
     ///
     /// Use this method to edit a subscription invite link created by the bot. The bot must have the *can\\_invite\\_users* administrator rights. Returns the edited invite link as a [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_edit_chat_subscription_invite_link<'chat_id, 'invite_link, 'name>(&self, chat_id: models::models::PostSendMessageRequestChatId, invite_link: &'invite_link str, name: Option<&'name str>) -> Result<ResponseContent<PostEditChatSubscriptionInviteLinkSuccess>, Error<PostEditChatSubscriptionInviteLinkError>>;
+    async fn post_edit_chat_subscription_invite_link<'chat_id, 'invite_link, 'name>(&self, chat_id: models::models::SendMessageRequestChatId, invite_link: &'invite_link str, name: Option<&'name str>) -> Result<ResponseContent<PostEditChatSubscriptionInviteLinkSuccess>, Error<PostEditChatSubscriptionInviteLinkError>>;
 
     /// POST /editForumTopic
     ///
     /// Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights, unless it is the creator of the topic. Returns *True* on success.
-    async fn post_edit_forum_topic<'chat_id, 'message_thread_id, 'name, 'icon_custom_emoji_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32, name: Option<&'name str>, icon_custom_emoji_id: Option<&'icon_custom_emoji_id str>) -> Result<ResponseContent<PostEditForumTopicSuccess>, Error<PostEditForumTopicError>>;
+    async fn post_edit_forum_topic<'chat_id, 'message_thread_id, 'name, 'icon_custom_emoji_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32, name: Option<&'name str>, icon_custom_emoji_id: Option<&'icon_custom_emoji_id str>) -> Result<ResponseContent<PostEditForumTopicSuccess>, Error<PostEditForumTopicError>>;
 
     /// POST /editGeneralForumTopic
     ///
     /// Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. Returns *True* on success.
-    async fn post_edit_general_forum_topic<'chat_id, 'name>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, name: &'name str) -> Result<ResponseContent<PostEditGeneralForumTopicSuccess>, Error<PostEditGeneralForumTopicError>>;
+    async fn post_edit_general_forum_topic<'chat_id, 'name>(&self, chat_id: models::models::BotCommandScopeChatChatId, name: &'name str) -> Result<ResponseContent<PostEditGeneralForumTopicSuccess>, Error<PostEditGeneralForumTopicError>>;
 
     /// POST /editMessageCaption
     ///
     /// Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
-    async fn post_edit_message_caption<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageCaptionSuccess>, Error<PostEditMessageCaptionError>>;
+    async fn post_edit_message_caption<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageCaptionSuccess>, Error<PostEditMessageCaptionError>>;
 
     /// POST /editMessageLiveLocation
     ///
     /// Use this method to edit live location messages. A location can be edited until its *live\\_period* expires or editing is explicitly disabled by a call to [stopMessageLiveLocation](https://core.telegram.org/bots/api/#stopmessagelivelocation). On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned.
-    async fn post_edit_message_live_location<'latitude, 'longitude, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'live_period, 'horizontal_accuracy, 'heading, 'proximity_alert_radius, 'reply_markup>(&self, latitude: f64, longitude: f64, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, live_period: Option<i32>, horizontal_accuracy: Option<f64>, heading: Option<i32>, proximity_alert_radius: Option<i32>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageLiveLocationSuccess>, Error<PostEditMessageLiveLocationError>>;
+    async fn post_edit_message_live_location<'latitude, 'longitude, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'live_period, 'horizontal_accuracy, 'heading, 'proximity_alert_radius, 'reply_markup>(&self, latitude: f64, longitude: f64, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, live_period: Option<i32>, horizontal_accuracy: Option<f64>, heading: Option<i32>, proximity_alert_radius: Option<i32>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageLiveLocationSuccess>, Error<PostEditMessageLiveLocationError>>;
 
     /// POST /editMessageMedia
     ///
     /// Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file\\_id or specify a URL. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
-    async fn post_edit_message_media<'media, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, media: models::models::InputMedia, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageMediaSuccess>, Error<PostEditMessageMediaError>>;
+    async fn post_edit_message_media<'media, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, media: models::models::InputMedia, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageMediaSuccess>, Error<PostEditMessageMediaError>>;
 
     /// POST /editMessageReplyMarkup
     ///
     /// Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
-    async fn post_edit_message_reply_markup<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageReplyMarkupSuccess>, Error<PostEditMessageReplyMarkupError>>;
+    async fn post_edit_message_reply_markup<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageReplyMarkupSuccess>, Error<PostEditMessageReplyMarkupError>>;
 
     /// POST /editMessageText
     ///
     /// Use this method to edit text and [game](https://core.telegram.org/bots/api/#games) messages. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
-    async fn post_edit_message_text<'text, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'parse_mode, 'entities, 'link_preview_options, 'reply_markup>(&self, text: &'text str, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, parse_mode: Option<&'parse_mode str>, entities: Option<Vec<models::MessageEntity>>, link_preview_options: Option<models::models::LinkPreviewOptions>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageTextSuccess>, Error<PostEditMessageTextError>>;
+    async fn post_edit_message_text<'text, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'parse_mode, 'entities, 'link_preview_options, 'reply_markup>(&self, text: &'text str, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, parse_mode: Option<&'parse_mode str>, entities: Option<Vec<models::MessageEntity>>, link_preview_options: Option<models::models::LinkPreviewOptions>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageTextSuccess>, Error<PostEditMessageTextError>>;
 
     /// POST /editStory
     ///
@@ -271,17 +271,17 @@ pub trait DefaultApi: Send + Sync {
     /// POST /exportChatInviteLink
     ///
     /// Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as *String* on success.
-    async fn post_export_chat_invite_link<'chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId) -> Result<ResponseContent<PostExportChatInviteLinkSuccess>, Error<PostExportChatInviteLinkError>>;
+    async fn post_export_chat_invite_link<'chat_id>(&self, chat_id: models::models::SendMessageRequestChatId) -> Result<ResponseContent<PostExportChatInviteLinkSuccess>, Error<PostExportChatInviteLinkError>>;
 
     /// POST /forwardMessage
     ///
     /// Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_forward_message<'chat_id, 'from_chat_id, 'message_id, 'message_thread_id, 'video_start_timestamp, 'disable_notification, 'protect_content>(&self, chat_id: models::models::PostSendMessageRequestChatId, from_chat_id: models::models::PostForwardMessageRequestFromChatId, message_id: i32, message_thread_id: Option<i32>, video_start_timestamp: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>) -> Result<ResponseContent<PostForwardMessageSuccess>, Error<PostForwardMessageError>>;
+    async fn post_forward_message<'chat_id, 'from_chat_id, 'message_id, 'message_thread_id, 'video_start_timestamp, 'disable_notification, 'protect_content>(&self, chat_id: models::models::SendMessageRequestChatId, from_chat_id: models::models::ForwardMessageRequestFromChatId, message_id: i32, message_thread_id: Option<i32>, video_start_timestamp: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>) -> Result<ResponseContent<PostForwardMessageSuccess>, Error<PostForwardMessageError>>;
 
     /// POST /forwardMessages
     ///
     /// Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of [MessageId](https://core.telegram.org/bots/api/#messageid) of the sent messages is returned.
-    async fn post_forward_messages<'chat_id, 'from_chat_id, 'message_ids, 'message_thread_id, 'disable_notification, 'protect_content>(&self, chat_id: models::models::PostSendMessageRequestChatId, from_chat_id: models::models::PostForwardMessagesRequestFromChatId, message_ids: Vec<i32>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>) -> Result<ResponseContent<PostForwardMessagesSuccess>, Error<PostForwardMessagesError>>;
+    async fn post_forward_messages<'chat_id, 'from_chat_id, 'message_ids, 'message_thread_id, 'disable_notification, 'protect_content>(&self, chat_id: models::models::SendMessageRequestChatId, from_chat_id: models::models::ForwardMessagesRequestFromChatId, message_ids: Vec<i32>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>) -> Result<ResponseContent<PostForwardMessagesSuccess>, Error<PostForwardMessagesError>>;
 
     /// POST /getAvailableGifts
     ///
@@ -306,22 +306,22 @@ pub trait DefaultApi: Send + Sync {
     /// POST /getChat
     ///
     /// Use this method to get up-to-date information about the chat. Returns a [ChatFullInfo](https://core.telegram.org/bots/api/#chatfullinfo) object on success.
-    async fn post_get_chat<'chat_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatSuccess>, Error<PostGetChatError>>;
+    async fn post_get_chat<'chat_id>(&self, chat_id: models::models::LeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatSuccess>, Error<PostGetChatError>>;
 
     /// POST /getChatAdministrators
     ///
     /// Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of [ChatMember](https://core.telegram.org/bots/api/#chatmember) objects.
-    async fn post_get_chat_administrators<'chat_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatAdministratorsSuccess>, Error<PostGetChatAdministratorsError>>;
+    async fn post_get_chat_administrators<'chat_id>(&self, chat_id: models::models::LeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatAdministratorsSuccess>, Error<PostGetChatAdministratorsError>>;
 
     /// POST /getChatMember
     ///
     /// Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a [ChatMember](https://core.telegram.org/bots/api/#chatmember) object on success.
-    async fn post_get_chat_member<'chat_id, 'user_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId, user_id: i32) -> Result<ResponseContent<PostGetChatMemberSuccess>, Error<PostGetChatMemberError>>;
+    async fn post_get_chat_member<'chat_id, 'user_id>(&self, chat_id: models::models::LeaveChatRequestChatId, user_id: i32) -> Result<ResponseContent<PostGetChatMemberSuccess>, Error<PostGetChatMemberError>>;
 
     /// POST /getChatMemberCount
     ///
     /// Use this method to get the number of members in a chat. Returns *Int* on success.
-    async fn post_get_chat_member_count<'chat_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatMemberCountSuccess>, Error<PostGetChatMemberCountError>>;
+    async fn post_get_chat_member_count<'chat_id>(&self, chat_id: models::models::LeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatMemberCountSuccess>, Error<PostGetChatMemberCountError>>;
 
     /// POST /getChatMenuButton
     ///
@@ -396,7 +396,7 @@ pub trait DefaultApi: Send + Sync {
     /// POST /getUserChatBoosts
     ///
     /// Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a [UserChatBoosts](https://core.telegram.org/bots/api/#userchatboosts) object.
-    async fn post_get_user_chat_boosts<'chat_id, 'user_id>(&self, chat_id: models::models::PostGetUserChatBoostsRequestChatId, user_id: i32) -> Result<ResponseContent<PostGetUserChatBoostsSuccess>, Error<PostGetUserChatBoostsError>>;
+    async fn post_get_user_chat_boosts<'chat_id, 'user_id>(&self, chat_id: models::models::GetUserChatBoostsRequestChatId, user_id: i32) -> Result<ResponseContent<PostGetUserChatBoostsSuccess>, Error<PostGetUserChatBoostsError>>;
 
     /// POST /getUserProfilePhotos
     ///
@@ -416,12 +416,12 @@ pub trait DefaultApi: Send + Sync {
     /// POST /hideGeneralForumTopic
     ///
     /// Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. The topic will be automatically closed if it was open. Returns *True* on success.
-    async fn post_hide_general_forum_topic<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostHideGeneralForumTopicSuccess>, Error<PostHideGeneralForumTopicError>>;
+    async fn post_hide_general_forum_topic<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostHideGeneralForumTopicSuccess>, Error<PostHideGeneralForumTopicError>>;
 
     /// POST /leaveChat
     ///
     /// Use this method for your bot to leave a group, supergroup or channel. Returns *True* on success.
-    async fn post_leave_chat<'chat_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId) -> Result<ResponseContent<PostLeaveChatSuccess>, Error<PostLeaveChatError>>;
+    async fn post_leave_chat<'chat_id>(&self, chat_id: models::models::LeaveChatRequestChatId) -> Result<ResponseContent<PostLeaveChatSuccess>, Error<PostLeaveChatError>>;
 
     /// POST /logOut
     ///
@@ -431,7 +431,7 @@ pub trait DefaultApi: Send + Sync {
     /// POST /pinChatMessage
     ///
     /// Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can\\_pin\\_messages' administrator right in a supergroup or 'can\\_edit\\_messages' administrator right in a channel. Returns *True* on success.
-    async fn post_pin_chat_message<'chat_id, 'message_id, 'business_connection_id, 'disable_notification>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_id: i32, business_connection_id: Option<&'business_connection_id str>, disable_notification: Option<bool>) -> Result<ResponseContent<PostPinChatMessageSuccess>, Error<PostPinChatMessageError>>;
+    async fn post_pin_chat_message<'chat_id, 'message_id, 'business_connection_id, 'disable_notification>(&self, chat_id: models::models::SendMessageRequestChatId, message_id: i32, business_connection_id: Option<&'business_connection_id str>, disable_notification: Option<bool>) -> Result<ResponseContent<PostPinChatMessageSuccess>, Error<PostPinChatMessageError>>;
 
     /// POST /postStory
     ///
@@ -441,7 +441,7 @@ pub trait DefaultApi: Send + Sync {
     /// POST /promoteChatMember
     ///
     /// Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass *False* for all boolean parameters to demote a user. Returns *True* on success.
-    async fn post_promote_chat_member<'chat_id, 'user_id, 'is_anonymous, 'can_manage_chat, 'can_delete_messages, 'can_manage_video_chats, 'can_restrict_members, 'can_promote_members, 'can_change_info, 'can_invite_users, 'can_post_stories, 'can_edit_stories, 'can_delete_stories, 'can_post_messages, 'can_edit_messages, 'can_pin_messages, 'can_manage_topics>(&self, chat_id: models::models::PostSendMessageRequestChatId, user_id: i32, is_anonymous: Option<bool>, can_manage_chat: Option<bool>, can_delete_messages: Option<bool>, can_manage_video_chats: Option<bool>, can_restrict_members: Option<bool>, can_promote_members: Option<bool>, can_change_info: Option<bool>, can_invite_users: Option<bool>, can_post_stories: Option<bool>, can_edit_stories: Option<bool>, can_delete_stories: Option<bool>, can_post_messages: Option<bool>, can_edit_messages: Option<bool>, can_pin_messages: Option<bool>, can_manage_topics: Option<bool>) -> Result<ResponseContent<PostPromoteChatMemberSuccess>, Error<PostPromoteChatMemberError>>;
+    async fn post_promote_chat_member<'chat_id, 'user_id, 'is_anonymous, 'can_manage_chat, 'can_delete_messages, 'can_manage_video_chats, 'can_restrict_members, 'can_promote_members, 'can_change_info, 'can_invite_users, 'can_post_stories, 'can_edit_stories, 'can_delete_stories, 'can_post_messages, 'can_edit_messages, 'can_pin_messages, 'can_manage_topics>(&self, chat_id: models::models::SendMessageRequestChatId, user_id: i32, is_anonymous: Option<bool>, can_manage_chat: Option<bool>, can_delete_messages: Option<bool>, can_manage_video_chats: Option<bool>, can_restrict_members: Option<bool>, can_promote_members: Option<bool>, can_change_info: Option<bool>, can_invite_users: Option<bool>, can_post_stories: Option<bool>, can_edit_stories: Option<bool>, can_delete_stories: Option<bool>, can_post_messages: Option<bool>, can_edit_messages: Option<bool>, can_pin_messages: Option<bool>, can_manage_topics: Option<bool>) -> Result<ResponseContent<PostPromoteChatMemberSuccess>, Error<PostPromoteChatMemberError>>;
 
     /// POST /readBusinessMessage
     ///
@@ -461,7 +461,7 @@ pub trait DefaultApi: Send + Sync {
     /// POST /removeChatVerification
     ///
     /// Removes verification from a chat that is currently verified [on behalf of the organization](https://telegram.org/verify#third-party-verification) represented by the bot. Returns *True* on success.
-    async fn post_remove_chat_verification<'chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId) -> Result<ResponseContent<PostRemoveChatVerificationSuccess>, Error<PostRemoveChatVerificationError>>;
+    async fn post_remove_chat_verification<'chat_id>(&self, chat_id: models::models::SendMessageRequestChatId) -> Result<ResponseContent<PostRemoveChatVerificationSuccess>, Error<PostRemoveChatVerificationError>>;
 
     /// POST /removeUserVerification
     ///
@@ -471,12 +471,12 @@ pub trait DefaultApi: Send + Sync {
     /// POST /reopenForumTopic
     ///
     /// Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights, unless it is the creator of the topic. Returns *True* on success.
-    async fn post_reopen_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32) -> Result<ResponseContent<PostReopenForumTopicSuccess>, Error<PostReopenForumTopicError>>;
+    async fn post_reopen_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32) -> Result<ResponseContent<PostReopenForumTopicSuccess>, Error<PostReopenForumTopicError>>;
 
     /// POST /reopenGeneralForumTopic
     ///
     /// Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. The topic will be automatically unhidden if it was hidden. Returns *True* on success.
-    async fn post_reopen_general_forum_topic<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostReopenGeneralForumTopicSuccess>, Error<PostReopenGeneralForumTopicError>>;
+    async fn post_reopen_general_forum_topic<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostReopenGeneralForumTopicSuccess>, Error<PostReopenGeneralForumTopicError>>;
 
     /// POST /replaceStickerInSet
     ///
@@ -486,12 +486,12 @@ pub trait DefaultApi: Send + Sync {
     /// POST /restrictChatMember
     ///
     /// Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass *True* for all permissions to lift restrictions from a user. Returns *True* on success.
-    async fn post_restrict_chat_member<'chat_id, 'user_id, 'permissions, 'use_independent_chat_permissions, 'until_date>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, user_id: i32, permissions: models::models::ChatPermissions, use_independent_chat_permissions: Option<bool>, until_date: Option<i32>) -> Result<ResponseContent<PostRestrictChatMemberSuccess>, Error<PostRestrictChatMemberError>>;
+    async fn post_restrict_chat_member<'chat_id, 'user_id, 'permissions, 'use_independent_chat_permissions, 'until_date>(&self, chat_id: models::models::BotCommandScopeChatChatId, user_id: i32, permissions: models::models::ChatPermissions, use_independent_chat_permissions: Option<bool>, until_date: Option<i32>) -> Result<ResponseContent<PostRestrictChatMemberSuccess>, Error<PostRestrictChatMemberError>>;
 
     /// POST /revokeChatInviteLink
     ///
     /// Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_revoke_chat_invite_link<'chat_id, 'invite_link>(&self, chat_id: models::models::PostRevokeChatInviteLinkRequestChatId, invite_link: &'invite_link str) -> Result<ResponseContent<PostRevokeChatInviteLinkSuccess>, Error<PostRevokeChatInviteLinkError>>;
+    async fn post_revoke_chat_invite_link<'chat_id, 'invite_link>(&self, chat_id: models::models::RevokeChatInviteLinkRequestChatId, invite_link: &'invite_link str) -> Result<ResponseContent<PostRevokeChatInviteLinkSuccess>, Error<PostRevokeChatInviteLinkError>>;
 
     /// POST /savePreparedInlineMessage
     ///
@@ -501,32 +501,32 @@ pub trait DefaultApi: Send + Sync {
     /// POST /sendAnimation
     ///
     /// Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
-    async fn post_send_animation<'chat_id, 'animation, 'business_connection_id, 'message_thread_id, 'duration, 'width, 'height, 'thumbnail, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, animation: models::models::PostSendAnimationRequestAnimation, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, width: Option<i32>, height: Option<i32>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendAnimationSuccess>, Error<PostSendAnimationError>>;
+    async fn post_send_animation<'chat_id, 'animation, 'business_connection_id, 'message_thread_id, 'duration, 'width, 'height, 'thumbnail, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, animation: Option<&'animation str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, width: Option<i32>, height: Option<i32>, thumbnail: Option<&'thumbnail str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendAnimationSuccess>, Error<PostSendAnimationError>>;
 
     /// POST /sendAudio
     ///
     /// Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.  For sending voice messages, use the [sendVoice](https://core.telegram.org/bots/api/#sendvoice) method instead.
-    async fn post_send_audio<'chat_id, 'audio, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'duration, 'performer, 'title, 'thumbnail, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, audio: models::models::PostSendAudioRequestAudio, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, duration: Option<i32>, performer: Option<&'performer str>, title: Option<&'title str>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendAudioSuccess>, Error<PostSendAudioError>>;
+    async fn post_send_audio<'chat_id, 'audio, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'duration, 'performer, 'title, 'thumbnail, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, audio: Option<&'audio str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, duration: Option<i32>, performer: Option<&'performer str>, title: Option<&'title str>, thumbnail: Option<&'thumbnail str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendAudioSuccess>, Error<PostSendAudioError>>;
 
     /// POST /sendChatAction
     ///
     /// Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns *True* on success.  Example: The [ImageBot](https://t.me/imagebot) needs some time to process a request and upload the image. Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use [sendChatAction](https://core.telegram.org/bots/api/#sendchataction) with *action* = *upload\\_photo*. The user will see a “sending photo” status for the bot.  We only recommend using this method when a response from the bot will take a **noticeable** amount of time to arrive.
-    async fn post_send_chat_action<'chat_id, 'action, 'business_connection_id, 'message_thread_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, action: &'action str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>) -> Result<ResponseContent<PostSendChatActionSuccess>, Error<PostSendChatActionError>>;
+    async fn post_send_chat_action<'chat_id, 'action, 'business_connection_id, 'message_thread_id>(&self, chat_id: models::models::SendMessageRequestChatId, action: &'action str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>) -> Result<ResponseContent<PostSendChatActionSuccess>, Error<PostSendChatActionError>>;
 
     /// POST /sendContact
     ///
     /// Use this method to send phone contacts. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_contact<'chat_id, 'phone_number, 'first_name, 'business_connection_id, 'message_thread_id, 'last_name, 'vcard, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, phone_number: &'phone_number str, first_name: &'first_name str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, last_name: Option<&'last_name str>, vcard: Option<&'vcard str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendContactSuccess>, Error<PostSendContactError>>;
+    async fn post_send_contact<'chat_id, 'phone_number, 'first_name, 'business_connection_id, 'message_thread_id, 'last_name, 'vcard, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, phone_number: &'phone_number str, first_name: &'first_name str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, last_name: Option<&'last_name str>, vcard: Option<&'vcard str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendContactSuccess>, Error<PostSendContactError>>;
 
     /// POST /sendDice
     ///
     /// Use this method to send an animated emoji that will display a random value. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_dice<'chat_id, 'business_connection_id, 'message_thread_id, 'emoji, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, emoji: Option<&'emoji str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendDiceSuccess>, Error<PostSendDiceError>>;
+    async fn post_send_dice<'chat_id, 'business_connection_id, 'message_thread_id, 'emoji, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, emoji: Option<&'emoji str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendDiceSuccess>, Error<PostSendDiceError>>;
 
     /// POST /sendDocument
     ///
     /// Use this method to send general files. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-    async fn post_send_document<'chat_id, 'document, 'business_connection_id, 'message_thread_id, 'thumbnail, 'caption, 'parse_mode, 'caption_entities, 'disable_content_type_detection, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, document: models::models::PostSendDocumentRequestDocument, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, disable_content_type_detection: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendDocumentSuccess>, Error<PostSendDocumentError>>;
+    async fn post_send_document<'chat_id, 'document, 'business_connection_id, 'message_thread_id, 'thumbnail, 'caption, 'parse_mode, 'caption_entities, 'disable_content_type_detection, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, document: Option<&'document str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, thumbnail: Option<&'thumbnail str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, disable_content_type_detection: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendDocumentSuccess>, Error<PostSendDocumentError>>;
 
     /// POST /sendGame
     ///
@@ -536,67 +536,67 @@ pub trait DefaultApi: Send + Sync {
     /// POST /sendGift
     ///
     /// Sends a gift to the given user or channel chat. The gift can't be converted to Telegram Stars by the receiver. Returns *True* on success.
-    async fn post_send_gift<'gift_id, 'user_id, 'chat_id, 'pay_for_upgrade, 'text, 'text_parse_mode, 'text_entities>(&self, gift_id: &'gift_id str, user_id: Option<i32>, chat_id: Option<models::models::PostSendGiftRequestChatId>, pay_for_upgrade: Option<bool>, text: Option<&'text str>, text_parse_mode: Option<&'text_parse_mode str>, text_entities: Option<Vec<models::MessageEntity>>) -> Result<ResponseContent<PostSendGiftSuccess>, Error<PostSendGiftError>>;
+    async fn post_send_gift<'gift_id, 'user_id, 'chat_id, 'pay_for_upgrade, 'text, 'text_parse_mode, 'text_entities>(&self, gift_id: &'gift_id str, user_id: Option<i32>, chat_id: Option<models::models::SendGiftRequestChatId>, pay_for_upgrade: Option<bool>, text: Option<&'text str>, text_parse_mode: Option<&'text_parse_mode str>, text_entities: Option<Vec<models::MessageEntity>>) -> Result<ResponseContent<PostSendGiftSuccess>, Error<PostSendGiftError>>;
 
     /// POST /sendInvoice
     ///
     /// Use this method to send invoices. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_invoice<'chat_id, 'title, 'description, 'payload, 'currency, 'prices, 'message_thread_id, 'provider_token, 'max_tip_amount, 'suggested_tip_amounts, 'start_parameter, 'provider_data, 'photo_url, 'photo_size, 'photo_width, 'photo_height, 'need_name, 'need_phone_number, 'need_email, 'need_shipping_address, 'send_phone_number_to_provider, 'send_email_to_provider, 'is_flexible, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, title: &'title str, description: &'description str, payload: &'payload str, currency: &'currency str, prices: Vec<models::LabeledPrice>, message_thread_id: Option<i32>, provider_token: Option<&'provider_token str>, max_tip_amount: Option<i32>, suggested_tip_amounts: Option<Vec<i32>>, start_parameter: Option<&'start_parameter str>, provider_data: Option<&'provider_data str>, photo_url: Option<&'photo_url str>, photo_size: Option<i32>, photo_width: Option<i32>, photo_height: Option<i32>, need_name: Option<bool>, need_phone_number: Option<bool>, need_email: Option<bool>, need_shipping_address: Option<bool>, send_phone_number_to_provider: Option<bool>, send_email_to_provider: Option<bool>, is_flexible: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostSendInvoiceSuccess>, Error<PostSendInvoiceError>>;
+    async fn post_send_invoice<'chat_id, 'title, 'description, 'payload, 'currency, 'prices, 'message_thread_id, 'provider_token, 'max_tip_amount, 'suggested_tip_amounts, 'start_parameter, 'provider_data, 'photo_url, 'photo_size, 'photo_width, 'photo_height, 'need_name, 'need_phone_number, 'need_email, 'need_shipping_address, 'send_phone_number_to_provider, 'send_email_to_provider, 'is_flexible, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, title: &'title str, description: &'description str, payload: &'payload str, currency: &'currency str, prices: Vec<models::LabeledPrice>, message_thread_id: Option<i32>, provider_token: Option<&'provider_token str>, max_tip_amount: Option<i32>, suggested_tip_amounts: Option<Vec<i32>>, start_parameter: Option<&'start_parameter str>, provider_data: Option<&'provider_data str>, photo_url: Option<&'photo_url str>, photo_size: Option<i32>, photo_width: Option<i32>, photo_height: Option<i32>, need_name: Option<bool>, need_phone_number: Option<bool>, need_email: Option<bool>, need_shipping_address: Option<bool>, send_phone_number_to_provider: Option<bool>, send_email_to_provider: Option<bool>, is_flexible: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostSendInvoiceSuccess>, Error<PostSendInvoiceError>>;
 
     /// POST /sendLocation
     ///
     /// Use this method to send point on the map. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_location<'chat_id, 'latitude, 'longitude, 'business_connection_id, 'message_thread_id, 'horizontal_accuracy, 'live_period, 'heading, 'proximity_alert_radius, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, latitude: f64, longitude: f64, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, horizontal_accuracy: Option<f64>, live_period: Option<i32>, heading: Option<i32>, proximity_alert_radius: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendLocationSuccess>, Error<PostSendLocationError>>;
+    async fn post_send_location<'chat_id, 'latitude, 'longitude, 'business_connection_id, 'message_thread_id, 'horizontal_accuracy, 'live_period, 'heading, 'proximity_alert_radius, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, latitude: f64, longitude: f64, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, horizontal_accuracy: Option<f64>, live_period: Option<i32>, heading: Option<i32>, proximity_alert_radius: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendLocationSuccess>, Error<PostSendLocationError>>;
 
     /// POST /sendMediaGroup
     ///
     /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of [Messages](https://core.telegram.org/bots/api/#message) that were sent is returned.
-    async fn post_send_media_group<'chat_id, 'media, 'business_connection_id, 'message_thread_id, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters>(&self, chat_id: models::models::PostSendMessageRequestChatId, media: Vec<models::PostSendMediaGroupRequestMediaInner>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>) -> Result<ResponseContent<PostSendMediaGroupSuccess>, Error<PostSendMediaGroupError>>;
+    async fn post_send_media_group<'chat_id, 'media, 'business_connection_id, 'message_thread_id, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters>(&self, chat_id: models::models::SendMessageRequestChatId, media: Vec<models::SendMediaGroupRequestMediaInner>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>) -> Result<ResponseContent<PostSendMediaGroupSuccess>, Error<PostSendMediaGroupError>>;
 
     /// POST /sendMessage
     ///
     /// Use this method to send text messages. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_message<'chat_id, 'text, 'business_connection_id, 'message_thread_id, 'parse_mode, 'entities, 'link_preview_options, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, text: &'text str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, parse_mode: Option<&'parse_mode str>, entities: Option<Vec<models::MessageEntity>>, link_preview_options: Option<models::models::LinkPreviewOptions>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendMessageSuccess>, Error<PostSendMessageError>>;
+    async fn post_send_message<'chat_id, 'text, 'business_connection_id, 'message_thread_id, 'parse_mode, 'entities, 'link_preview_options, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, text: &'text str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, parse_mode: Option<&'parse_mode str>, entities: Option<Vec<models::MessageEntity>>, link_preview_options: Option<models::models::LinkPreviewOptions>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendMessageSuccess>, Error<PostSendMessageError>>;
 
     /// POST /sendPaidMedia
     ///
     /// Use this method to send paid media. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_paid_media<'chat_id, 'star_count, 'media, 'business_connection_id, 'payload, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendPaidMediaRequestChatId, star_count: i32, media: Vec<models::InputPaidMedia>, business_connection_id: Option<&'business_connection_id str>, payload: Option<&'payload str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPaidMediaSuccess>, Error<PostSendPaidMediaError>>;
+    async fn post_send_paid_media<'chat_id, 'star_count, 'media, 'business_connection_id, 'payload, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendPaidMediaRequestChatId, star_count: i32, media: Vec<models::InputPaidMedia>, business_connection_id: Option<&'business_connection_id str>, payload: Option<&'payload str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPaidMediaSuccess>, Error<PostSendPaidMediaError>>;
 
     /// POST /sendPhoto
     ///
     /// Use this method to send photos. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_photo<'chat_id, 'photo, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, photo: models::models::PostSendPhotoRequestPhoto, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPhotoSuccess>, Error<PostSendPhotoError>>;
+    async fn post_send_photo<'chat_id, 'photo, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, photo: Option<&'photo str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPhotoSuccess>, Error<PostSendPhotoError>>;
 
     /// POST /sendPoll
     ///
     /// Use this method to send a native poll. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_poll<'chat_id, 'question, 'options, 'business_connection_id, 'message_thread_id, 'question_parse_mode, 'question_entities, 'is_anonymous, 'r_type, 'allows_multiple_answers, 'correct_option_id, 'explanation, 'explanation_parse_mode, 'explanation_entities, 'open_period, 'close_date, 'is_closed, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, question: &'question str, options: Vec<models::InputPollOption>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, question_parse_mode: Option<&'question_parse_mode str>, question_entities: Option<Vec<models::MessageEntity>>, is_anonymous: Option<bool>, r#type: Option<&'r_type str>, allows_multiple_answers: Option<bool>, correct_option_id: Option<i32>, explanation: Option<&'explanation str>, explanation_parse_mode: Option<&'explanation_parse_mode str>, explanation_entities: Option<Vec<models::MessageEntity>>, open_period: Option<i32>, close_date: Option<i32>, is_closed: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPollSuccess>, Error<PostSendPollError>>;
+    async fn post_send_poll<'chat_id, 'question, 'options, 'business_connection_id, 'message_thread_id, 'question_parse_mode, 'question_entities, 'is_anonymous, 'r_type, 'allows_multiple_answers, 'correct_option_id, 'explanation, 'explanation_parse_mode, 'explanation_entities, 'open_period, 'close_date, 'is_closed, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, question: &'question str, options: Vec<models::InputPollOption>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, question_parse_mode: Option<&'question_parse_mode str>, question_entities: Option<Vec<models::MessageEntity>>, is_anonymous: Option<bool>, r#type: Option<&'r_type str>, allows_multiple_answers: Option<bool>, correct_option_id: Option<i32>, explanation: Option<&'explanation str>, explanation_parse_mode: Option<&'explanation_parse_mode str>, explanation_entities: Option<Vec<models::MessageEntity>>, open_period: Option<i32>, close_date: Option<i32>, is_closed: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPollSuccess>, Error<PostSendPollError>>;
 
     /// POST /sendSticker
     ///
     /// Use this method to send static .WEBP, [animated](https://telegram.org/blog/animated-stickers) .TGS, or [video](https://telegram.org/blog/video-stickers-better-reactions) .WEBM stickers. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_sticker<'chat_id, 'sticker, 'business_connection_id, 'message_thread_id, 'emoji, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, sticker: models::models::PostSendStickerRequestSticker, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, emoji: Option<&'emoji str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendStickerSuccess>, Error<PostSendStickerError>>;
+    async fn post_send_sticker<'chat_id, 'sticker, 'business_connection_id, 'message_thread_id, 'emoji, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, sticker: Option<&'sticker str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, emoji: Option<&'emoji str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendStickerSuccess>, Error<PostSendStickerError>>;
 
     /// POST /sendVenue
     ///
     /// Use this method to send information about a venue. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_venue<'chat_id, 'latitude, 'longitude, 'title, 'address, 'business_connection_id, 'message_thread_id, 'foursquare_id, 'foursquare_type, 'google_place_id, 'google_place_type, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, latitude: f64, longitude: f64, title: &'title str, address: &'address str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, foursquare_id: Option<&'foursquare_id str>, foursquare_type: Option<&'foursquare_type str>, google_place_id: Option<&'google_place_id str>, google_place_type: Option<&'google_place_type str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVenueSuccess>, Error<PostSendVenueError>>;
+    async fn post_send_venue<'chat_id, 'latitude, 'longitude, 'title, 'address, 'business_connection_id, 'message_thread_id, 'foursquare_id, 'foursquare_type, 'google_place_id, 'google_place_type, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, latitude: f64, longitude: f64, title: &'title str, address: &'address str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, foursquare_id: Option<&'foursquare_id str>, foursquare_type: Option<&'foursquare_type str>, google_place_id: Option<&'google_place_id str>, google_place_type: Option<&'google_place_type str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVenueSuccess>, Error<PostSendVenueError>>;
 
     /// POST /sendVideo
     ///
     /// Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as [Document](https://core.telegram.org/bots/api/#document)). On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-    async fn post_send_video<'chat_id, 'video, 'business_connection_id, 'message_thread_id, 'duration, 'width, 'height, 'thumbnail, 'cover, 'start_timestamp, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'supports_streaming, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, video: models::models::PostSendVideoRequestVideo, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, width: Option<i32>, height: Option<i32>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, cover: Option<models::models::PostSendVideoRequestCover>, start_timestamp: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, supports_streaming: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVideoSuccess>, Error<PostSendVideoError>>;
+    async fn post_send_video<'chat_id, 'video, 'business_connection_id, 'message_thread_id, 'duration, 'width, 'height, 'thumbnail, 'cover, 'start_timestamp, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'supports_streaming, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, video: Option<&'video str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, width: Option<i32>, height: Option<i32>, thumbnail: Option<&'thumbnail str>, cover: Option<&'cover str>, start_timestamp: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, supports_streaming: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVideoSuccess>, Error<PostSendVideoError>>;
 
     /// POST /sendVideoNote
     ///
     /// As of [v.4.0](https://telegram.org/blog/video-messages-and-telescope), Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_video_note<'chat_id, 'video_note, 'business_connection_id, 'message_thread_id, 'duration, 'length, 'thumbnail, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, video_note: models::models::PostSendVideoNoteRequestVideoNote, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, length: Option<i32>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVideoNoteSuccess>, Error<PostSendVideoNoteError>>;
+    async fn post_send_video_note<'chat_id, 'video_note, 'business_connection_id, 'message_thread_id, 'duration, 'length, 'thumbnail, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, video_note: Option<&'video_note str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, length: Option<i32>, thumbnail: Option<&'thumbnail str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVideoNoteSuccess>, Error<PostSendVideoNoteError>>;
 
     /// POST /sendVoice
     ///
     /// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS, or in .MP3 format, or in .M4A format (other formats may be sent as [Audio](https://core.telegram.org/bots/api/#audio) or [Document](https://core.telegram.org/bots/api/#document)). On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-    async fn post_send_voice<'chat_id, 'voice, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'duration, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, voice: models::models::PostSendVoiceRequestVoice, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, duration: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVoiceSuccess>, Error<PostSendVoiceError>>;
+    async fn post_send_voice<'chat_id, 'voice, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'duration, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, voice: Option<&'voice str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, duration: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVoiceSuccess>, Error<PostSendVoiceError>>;
 
     /// POST /setBusinessAccountBio
     ///
@@ -626,12 +626,12 @@ pub trait DefaultApi: Send + Sync {
     /// POST /setChatAdministratorCustomTitle
     ///
     /// Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns *True* on success.
-    async fn post_set_chat_administrator_custom_title<'chat_id, 'user_id, 'custom_title>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, user_id: i32, custom_title: &'custom_title str) -> Result<ResponseContent<PostSetChatAdministratorCustomTitleSuccess>, Error<PostSetChatAdministratorCustomTitleError>>;
+    async fn post_set_chat_administrator_custom_title<'chat_id, 'user_id, 'custom_title>(&self, chat_id: models::models::BotCommandScopeChatChatId, user_id: i32, custom_title: &'custom_title str) -> Result<ResponseContent<PostSetChatAdministratorCustomTitleSuccess>, Error<PostSetChatAdministratorCustomTitleError>>;
 
     /// POST /setChatDescription
     ///
     /// Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_set_chat_description<'chat_id, 'description>(&self, chat_id: models::models::PostSendMessageRequestChatId, description: Option<&'description str>) -> Result<ResponseContent<PostSetChatDescriptionSuccess>, Error<PostSetChatDescriptionError>>;
+    async fn post_set_chat_description<'chat_id, 'description>(&self, chat_id: models::models::SendMessageRequestChatId, description: Option<&'description str>) -> Result<ResponseContent<PostSetChatDescriptionSuccess>, Error<PostSetChatDescriptionError>>;
 
     /// POST /setChatMenuButton
     ///
@@ -641,22 +641,22 @@ pub trait DefaultApi: Send + Sync {
     /// POST /setChatPermissions
     ///
     /// Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the *can\\_restrict\\_members* administrator rights. Returns *True* on success.
-    async fn post_set_chat_permissions<'chat_id, 'permissions, 'use_independent_chat_permissions>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, permissions: models::models::ChatPermissions, use_independent_chat_permissions: Option<bool>) -> Result<ResponseContent<PostSetChatPermissionsSuccess>, Error<PostSetChatPermissionsError>>;
+    async fn post_set_chat_permissions<'chat_id, 'permissions, 'use_independent_chat_permissions>(&self, chat_id: models::models::BotCommandScopeChatChatId, permissions: models::models::ChatPermissions, use_independent_chat_permissions: Option<bool>) -> Result<ResponseContent<PostSetChatPermissionsSuccess>, Error<PostSetChatPermissionsError>>;
 
     /// POST /setChatPhoto
     ///
     /// Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_set_chat_photo<'chat_id, 'photo>(&self, chat_id: models::models::PostSendMessageRequestChatId, photo: Option<models::serde_json::Value>) -> Result<ResponseContent<PostSetChatPhotoSuccess>, Error<PostSetChatPhotoError>>;
+    async fn post_set_chat_photo<'chat_id, 'photo>(&self, chat_id: models::models::SendMessageRequestChatId, photo: Option<models::serde_json::Value>) -> Result<ResponseContent<PostSetChatPhotoSuccess>, Error<PostSetChatPhotoError>>;
 
     /// POST /setChatStickerSet
     ///
     /// Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field *can\\_set\\_sticker\\_set* optionally returned in [getChat](https://core.telegram.org/bots/api/#getchat) requests to check if the bot can use this method. Returns *True* on success.
-    async fn post_set_chat_sticker_set<'chat_id, 'sticker_set_name>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, sticker_set_name: &'sticker_set_name str) -> Result<ResponseContent<PostSetChatStickerSetSuccess>, Error<PostSetChatStickerSetError>>;
+    async fn post_set_chat_sticker_set<'chat_id, 'sticker_set_name>(&self, chat_id: models::models::BotCommandScopeChatChatId, sticker_set_name: &'sticker_set_name str) -> Result<ResponseContent<PostSetChatStickerSetSuccess>, Error<PostSetChatStickerSetError>>;
 
     /// POST /setChatTitle
     ///
     /// Use this method to change the title of a chat. Titles can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_set_chat_title<'chat_id, 'title>(&self, chat_id: models::models::PostSendMessageRequestChatId, title: &'title str) -> Result<ResponseContent<PostSetChatTitleSuccess>, Error<PostSetChatTitleError>>;
+    async fn post_set_chat_title<'chat_id, 'title>(&self, chat_id: models::models::SendMessageRequestChatId, title: &'title str) -> Result<ResponseContent<PostSetChatTitleSuccess>, Error<PostSetChatTitleError>>;
 
     /// POST /setCustomEmojiStickerSetThumbnail
     ///
@@ -671,7 +671,7 @@ pub trait DefaultApi: Send + Sync {
     /// POST /setMessageReaction
     ///
     /// Use this method to change the chosen reactions on a message. Service messages of some types can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Bots can't use paid reactions. Returns *True* on success.
-    async fn post_set_message_reaction<'chat_id, 'message_id, 'reaction, 'is_big>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_id: i32, reaction: Option<Vec<models::ReactionType>>, is_big: Option<bool>) -> Result<ResponseContent<PostSetMessageReactionSuccess>, Error<PostSetMessageReactionError>>;
+    async fn post_set_message_reaction<'chat_id, 'message_id, 'reaction, 'is_big>(&self, chat_id: models::models::SendMessageRequestChatId, message_id: i32, reaction: Option<Vec<models::ReactionType>>, is_big: Option<bool>) -> Result<ResponseContent<PostSetMessageReactionSuccess>, Error<PostSetMessageReactionError>>;
 
     /// POST /setMyCommands
     ///
@@ -726,7 +726,7 @@ pub trait DefaultApi: Send + Sync {
     /// POST /setStickerSetThumbnail
     ///
     /// Use this method to set the thumbnail of a regular or mask sticker set. The format of the thumbnail file must match the format of the stickers in the set. Returns *True* on success.
-    async fn post_set_sticker_set_thumbnail<'name, 'user_id, 'format, 'thumbnail>(&self, name: &'name str, user_id: i32, format: &'format str, thumbnail: Option<models::models::PostSetStickerSetThumbnailRequestThumbnail>) -> Result<ResponseContent<PostSetStickerSetThumbnailSuccess>, Error<PostSetStickerSetThumbnailError>>;
+    async fn post_set_sticker_set_thumbnail<'name, 'user_id, 'format, 'thumbnail>(&self, name: &'name str, user_id: i32, format: &'format str, thumbnail: Option<&'thumbnail str>) -> Result<ResponseContent<PostSetStickerSetThumbnailSuccess>, Error<PostSetStickerSetThumbnailError>>;
 
     /// POST /setStickerSetTitle
     ///
@@ -746,12 +746,12 @@ pub trait DefaultApi: Send + Sync {
     /// POST /stopMessageLiveLocation
     ///
     /// Use this method to stop updating a live location message before *live\\_period* expires. On success, if the message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned.
-    async fn post_stop_message_live_location<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostStopMessageLiveLocationSuccess>, Error<PostStopMessageLiveLocationError>>;
+    async fn post_stop_message_live_location<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostStopMessageLiveLocationSuccess>, Error<PostStopMessageLiveLocationError>>;
 
     /// POST /stopPoll
     ///
     /// Use this method to stop a poll which was sent by the bot. On success, the stopped [Poll](https://core.telegram.org/bots/api/#poll) is returned.
-    async fn post_stop_poll<'chat_id, 'message_id, 'business_connection_id, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_id: i32, business_connection_id: Option<&'business_connection_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostStopPollSuccess>, Error<PostStopPollError>>;
+    async fn post_stop_poll<'chat_id, 'message_id, 'business_connection_id, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, message_id: i32, business_connection_id: Option<&'business_connection_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostStopPollSuccess>, Error<PostStopPollError>>;
 
     /// POST /transferBusinessAccountStars
     ///
@@ -766,37 +766,37 @@ pub trait DefaultApi: Send + Sync {
     /// POST /unbanChatMember
     ///
     /// Use this method to unban a previously banned user in a supergroup or channel. The user will **not** return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be **removed** from the chat. If you don't want this, use the parameter *only\\_if\\_banned*. Returns *True* on success.
-    async fn post_unban_chat_member<'chat_id, 'user_id, 'only_if_banned>(&self, chat_id: models::models::PostBanChatMemberRequestChatId, user_id: i32, only_if_banned: Option<bool>) -> Result<ResponseContent<PostUnbanChatMemberSuccess>, Error<PostUnbanChatMemberError>>;
+    async fn post_unban_chat_member<'chat_id, 'user_id, 'only_if_banned>(&self, chat_id: models::models::BanChatMemberRequestChatId, user_id: i32, only_if_banned: Option<bool>) -> Result<ResponseContent<PostUnbanChatMemberSuccess>, Error<PostUnbanChatMemberError>>;
 
     /// POST /unbanChatSenderChat
     ///
     /// Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_unban_chat_sender_chat<'chat_id, 'sender_chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, sender_chat_id: i32) -> Result<ResponseContent<PostUnbanChatSenderChatSuccess>, Error<PostUnbanChatSenderChatError>>;
+    async fn post_unban_chat_sender_chat<'chat_id, 'sender_chat_id>(&self, chat_id: models::models::SendMessageRequestChatId, sender_chat_id: i32) -> Result<ResponseContent<PostUnbanChatSenderChatSuccess>, Error<PostUnbanChatSenderChatError>>;
 
     /// POST /unhideGeneralForumTopic
     ///
     /// Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. Returns *True* on success.
-    async fn post_unhide_general_forum_topic<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostUnhideGeneralForumTopicSuccess>, Error<PostUnhideGeneralForumTopicError>>;
+    async fn post_unhide_general_forum_topic<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostUnhideGeneralForumTopicSuccess>, Error<PostUnhideGeneralForumTopicError>>;
 
     /// POST /unpinAllChatMessages
     ///
     /// Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can\\_pin\\_messages' administrator right in a supergroup or 'can\\_edit\\_messages' administrator right in a channel. Returns *True* on success.
-    async fn post_unpin_all_chat_messages<'chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId) -> Result<ResponseContent<PostUnpinAllChatMessagesSuccess>, Error<PostUnpinAllChatMessagesError>>;
+    async fn post_unpin_all_chat_messages<'chat_id>(&self, chat_id: models::models::SendMessageRequestChatId) -> Result<ResponseContent<PostUnpinAllChatMessagesSuccess>, Error<PostUnpinAllChatMessagesError>>;
 
     /// POST /unpinAllForumTopicMessages
     ///
     /// Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the *can\\_pin\\_messages* administrator right in the supergroup. Returns *True* on success.
-    async fn post_unpin_all_forum_topic_messages<'chat_id, 'message_thread_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32) -> Result<ResponseContent<PostUnpinAllForumTopicMessagesSuccess>, Error<PostUnpinAllForumTopicMessagesError>>;
+    async fn post_unpin_all_forum_topic_messages<'chat_id, 'message_thread_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32) -> Result<ResponseContent<PostUnpinAllForumTopicMessagesSuccess>, Error<PostUnpinAllForumTopicMessagesError>>;
 
     /// POST /unpinAllGeneralForumTopicMessages
     ///
     /// Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the *can\\_pin\\_messages* administrator right in the supergroup. Returns *True* on success.
-    async fn post_unpin_all_general_forum_topic_messages<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostUnpinAllGeneralForumTopicMessagesSuccess>, Error<PostUnpinAllGeneralForumTopicMessagesError>>;
+    async fn post_unpin_all_general_forum_topic_messages<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostUnpinAllGeneralForumTopicMessagesSuccess>, Error<PostUnpinAllGeneralForumTopicMessagesError>>;
 
     /// POST /unpinChatMessage
     ///
     /// Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can\\_pin\\_messages' administrator right in a supergroup or 'can\\_edit\\_messages' administrator right in a channel. Returns *True* on success.
-    async fn post_unpin_chat_message<'chat_id, 'business_connection_id, 'message_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, business_connection_id: Option<&'business_connection_id str>, message_id: Option<i32>) -> Result<ResponseContent<PostUnpinChatMessageSuccess>, Error<PostUnpinChatMessageError>>;
+    async fn post_unpin_chat_message<'chat_id, 'business_connection_id, 'message_id>(&self, chat_id: models::models::SendMessageRequestChatId, business_connection_id: Option<&'business_connection_id str>, message_id: Option<i32>) -> Result<ResponseContent<PostUnpinChatMessageSuccess>, Error<PostUnpinChatMessageError>>;
 
     /// POST /upgradeGift
     ///
@@ -811,7 +811,7 @@ pub trait DefaultApi: Send + Sync {
     /// POST /verifyChat
     ///
     /// Verifies a chat [on behalf of the organization](https://telegram.org/verify#third-party-verification) which is represented by the bot. Returns *True* on success.
-    async fn post_verify_chat<'chat_id, 'custom_description>(&self, chat_id: models::models::PostSendMessageRequestChatId, custom_description: Option<&'custom_description str>) -> Result<ResponseContent<PostVerifyChatSuccess>, Error<PostVerifyChatError>>;
+    async fn post_verify_chat<'chat_id, 'custom_description>(&self, chat_id: models::models::SendMessageRequestChatId, custom_description: Option<&'custom_description str>) -> Result<ResponseContent<PostVerifyChatSuccess>, Error<PostVerifyChatError>>;
 
     /// POST /verifyUser
     ///
@@ -1071,7 +1071,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the *can\\_invite\\_users* administrator right. Returns *True* on success.
-    async fn post_approve_chat_join_request<'chat_id, 'user_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, user_id: i32) -> Result<ResponseContent<PostApproveChatJoinRequestSuccess>, Error<PostApproveChatJoinRequestError>> {
+    async fn post_approve_chat_join_request<'chat_id, 'user_id>(&self, chat_id: models::models::SendMessageRequestChatId, user_id: i32) -> Result<ResponseContent<PostApproveChatJoinRequestSuccess>, Error<PostApproveChatJoinRequestError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1105,7 +1105,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless [unbanned](https://core.telegram.org/bots/api/#unbanchatmember) first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_ban_chat_member<'chat_id, 'user_id, 'until_date, 'revoke_messages>(&self, chat_id: models::models::PostBanChatMemberRequestChatId, user_id: i32, until_date: Option<i32>, revoke_messages: Option<bool>) -> Result<ResponseContent<PostBanChatMemberSuccess>, Error<PostBanChatMemberError>> {
+    async fn post_ban_chat_member<'chat_id, 'user_id, 'until_date, 'revoke_messages>(&self, chat_id: models::models::BanChatMemberRequestChatId, user_id: i32, until_date: Option<i32>, revoke_messages: Option<bool>) -> Result<ResponseContent<PostBanChatMemberSuccess>, Error<PostBanChatMemberError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1145,7 +1145,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to ban a channel chat in a supergroup or a channel. Until the chat is [unbanned](https://core.telegram.org/bots/api/#unbanchatsenderchat), the owner of the banned chat won't be able to send messages on behalf of **any of their channels**. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_ban_chat_sender_chat<'chat_id, 'sender_chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, sender_chat_id: i32) -> Result<ResponseContent<PostBanChatSenderChatSuccess>, Error<PostBanChatSenderChatError>> {
+    async fn post_ban_chat_sender_chat<'chat_id, 'sender_chat_id>(&self, chat_id: models::models::SendMessageRequestChatId, sender_chat_id: i32) -> Result<ResponseContent<PostBanChatSenderChatSuccess>, Error<PostBanChatSenderChatError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1209,7 +1209,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights, unless it is the creator of the topic. Returns *True* on success.
-    async fn post_close_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32) -> Result<ResponseContent<PostCloseForumTopicSuccess>, Error<PostCloseForumTopicError>> {
+    async fn post_close_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32) -> Result<ResponseContent<PostCloseForumTopicSuccess>, Error<PostCloseForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1243,7 +1243,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. Returns *True* on success.
-    async fn post_close_general_forum_topic<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostCloseGeneralForumTopicSuccess>, Error<PostCloseGeneralForumTopicError>> {
+    async fn post_close_general_forum_topic<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostCloseGeneralForumTopicSuccess>, Error<PostCloseGeneralForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1310,7 +1310,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz [poll](https://core.telegram.org/bots/api/#poll) can be copied only if the value of the field *correct\\_option\\_id* is known to the bot. The method is analogous to the method [forwardMessage](https://core.telegram.org/bots/api/#forwardmessage), but the copied message doesn't have a link to the original message. Returns the [MessageId](https://core.telegram.org/bots/api/#messageid) of the sent message on success.
-    async fn post_copy_message<'chat_id, 'from_chat_id, 'message_id, 'message_thread_id, 'video_start_timestamp, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, from_chat_id: models::models::PostForwardMessageRequestFromChatId, message_id: i32, message_thread_id: Option<i32>, video_start_timestamp: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostCopyMessageSuccess>, Error<PostCopyMessageError>> {
+    async fn post_copy_message<'chat_id, 'from_chat_id, 'message_id, 'message_thread_id, 'video_start_timestamp, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, from_chat_id: models::models::ForwardMessageRequestFromChatId, message_id: i32, message_thread_id: Option<i32>, video_start_timestamp: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostCopyMessageSuccess>, Error<PostCopyMessageError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1378,7 +1378,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz [poll](https://core.telegram.org/bots/api/#poll) can be copied only if the value of the field *correct\\_option\\_id* is known to the bot. The method is analogous to the method [forwardMessages](https://core.telegram.org/bots/api/#forwardmessages), but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of [MessageId](https://core.telegram.org/bots/api/#messageid) of the sent messages is returned.
-    async fn post_copy_messages<'chat_id, 'from_chat_id, 'message_ids, 'message_thread_id, 'disable_notification, 'protect_content, 'remove_caption>(&self, chat_id: models::models::PostSendMessageRequestChatId, from_chat_id: models::models::PostForwardMessagesRequestFromChatId, message_ids: Vec<i32>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, remove_caption: Option<bool>) -> Result<ResponseContent<PostCopyMessagesSuccess>, Error<PostCopyMessagesError>> {
+    async fn post_copy_messages<'chat_id, 'from_chat_id, 'message_ids, 'message_thread_id, 'disable_notification, 'protect_content, 'remove_caption>(&self, chat_id: models::models::SendMessageRequestChatId, from_chat_id: models::models::ForwardMessagesRequestFromChatId, message_ids: Vec<i32>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, remove_caption: Option<bool>) -> Result<ResponseContent<PostCopyMessagesSuccess>, Error<PostCopyMessagesError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1425,7 +1425,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method [revokeChatInviteLink](https://core.telegram.org/bots/api/#revokechatinvitelink). Returns the new invite link as [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_create_chat_invite_link<'chat_id, 'name, 'expire_date, 'member_limit, 'creates_join_request>(&self, chat_id: models::models::PostSendMessageRequestChatId, name: Option<&'name str>, expire_date: Option<i32>, member_limit: Option<i32>, creates_join_request: Option<bool>) -> Result<ResponseContent<PostCreateChatInviteLinkSuccess>, Error<PostCreateChatInviteLinkError>> {
+    async fn post_create_chat_invite_link<'chat_id, 'name, 'expire_date, 'member_limit, 'creates_join_request>(&self, chat_id: models::models::SendMessageRequestChatId, name: Option<&'name str>, expire_date: Option<i32>, member_limit: Option<i32>, creates_join_request: Option<bool>) -> Result<ResponseContent<PostCreateChatInviteLinkSuccess>, Error<PostCreateChatInviteLinkError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1470,7 +1470,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to create a [subscription invite link](https://telegram.org/blog/superchannels-star-reactions-subscriptions#star-subscriptions) for a channel chat. The bot must have the *can\\_invite\\_users* administrator rights. The link can be edited using the method [editChatSubscriptionInviteLink](https://core.telegram.org/bots/api/#editchatsubscriptioninvitelink) or revoked using the method [revokeChatInviteLink](https://core.telegram.org/bots/api/#revokechatinvitelink). Returns the new invite link as a [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_create_chat_subscription_invite_link<'chat_id, 'subscription_period, 'subscription_price, 'name>(&self, chat_id: models::models::PostCreateChatSubscriptionInviteLinkRequestChatId, subscription_period: i32, subscription_price: i32, name: Option<&'name str>) -> Result<ResponseContent<PostCreateChatSubscriptionInviteLinkSuccess>, Error<PostCreateChatSubscriptionInviteLinkError>> {
+    async fn post_create_chat_subscription_invite_link<'chat_id, 'subscription_period, 'subscription_price, 'name>(&self, chat_id: models::models::CreateChatSubscriptionInviteLinkRequestChatId, subscription_period: i32, subscription_price: i32, name: Option<&'name str>) -> Result<ResponseContent<PostCreateChatSubscriptionInviteLinkSuccess>, Error<PostCreateChatSubscriptionInviteLinkError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1508,7 +1508,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. Returns information about the created topic as a [ForumTopic](https://core.telegram.org/bots/api/#forumtopic) object.
-    async fn post_create_forum_topic<'chat_id, 'name, 'icon_color, 'icon_custom_emoji_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, name: &'name str, icon_color: Option<i32>, icon_custom_emoji_id: Option<&'icon_custom_emoji_id str>) -> Result<ResponseContent<PostCreateForumTopicSuccess>, Error<PostCreateForumTopicError>> {
+    async fn post_create_forum_topic<'chat_id, 'name, 'icon_color, 'icon_custom_emoji_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, name: &'name str, icon_color: Option<i32>, icon_custom_emoji_id: Option<&'icon_custom_emoji_id str>) -> Result<ResponseContent<PostCreateForumTopicSuccess>, Error<PostCreateForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1678,7 +1678,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the *can\\_invite\\_users* administrator right. Returns *True* on success.
-    async fn post_decline_chat_join_request<'chat_id, 'user_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, user_id: i32) -> Result<ResponseContent<PostDeclineChatJoinRequestSuccess>, Error<PostDeclineChatJoinRequestError>> {
+    async fn post_decline_chat_join_request<'chat_id, 'user_id>(&self, chat_id: models::models::SendMessageRequestChatId, user_id: i32) -> Result<ResponseContent<PostDeclineChatJoinRequestSuccess>, Error<PostDeclineChatJoinRequestError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1711,7 +1711,7 @@ impl DefaultApi for DefaultApiClient {
         }
     }
 
-    /// Delete messages on behalf of a business account. Requires the *can\\_delete\\_sent\\_messages* business bot right to delete messages sent by the bot itself, or the *can\\_delete\\_all\\_messages* business bot right to delete any message. Returns *True* on success.
+    /// Delete messages on behalf of a business account. Requires the *can\\_delete\\_outgoing\\_messages* business bot right to delete messages sent by the bot itself, or the *can\\_delete\\_all\\_messages* business bot right to delete any message. Returns *True* on success.
     async fn post_delete_business_messages<'business_connection_id, 'message_ids>(&self, business_connection_id: &'business_connection_id str, message_ids: Vec<i32>) -> Result<ResponseContent<PostDeleteBusinessMessagesSuccess>, Error<PostDeleteBusinessMessagesError>> {
         let local_var_configuration = &self.configuration;
 
@@ -1746,7 +1746,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to delete a chat photo. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_delete_chat_photo<'chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId) -> Result<ResponseContent<PostDeleteChatPhotoSuccess>, Error<PostDeleteChatPhotoError>> {
+    async fn post_delete_chat_photo<'chat_id>(&self, chat_id: models::models::SendMessageRequestChatId) -> Result<ResponseContent<PostDeleteChatPhotoSuccess>, Error<PostDeleteChatPhotoError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1779,7 +1779,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field *can\\_set\\_sticker\\_set* optionally returned in [getChat](https://core.telegram.org/bots/api/#getchat) requests to check if the bot can use this method. Returns *True* on success.
-    async fn post_delete_chat_sticker_set<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostDeleteChatStickerSetSuccess>, Error<PostDeleteChatStickerSetError>> {
+    async fn post_delete_chat_sticker_set<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostDeleteChatStickerSetSuccess>, Error<PostDeleteChatStickerSetError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1812,7 +1812,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_delete\\_messages* administrator rights. Returns *True* on success.
-    async fn post_delete_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32) -> Result<ResponseContent<PostDeleteForumTopicSuccess>, Error<PostDeleteForumTopicError>> {
+    async fn post_delete_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32) -> Result<ResponseContent<PostDeleteForumTopicSuccess>, Error<PostDeleteForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1846,7 +1846,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to delete a message, including service messages, with the following limitations:   \\- A message can only be deleted if it was sent less than 48 hours ago.   \\- Service messages about a supergroup, channel, or forum topic creation can't be deleted.   \\- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.   \\- Bots can delete outgoing messages in private chats, groups, and supergroups.   \\- Bots can delete incoming messages in private chats.   \\- Bots granted *can\\_post\\_messages* permissions can delete outgoing messages in channels.   \\- If the bot is an administrator of a group, it can delete any message there.   \\- If the bot has *can\\_delete\\_messages* permission in a supergroup or a channel, it can delete any message there.   Returns *True* on success.
-    async fn post_delete_message<'chat_id, 'message_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_id: i32) -> Result<ResponseContent<PostDeleteMessageSuccess>, Error<PostDeleteMessageError>> {
+    async fn post_delete_message<'chat_id, 'message_id>(&self, chat_id: models::models::SendMessageRequestChatId, message_id: i32) -> Result<ResponseContent<PostDeleteMessageSuccess>, Error<PostDeleteMessageError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -1880,7 +1880,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns *True* on success.
-    async fn post_delete_messages<'chat_id, 'message_ids>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_ids: Vec<i32>) -> Result<ResponseContent<PostDeleteMessagesSuccess>, Error<PostDeleteMessagesError>> {
+    async fn post_delete_messages<'chat_id, 'message_ids>(&self, chat_id: models::models::SendMessageRequestChatId, message_ids: Vec<i32>) -> Result<ResponseContent<PostDeleteMessagesSuccess>, Error<PostDeleteMessagesError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2087,7 +2087,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_edit_chat_invite_link<'chat_id, 'invite_link, 'name, 'expire_date, 'member_limit, 'creates_join_request>(&self, chat_id: models::models::PostSendMessageRequestChatId, invite_link: &'invite_link str, name: Option<&'name str>, expire_date: Option<i32>, member_limit: Option<i32>, creates_join_request: Option<bool>) -> Result<ResponseContent<PostEditChatInviteLinkSuccess>, Error<PostEditChatInviteLinkError>> {
+    async fn post_edit_chat_invite_link<'chat_id, 'invite_link, 'name, 'expire_date, 'member_limit, 'creates_join_request>(&self, chat_id: models::models::SendMessageRequestChatId, invite_link: &'invite_link str, name: Option<&'name str>, expire_date: Option<i32>, member_limit: Option<i32>, creates_join_request: Option<bool>) -> Result<ResponseContent<PostEditChatInviteLinkSuccess>, Error<PostEditChatInviteLinkError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2133,7 +2133,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to edit a subscription invite link created by the bot. The bot must have the *can\\_invite\\_users* administrator rights. Returns the edited invite link as a [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_edit_chat_subscription_invite_link<'chat_id, 'invite_link, 'name>(&self, chat_id: models::models::PostSendMessageRequestChatId, invite_link: &'invite_link str, name: Option<&'name str>) -> Result<ResponseContent<PostEditChatSubscriptionInviteLinkSuccess>, Error<PostEditChatSubscriptionInviteLinkError>> {
+    async fn post_edit_chat_subscription_invite_link<'chat_id, 'invite_link, 'name>(&self, chat_id: models::models::SendMessageRequestChatId, invite_link: &'invite_link str, name: Option<&'name str>) -> Result<ResponseContent<PostEditChatSubscriptionInviteLinkSuccess>, Error<PostEditChatSubscriptionInviteLinkError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2170,7 +2170,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights, unless it is the creator of the topic. Returns *True* on success.
-    async fn post_edit_forum_topic<'chat_id, 'message_thread_id, 'name, 'icon_custom_emoji_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32, name: Option<&'name str>, icon_custom_emoji_id: Option<&'icon_custom_emoji_id str>) -> Result<ResponseContent<PostEditForumTopicSuccess>, Error<PostEditForumTopicError>> {
+    async fn post_edit_forum_topic<'chat_id, 'message_thread_id, 'name, 'icon_custom_emoji_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32, name: Option<&'name str>, icon_custom_emoji_id: Option<&'icon_custom_emoji_id str>) -> Result<ResponseContent<PostEditForumTopicSuccess>, Error<PostEditForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2210,7 +2210,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. Returns *True* on success.
-    async fn post_edit_general_forum_topic<'chat_id, 'name>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, name: &'name str) -> Result<ResponseContent<PostEditGeneralForumTopicSuccess>, Error<PostEditGeneralForumTopicError>> {
+    async fn post_edit_general_forum_topic<'chat_id, 'name>(&self, chat_id: models::models::BotCommandScopeChatChatId, name: &'name str) -> Result<ResponseContent<PostEditGeneralForumTopicSuccess>, Error<PostEditGeneralForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2244,7 +2244,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
-    async fn post_edit_message_caption<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageCaptionSuccess>, Error<PostEditMessageCaptionError>> {
+    async fn post_edit_message_caption<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageCaptionSuccess>, Error<PostEditMessageCaptionError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2303,7 +2303,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to edit live location messages. A location can be edited until its *live\\_period* expires or editing is explicitly disabled by a call to [stopMessageLiveLocation](https://core.telegram.org/bots/api/#stopmessagelivelocation). On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned.
-    async fn post_edit_message_live_location<'latitude, 'longitude, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'live_period, 'horizontal_accuracy, 'heading, 'proximity_alert_radius, 'reply_markup>(&self, latitude: f64, longitude: f64, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, live_period: Option<i32>, horizontal_accuracy: Option<f64>, heading: Option<i32>, proximity_alert_radius: Option<i32>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageLiveLocationSuccess>, Error<PostEditMessageLiveLocationError>> {
+    async fn post_edit_message_live_location<'latitude, 'longitude, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'live_period, 'horizontal_accuracy, 'heading, 'proximity_alert_radius, 'reply_markup>(&self, latitude: f64, longitude: f64, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, live_period: Option<i32>, horizontal_accuracy: Option<f64>, heading: Option<i32>, proximity_alert_radius: Option<i32>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageLiveLocationSuccess>, Error<PostEditMessageLiveLocationError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2364,7 +2364,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file\\_id or specify a URL. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
-    async fn post_edit_message_media<'media, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, media: models::models::InputMedia, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageMediaSuccess>, Error<PostEditMessageMediaError>> {
+    async fn post_edit_message_media<'media, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, media: models::models::InputMedia, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageMediaSuccess>, Error<PostEditMessageMediaError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2412,7 +2412,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
-    async fn post_edit_message_reply_markup<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageReplyMarkupSuccess>, Error<PostEditMessageReplyMarkupError>> {
+    async fn post_edit_message_reply_markup<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageReplyMarkupSuccess>, Error<PostEditMessageReplyMarkupError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2459,7 +2459,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to edit text and [game](https://core.telegram.org/bots/api/#games) messages. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
-    async fn post_edit_message_text<'text, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'parse_mode, 'entities, 'link_preview_options, 'reply_markup>(&self, text: &'text str, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, parse_mode: Option<&'parse_mode str>, entities: Option<Vec<models::MessageEntity>>, link_preview_options: Option<models::models::LinkPreviewOptions>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageTextSuccess>, Error<PostEditMessageTextError>> {
+    async fn post_edit_message_text<'text, 'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'parse_mode, 'entities, 'link_preview_options, 'reply_markup>(&self, text: &'text str, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, parse_mode: Option<&'parse_mode str>, entities: Option<Vec<models::MessageEntity>>, link_preview_options: Option<models::models::LinkPreviewOptions>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostEditMessageTextSuccess>, Error<PostEditMessageTextError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2598,7 +2598,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as *String* on success.
-    async fn post_export_chat_invite_link<'chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId) -> Result<ResponseContent<PostExportChatInviteLinkSuccess>, Error<PostExportChatInviteLinkError>> {
+    async fn post_export_chat_invite_link<'chat_id>(&self, chat_id: models::models::SendMessageRequestChatId) -> Result<ResponseContent<PostExportChatInviteLinkSuccess>, Error<PostExportChatInviteLinkError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2631,7 +2631,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_forward_message<'chat_id, 'from_chat_id, 'message_id, 'message_thread_id, 'video_start_timestamp, 'disable_notification, 'protect_content>(&self, chat_id: models::models::PostSendMessageRequestChatId, from_chat_id: models::models::PostForwardMessageRequestFromChatId, message_id: i32, message_thread_id: Option<i32>, video_start_timestamp: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>) -> Result<ResponseContent<PostForwardMessageSuccess>, Error<PostForwardMessageError>> {
+    async fn post_forward_message<'chat_id, 'from_chat_id, 'message_id, 'message_thread_id, 'video_start_timestamp, 'disable_notification, 'protect_content>(&self, chat_id: models::models::SendMessageRequestChatId, from_chat_id: models::models::ForwardMessageRequestFromChatId, message_id: i32, message_thread_id: Option<i32>, video_start_timestamp: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>) -> Result<ResponseContent<PostForwardMessageSuccess>, Error<PostForwardMessageError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2678,7 +2678,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of [MessageId](https://core.telegram.org/bots/api/#messageid) of the sent messages is returned.
-    async fn post_forward_messages<'chat_id, 'from_chat_id, 'message_ids, 'message_thread_id, 'disable_notification, 'protect_content>(&self, chat_id: models::models::PostSendMessageRequestChatId, from_chat_id: models::models::PostForwardMessagesRequestFromChatId, message_ids: Vec<i32>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>) -> Result<ResponseContent<PostForwardMessagesSuccess>, Error<PostForwardMessagesError>> {
+    async fn post_forward_messages<'chat_id, 'from_chat_id, 'message_ids, 'message_thread_id, 'disable_notification, 'protect_content>(&self, chat_id: models::models::SendMessageRequestChatId, from_chat_id: models::models::ForwardMessagesRequestFromChatId, message_ids: Vec<i32>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>) -> Result<ResponseContent<PostForwardMessagesSuccess>, Error<PostForwardMessagesError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2875,7 +2875,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to get up-to-date information about the chat. Returns a [ChatFullInfo](https://core.telegram.org/bots/api/#chatfullinfo) object on success.
-    async fn post_get_chat<'chat_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatSuccess>, Error<PostGetChatError>> {
+    async fn post_get_chat<'chat_id>(&self, chat_id: models::models::LeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatSuccess>, Error<PostGetChatError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2908,7 +2908,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of [ChatMember](https://core.telegram.org/bots/api/#chatmember) objects.
-    async fn post_get_chat_administrators<'chat_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatAdministratorsSuccess>, Error<PostGetChatAdministratorsError>> {
+    async fn post_get_chat_administrators<'chat_id>(&self, chat_id: models::models::LeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatAdministratorsSuccess>, Error<PostGetChatAdministratorsError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2941,7 +2941,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a [ChatMember](https://core.telegram.org/bots/api/#chatmember) object on success.
-    async fn post_get_chat_member<'chat_id, 'user_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId, user_id: i32) -> Result<ResponseContent<PostGetChatMemberSuccess>, Error<PostGetChatMemberError>> {
+    async fn post_get_chat_member<'chat_id, 'user_id>(&self, chat_id: models::models::LeaveChatRequestChatId, user_id: i32) -> Result<ResponseContent<PostGetChatMemberSuccess>, Error<PostGetChatMemberError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -2975,7 +2975,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to get the number of members in a chat. Returns *Int* on success.
-    async fn post_get_chat_member_count<'chat_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatMemberCountSuccess>, Error<PostGetChatMemberCountError>> {
+    async fn post_get_chat_member_count<'chat_id>(&self, chat_id: models::models::LeaveChatRequestChatId) -> Result<ResponseContent<PostGetChatMemberCountSuccess>, Error<PostGetChatMemberCountError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -3504,7 +3504,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a [UserChatBoosts](https://core.telegram.org/bots/api/#userchatboosts) object.
-    async fn post_get_user_chat_boosts<'chat_id, 'user_id>(&self, chat_id: models::models::PostGetUserChatBoostsRequestChatId, user_id: i32) -> Result<ResponseContent<PostGetUserChatBoostsSuccess>, Error<PostGetUserChatBoostsError>> {
+    async fn post_get_user_chat_boosts<'chat_id, 'user_id>(&self, chat_id: models::models::GetUserChatBoostsRequestChatId, user_id: i32) -> Result<ResponseContent<PostGetUserChatBoostsSuccess>, Error<PostGetUserChatBoostsError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -3651,7 +3651,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. The topic will be automatically closed if it was open. Returns *True* on success.
-    async fn post_hide_general_forum_topic<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostHideGeneralForumTopicSuccess>, Error<PostHideGeneralForumTopicError>> {
+    async fn post_hide_general_forum_topic<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostHideGeneralForumTopicSuccess>, Error<PostHideGeneralForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -3684,7 +3684,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method for your bot to leave a group, supergroup or channel. Returns *True* on success.
-    async fn post_leave_chat<'chat_id>(&self, chat_id: models::models::PostLeaveChatRequestChatId) -> Result<ResponseContent<PostLeaveChatSuccess>, Error<PostLeaveChatError>> {
+    async fn post_leave_chat<'chat_id>(&self, chat_id: models::models::LeaveChatRequestChatId) -> Result<ResponseContent<PostLeaveChatSuccess>, Error<PostLeaveChatError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -3747,7 +3747,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can\\_pin\\_messages' administrator right in a supergroup or 'can\\_edit\\_messages' administrator right in a channel. Returns *True* on success.
-    async fn post_pin_chat_message<'chat_id, 'message_id, 'business_connection_id, 'disable_notification>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_id: i32, business_connection_id: Option<&'business_connection_id str>, disable_notification: Option<bool>) -> Result<ResponseContent<PostPinChatMessageSuccess>, Error<PostPinChatMessageError>> {
+    async fn post_pin_chat_message<'chat_id, 'message_id, 'business_connection_id, 'disable_notification>(&self, chat_id: models::models::SendMessageRequestChatId, message_id: i32, business_connection_id: Option<&'business_connection_id str>, disable_notification: Option<bool>) -> Result<ResponseContent<PostPinChatMessageSuccess>, Error<PostPinChatMessageError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -3840,7 +3840,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass *False* for all boolean parameters to demote a user. Returns *True* on success.
-    async fn post_promote_chat_member<'chat_id, 'user_id, 'is_anonymous, 'can_manage_chat, 'can_delete_messages, 'can_manage_video_chats, 'can_restrict_members, 'can_promote_members, 'can_change_info, 'can_invite_users, 'can_post_stories, 'can_edit_stories, 'can_delete_stories, 'can_post_messages, 'can_edit_messages, 'can_pin_messages, 'can_manage_topics>(&self, chat_id: models::models::PostSendMessageRequestChatId, user_id: i32, is_anonymous: Option<bool>, can_manage_chat: Option<bool>, can_delete_messages: Option<bool>, can_manage_video_chats: Option<bool>, can_restrict_members: Option<bool>, can_promote_members: Option<bool>, can_change_info: Option<bool>, can_invite_users: Option<bool>, can_post_stories: Option<bool>, can_edit_stories: Option<bool>, can_delete_stories: Option<bool>, can_post_messages: Option<bool>, can_edit_messages: Option<bool>, can_pin_messages: Option<bool>, can_manage_topics: Option<bool>) -> Result<ResponseContent<PostPromoteChatMemberSuccess>, Error<PostPromoteChatMemberError>> {
+    async fn post_promote_chat_member<'chat_id, 'user_id, 'is_anonymous, 'can_manage_chat, 'can_delete_messages, 'can_manage_video_chats, 'can_restrict_members, 'can_promote_members, 'can_change_info, 'can_invite_users, 'can_post_stories, 'can_edit_stories, 'can_delete_stories, 'can_post_messages, 'can_edit_messages, 'can_pin_messages, 'can_manage_topics>(&self, chat_id: models::models::SendMessageRequestChatId, user_id: i32, is_anonymous: Option<bool>, can_manage_chat: Option<bool>, can_delete_messages: Option<bool>, can_manage_video_chats: Option<bool>, can_restrict_members: Option<bool>, can_promote_members: Option<bool>, can_change_info: Option<bool>, can_invite_users: Option<bool>, can_post_stories: Option<bool>, can_edit_stories: Option<bool>, can_delete_stories: Option<bool>, can_post_messages: Option<bool>, can_edit_messages: Option<bool>, can_pin_messages: Option<bool>, can_manage_topics: Option<bool>) -> Result<ResponseContent<PostPromoteChatMemberSuccess>, Error<PostPromoteChatMemberError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4024,7 +4024,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Removes verification from a chat that is currently verified [on behalf of the organization](https://telegram.org/verify#third-party-verification) represented by the bot. Returns *True* on success.
-    async fn post_remove_chat_verification<'chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId) -> Result<ResponseContent<PostRemoveChatVerificationSuccess>, Error<PostRemoveChatVerificationError>> {
+    async fn post_remove_chat_verification<'chat_id>(&self, chat_id: models::models::SendMessageRequestChatId) -> Result<ResponseContent<PostRemoveChatVerificationSuccess>, Error<PostRemoveChatVerificationError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4090,7 +4090,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights, unless it is the creator of the topic. Returns *True* on success.
-    async fn post_reopen_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32) -> Result<ResponseContent<PostReopenForumTopicSuccess>, Error<PostReopenForumTopicError>> {
+    async fn post_reopen_forum_topic<'chat_id, 'message_thread_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32) -> Result<ResponseContent<PostReopenForumTopicSuccess>, Error<PostReopenForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4124,7 +4124,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. The topic will be automatically unhidden if it was hidden. Returns *True* on success.
-    async fn post_reopen_general_forum_topic<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostReopenGeneralForumTopicSuccess>, Error<PostReopenGeneralForumTopicError>> {
+    async fn post_reopen_general_forum_topic<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostReopenGeneralForumTopicSuccess>, Error<PostReopenGeneralForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4193,7 +4193,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass *True* for all permissions to lift restrictions from a user. Returns *True* on success.
-    async fn post_restrict_chat_member<'chat_id, 'user_id, 'permissions, 'use_independent_chat_permissions, 'until_date>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, user_id: i32, permissions: models::models::ChatPermissions, use_independent_chat_permissions: Option<bool>, until_date: Option<i32>) -> Result<ResponseContent<PostRestrictChatMemberSuccess>, Error<PostRestrictChatMemberError>> {
+    async fn post_restrict_chat_member<'chat_id, 'user_id, 'permissions, 'use_independent_chat_permissions, 'until_date>(&self, chat_id: models::models::BotCommandScopeChatChatId, user_id: i32, permissions: models::models::ChatPermissions, use_independent_chat_permissions: Option<bool>, until_date: Option<i32>) -> Result<ResponseContent<PostRestrictChatMemberSuccess>, Error<PostRestrictChatMemberError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4234,7 +4234,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as [ChatInviteLink](https://core.telegram.org/bots/api/#chatinvitelink) object.
-    async fn post_revoke_chat_invite_link<'chat_id, 'invite_link>(&self, chat_id: models::models::PostRevokeChatInviteLinkRequestChatId, invite_link: &'invite_link str) -> Result<ResponseContent<PostRevokeChatInviteLinkSuccess>, Error<PostRevokeChatInviteLinkError>> {
+    async fn post_revoke_chat_invite_link<'chat_id, 'invite_link>(&self, chat_id: models::models::RevokeChatInviteLinkRequestChatId, invite_link: &'invite_link str) -> Result<ResponseContent<PostRevokeChatInviteLinkSuccess>, Error<PostRevokeChatInviteLinkError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4314,7 +4314,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
-    async fn post_send_animation<'chat_id, 'animation, 'business_connection_id, 'message_thread_id, 'duration, 'width, 'height, 'thumbnail, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, animation: models::models::PostSendAnimationRequestAnimation, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, width: Option<i32>, height: Option<i32>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendAnimationSuccess>, Error<PostSendAnimationError>> {
+    async fn post_send_animation<'chat_id, 'animation, 'business_connection_id, 'message_thread_id, 'duration, 'width, 'height, 'thumbnail, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, animation: Option<&'animation str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, width: Option<i32>, height: Option<i32>, thumbnail: Option<&'thumbnail str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendAnimationSuccess>, Error<PostSendAnimationError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4333,7 +4333,10 @@ impl DefaultApi for DefaultApiClient {
         if let Some(local_var_param_value) = message_thread_id {
             local_var_form = local_var_form.text("message_thread_id", local_var_param_value.to_string());
         }
-        local_var_form = local_var_form.text("animation", animation.to_string());
+        match animation {
+            Some(local_var_param_value) => { local_var_form = local_var_form.text("animation", local_var_param_value.to_string()); },
+            None => { local_var_form = local_var_form.text("animation", ""); },
+        }
         if let Some(local_var_param_value) = duration {
             local_var_form = local_var_form.text("duration", local_var_param_value.to_string());
         }
@@ -4399,7 +4402,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.  For sending voice messages, use the [sendVoice](https://core.telegram.org/bots/api/#sendvoice) method instead.
-    async fn post_send_audio<'chat_id, 'audio, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'duration, 'performer, 'title, 'thumbnail, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, audio: models::models::PostSendAudioRequestAudio, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, duration: Option<i32>, performer: Option<&'performer str>, title: Option<&'title str>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendAudioSuccess>, Error<PostSendAudioError>> {
+    async fn post_send_audio<'chat_id, 'audio, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'duration, 'performer, 'title, 'thumbnail, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, audio: Option<&'audio str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, duration: Option<i32>, performer: Option<&'performer str>, title: Option<&'title str>, thumbnail: Option<&'thumbnail str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendAudioSuccess>, Error<PostSendAudioError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4418,7 +4421,10 @@ impl DefaultApi for DefaultApiClient {
         if let Some(local_var_param_value) = message_thread_id {
             local_var_form = local_var_form.text("message_thread_id", local_var_param_value.to_string());
         }
-        local_var_form = local_var_form.text("audio", audio.to_string());
+        match audio {
+            Some(local_var_param_value) => { local_var_form = local_var_form.text("audio", local_var_param_value.to_string()); },
+            None => { local_var_form = local_var_form.text("audio", ""); },
+        }
         if let Some(local_var_param_value) = caption {
             local_var_form = local_var_form.text("caption", local_var_param_value.to_string());
         }
@@ -4478,7 +4484,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns *True* on success.  Example: The [ImageBot](https://t.me/imagebot) needs some time to process a request and upload the image. Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use [sendChatAction](https://core.telegram.org/bots/api/#sendchataction) with *action* = *upload\\_photo*. The user will see a “sending photo” status for the bot.  We only recommend using this method when a response from the bot will take a **noticeable** amount of time to arrive.
-    async fn post_send_chat_action<'chat_id, 'action, 'business_connection_id, 'message_thread_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, action: &'action str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>) -> Result<ResponseContent<PostSendChatActionSuccess>, Error<PostSendChatActionError>> {
+    async fn post_send_chat_action<'chat_id, 'action, 'business_connection_id, 'message_thread_id>(&self, chat_id: models::models::SendMessageRequestChatId, action: &'action str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>) -> Result<ResponseContent<PostSendChatActionSuccess>, Error<PostSendChatActionError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4518,7 +4524,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send phone contacts. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_contact<'chat_id, 'phone_number, 'first_name, 'business_connection_id, 'message_thread_id, 'last_name, 'vcard, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, phone_number: &'phone_number str, first_name: &'first_name str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, last_name: Option<&'last_name str>, vcard: Option<&'vcard str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendContactSuccess>, Error<PostSendContactError>> {
+    async fn post_send_contact<'chat_id, 'phone_number, 'first_name, 'business_connection_id, 'message_thread_id, 'last_name, 'vcard, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, phone_number: &'phone_number str, first_name: &'first_name str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, last_name: Option<&'last_name str>, vcard: Option<&'vcard str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendContactSuccess>, Error<PostSendContactError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4583,7 +4589,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send an animated emoji that will display a random value. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_dice<'chat_id, 'business_connection_id, 'message_thread_id, 'emoji, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, emoji: Option<&'emoji str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendDiceSuccess>, Error<PostSendDiceError>> {
+    async fn post_send_dice<'chat_id, 'business_connection_id, 'message_thread_id, 'emoji, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, emoji: Option<&'emoji str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendDiceSuccess>, Error<PostSendDiceError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4643,7 +4649,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send general files. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-    async fn post_send_document<'chat_id, 'document, 'business_connection_id, 'message_thread_id, 'thumbnail, 'caption, 'parse_mode, 'caption_entities, 'disable_content_type_detection, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, document: models::models::PostSendDocumentRequestDocument, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, disable_content_type_detection: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendDocumentSuccess>, Error<PostSendDocumentError>> {
+    async fn post_send_document<'chat_id, 'document, 'business_connection_id, 'message_thread_id, 'thumbnail, 'caption, 'parse_mode, 'caption_entities, 'disable_content_type_detection, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, document: Option<&'document str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, thumbnail: Option<&'thumbnail str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, disable_content_type_detection: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendDocumentSuccess>, Error<PostSendDocumentError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4662,7 +4668,10 @@ impl DefaultApi for DefaultApiClient {
         if let Some(local_var_param_value) = message_thread_id {
             local_var_form = local_var_form.text("message_thread_id", local_var_param_value.to_string());
         }
-        local_var_form = local_var_form.text("document", document.to_string());
+        match document {
+            Some(local_var_param_value) => { local_var_form = local_var_form.text("document", local_var_param_value.to_string()); },
+            None => { local_var_form = local_var_form.text("document", ""); },
+        }
         if let Some(local_var_param_value) = thumbnail {
             local_var_form = local_var_form.text("thumbnail", local_var_param_value.to_string());
         }
@@ -4774,7 +4783,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Sends a gift to the given user or channel chat. The gift can't be converted to Telegram Stars by the receiver. Returns *True* on success.
-    async fn post_send_gift<'gift_id, 'user_id, 'chat_id, 'pay_for_upgrade, 'text, 'text_parse_mode, 'text_entities>(&self, gift_id: &'gift_id str, user_id: Option<i32>, chat_id: Option<models::models::PostSendGiftRequestChatId>, pay_for_upgrade: Option<bool>, text: Option<&'text str>, text_parse_mode: Option<&'text_parse_mode str>, text_entities: Option<Vec<models::MessageEntity>>) -> Result<ResponseContent<PostSendGiftSuccess>, Error<PostSendGiftError>> {
+    async fn post_send_gift<'gift_id, 'user_id, 'chat_id, 'pay_for_upgrade, 'text, 'text_parse_mode, 'text_entities>(&self, gift_id: &'gift_id str, user_id: Option<i32>, chat_id: Option<models::models::SendGiftRequestChatId>, pay_for_upgrade: Option<bool>, text: Option<&'text str>, text_parse_mode: Option<&'text_parse_mode str>, text_entities: Option<Vec<models::MessageEntity>>) -> Result<ResponseContent<PostSendGiftSuccess>, Error<PostSendGiftError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4825,7 +4834,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send invoices. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_invoice<'chat_id, 'title, 'description, 'payload, 'currency, 'prices, 'message_thread_id, 'provider_token, 'max_tip_amount, 'suggested_tip_amounts, 'start_parameter, 'provider_data, 'photo_url, 'photo_size, 'photo_width, 'photo_height, 'need_name, 'need_phone_number, 'need_email, 'need_shipping_address, 'send_phone_number_to_provider, 'send_email_to_provider, 'is_flexible, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, title: &'title str, description: &'description str, payload: &'payload str, currency: &'currency str, prices: Vec<models::LabeledPrice>, message_thread_id: Option<i32>, provider_token: Option<&'provider_token str>, max_tip_amount: Option<i32>, suggested_tip_amounts: Option<Vec<i32>>, start_parameter: Option<&'start_parameter str>, provider_data: Option<&'provider_data str>, photo_url: Option<&'photo_url str>, photo_size: Option<i32>, photo_width: Option<i32>, photo_height: Option<i32>, need_name: Option<bool>, need_phone_number: Option<bool>, need_email: Option<bool>, need_shipping_address: Option<bool>, send_phone_number_to_provider: Option<bool>, send_email_to_provider: Option<bool>, is_flexible: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostSendInvoiceSuccess>, Error<PostSendInvoiceError>> {
+    async fn post_send_invoice<'chat_id, 'title, 'description, 'payload, 'currency, 'prices, 'message_thread_id, 'provider_token, 'max_tip_amount, 'suggested_tip_amounts, 'start_parameter, 'provider_data, 'photo_url, 'photo_size, 'photo_width, 'photo_height, 'need_name, 'need_phone_number, 'need_email, 'need_shipping_address, 'send_phone_number_to_provider, 'send_email_to_provider, 'is_flexible, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, title: &'title str, description: &'description str, payload: &'payload str, currency: &'currency str, prices: Vec<models::LabeledPrice>, message_thread_id: Option<i32>, provider_token: Option<&'provider_token str>, max_tip_amount: Option<i32>, suggested_tip_amounts: Option<Vec<i32>>, start_parameter: Option<&'start_parameter str>, provider_data: Option<&'provider_data str>, photo_url: Option<&'photo_url str>, photo_size: Option<i32>, photo_width: Option<i32>, photo_height: Option<i32>, need_name: Option<bool>, need_phone_number: Option<bool>, need_email: Option<bool>, need_shipping_address: Option<bool>, send_phone_number_to_provider: Option<bool>, send_email_to_provider: Option<bool>, is_flexible: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostSendInvoiceSuccess>, Error<PostSendInvoiceError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -4932,7 +4941,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send point on the map. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_location<'chat_id, 'latitude, 'longitude, 'business_connection_id, 'message_thread_id, 'horizontal_accuracy, 'live_period, 'heading, 'proximity_alert_radius, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, latitude: f64, longitude: f64, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, horizontal_accuracy: Option<f64>, live_period: Option<i32>, heading: Option<i32>, proximity_alert_radius: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendLocationSuccess>, Error<PostSendLocationError>> {
+    async fn post_send_location<'chat_id, 'latitude, 'longitude, 'business_connection_id, 'message_thread_id, 'horizontal_accuracy, 'live_period, 'heading, 'proximity_alert_radius, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, latitude: f64, longitude: f64, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, horizontal_accuracy: Option<f64>, live_period: Option<i32>, heading: Option<i32>, proximity_alert_radius: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendLocationSuccess>, Error<PostSendLocationError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5003,7 +5012,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of [Messages](https://core.telegram.org/bots/api/#message) that were sent is returned.
-    async fn post_send_media_group<'chat_id, 'media, 'business_connection_id, 'message_thread_id, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters>(&self, chat_id: models::models::PostSendMessageRequestChatId, media: Vec<models::PostSendMediaGroupRequestMediaInner>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>) -> Result<ResponseContent<PostSendMediaGroupSuccess>, Error<PostSendMediaGroupError>> {
+    async fn post_send_media_group<'chat_id, 'media, 'business_connection_id, 'message_thread_id, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters>(&self, chat_id: models::models::SendMessageRequestChatId, media: Vec<models::SendMediaGroupRequestMediaInner>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>) -> Result<ResponseContent<PostSendMediaGroupSuccess>, Error<PostSendMediaGroupError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5058,7 +5067,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send text messages. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_message<'chat_id, 'text, 'business_connection_id, 'message_thread_id, 'parse_mode, 'entities, 'link_preview_options, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, text: &'text str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, parse_mode: Option<&'parse_mode str>, entities: Option<Vec<models::MessageEntity>>, link_preview_options: Option<models::models::LinkPreviewOptions>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendMessageSuccess>, Error<PostSendMessageError>> {
+    async fn post_send_message<'chat_id, 'text, 'business_connection_id, 'message_thread_id, 'parse_mode, 'entities, 'link_preview_options, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, text: &'text str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, parse_mode: Option<&'parse_mode str>, entities: Option<Vec<models::MessageEntity>>, link_preview_options: Option<models::models::LinkPreviewOptions>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendMessageSuccess>, Error<PostSendMessageError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5125,7 +5134,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send paid media. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_paid_media<'chat_id, 'star_count, 'media, 'business_connection_id, 'payload, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendPaidMediaRequestChatId, star_count: i32, media: Vec<models::InputPaidMedia>, business_connection_id: Option<&'business_connection_id str>, payload: Option<&'payload str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPaidMediaSuccess>, Error<PostSendPaidMediaError>> {
+    async fn post_send_paid_media<'chat_id, 'star_count, 'media, 'business_connection_id, 'payload, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendPaidMediaRequestChatId, star_count: i32, media: Vec<models::InputPaidMedia>, business_connection_id: Option<&'business_connection_id str>, payload: Option<&'payload str>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPaidMediaSuccess>, Error<PostSendPaidMediaError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5193,7 +5202,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send photos. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_photo<'chat_id, 'photo, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, photo: models::models::PostSendPhotoRequestPhoto, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPhotoSuccess>, Error<PostSendPhotoError>> {
+    async fn post_send_photo<'chat_id, 'photo, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, photo: Option<&'photo str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPhotoSuccess>, Error<PostSendPhotoError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5212,7 +5221,10 @@ impl DefaultApi for DefaultApiClient {
         if let Some(local_var_param_value) = message_thread_id {
             local_var_form = local_var_form.text("message_thread_id", local_var_param_value.to_string());
         }
-        local_var_form = local_var_form.text("photo", photo.to_string());
+        match photo {
+            Some(local_var_param_value) => { local_var_form = local_var_form.text("photo", local_var_param_value.to_string()); },
+            None => { local_var_form = local_var_form.text("photo", ""); },
+        }
         if let Some(local_var_param_value) = caption {
             local_var_form = local_var_form.text("caption", local_var_param_value.to_string());
         }
@@ -5266,7 +5278,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send a native poll. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_poll<'chat_id, 'question, 'options, 'business_connection_id, 'message_thread_id, 'question_parse_mode, 'question_entities, 'is_anonymous, 'r_type, 'allows_multiple_answers, 'correct_option_id, 'explanation, 'explanation_parse_mode, 'explanation_entities, 'open_period, 'close_date, 'is_closed, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, question: &'question str, options: Vec<models::InputPollOption>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, question_parse_mode: Option<&'question_parse_mode str>, question_entities: Option<Vec<models::MessageEntity>>, is_anonymous: Option<bool>, r#type: Option<&'r_type str>, allows_multiple_answers: Option<bool>, correct_option_id: Option<i32>, explanation: Option<&'explanation str>, explanation_parse_mode: Option<&'explanation_parse_mode str>, explanation_entities: Option<Vec<models::MessageEntity>>, open_period: Option<i32>, close_date: Option<i32>, is_closed: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPollSuccess>, Error<PostSendPollError>> {
+    async fn post_send_poll<'chat_id, 'question, 'options, 'business_connection_id, 'message_thread_id, 'question_parse_mode, 'question_entities, 'is_anonymous, 'r_type, 'allows_multiple_answers, 'correct_option_id, 'explanation, 'explanation_parse_mode, 'explanation_entities, 'open_period, 'close_date, 'is_closed, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, question: &'question str, options: Vec<models::InputPollOption>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, question_parse_mode: Option<&'question_parse_mode str>, question_entities: Option<Vec<models::MessageEntity>>, is_anonymous: Option<bool>, r#type: Option<&'r_type str>, allows_multiple_answers: Option<bool>, correct_option_id: Option<i32>, explanation: Option<&'explanation str>, explanation_parse_mode: Option<&'explanation_parse_mode str>, explanation_entities: Option<Vec<models::MessageEntity>>, open_period: Option<i32>, close_date: Option<i32>, is_closed: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendPollSuccess>, Error<PostSendPollError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5361,7 +5373,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send static .WEBP, [animated](https://telegram.org/blog/animated-stickers) .TGS, or [video](https://telegram.org/blog/video-stickers-better-reactions) .WEBM stickers. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_sticker<'chat_id, 'sticker, 'business_connection_id, 'message_thread_id, 'emoji, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, sticker: models::models::PostSendStickerRequestSticker, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, emoji: Option<&'emoji str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendStickerSuccess>, Error<PostSendStickerError>> {
+    async fn post_send_sticker<'chat_id, 'sticker, 'business_connection_id, 'message_thread_id, 'emoji, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, sticker: Option<&'sticker str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, emoji: Option<&'emoji str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendStickerSuccess>, Error<PostSendStickerError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5380,7 +5392,10 @@ impl DefaultApi for DefaultApiClient {
         if let Some(local_var_param_value) = message_thread_id {
             local_var_form = local_var_form.text("message_thread_id", local_var_param_value.to_string());
         }
-        local_var_form = local_var_form.text("sticker", sticker.to_string());
+        match sticker {
+            Some(local_var_param_value) => { local_var_form = local_var_form.text("sticker", local_var_param_value.to_string()); },
+            None => { local_var_form = local_var_form.text("sticker", ""); },
+        }
         if let Some(local_var_param_value) = emoji {
             local_var_form = local_var_form.text("emoji", local_var_param_value.to_string());
         }
@@ -5422,7 +5437,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send information about a venue. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_venue<'chat_id, 'latitude, 'longitude, 'title, 'address, 'business_connection_id, 'message_thread_id, 'foursquare_id, 'foursquare_type, 'google_place_id, 'google_place_type, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, latitude: f64, longitude: f64, title: &'title str, address: &'address str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, foursquare_id: Option<&'foursquare_id str>, foursquare_type: Option<&'foursquare_type str>, google_place_id: Option<&'google_place_id str>, google_place_type: Option<&'google_place_type str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVenueSuccess>, Error<PostSendVenueError>> {
+    async fn post_send_venue<'chat_id, 'latitude, 'longitude, 'title, 'address, 'business_connection_id, 'message_thread_id, 'foursquare_id, 'foursquare_type, 'google_place_id, 'google_place_type, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, latitude: f64, longitude: f64, title: &'title str, address: &'address str, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, foursquare_id: Option<&'foursquare_id str>, foursquare_type: Option<&'foursquare_type str>, google_place_id: Option<&'google_place_id str>, google_place_type: Option<&'google_place_type str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVenueSuccess>, Error<PostSendVenueError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5495,7 +5510,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as [Document](https://core.telegram.org/bots/api/#document)). On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-    async fn post_send_video<'chat_id, 'video, 'business_connection_id, 'message_thread_id, 'duration, 'width, 'height, 'thumbnail, 'cover, 'start_timestamp, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'supports_streaming, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, video: models::models::PostSendVideoRequestVideo, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, width: Option<i32>, height: Option<i32>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, cover: Option<models::models::PostSendVideoRequestCover>, start_timestamp: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, supports_streaming: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVideoSuccess>, Error<PostSendVideoError>> {
+    async fn post_send_video<'chat_id, 'video, 'business_connection_id, 'message_thread_id, 'duration, 'width, 'height, 'thumbnail, 'cover, 'start_timestamp, 'caption, 'parse_mode, 'caption_entities, 'show_caption_above_media, 'has_spoiler, 'supports_streaming, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, video: Option<&'video str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, width: Option<i32>, height: Option<i32>, thumbnail: Option<&'thumbnail str>, cover: Option<&'cover str>, start_timestamp: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, show_caption_above_media: Option<bool>, has_spoiler: Option<bool>, supports_streaming: Option<bool>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVideoSuccess>, Error<PostSendVideoError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5514,7 +5529,10 @@ impl DefaultApi for DefaultApiClient {
         if let Some(local_var_param_value) = message_thread_id {
             local_var_form = local_var_form.text("message_thread_id", local_var_param_value.to_string());
         }
-        local_var_form = local_var_form.text("video", video.to_string());
+        match video {
+            Some(local_var_param_value) => { local_var_form = local_var_form.text("video", local_var_param_value.to_string()); },
+            None => { local_var_form = local_var_form.text("video", ""); },
+        }
         if let Some(local_var_param_value) = duration {
             local_var_form = local_var_form.text("duration", local_var_param_value.to_string());
         }
@@ -5589,7 +5607,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// As of [v.4.0](https://telegram.org/blog/video-messages-and-telescope), Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned.
-    async fn post_send_video_note<'chat_id, 'video_note, 'business_connection_id, 'message_thread_id, 'duration, 'length, 'thumbnail, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, video_note: models::models::PostSendVideoNoteRequestVideoNote, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, length: Option<i32>, thumbnail: Option<models::models::PostSendAudioRequestThumbnail>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVideoNoteSuccess>, Error<PostSendVideoNoteError>> {
+    async fn post_send_video_note<'chat_id, 'video_note, 'business_connection_id, 'message_thread_id, 'duration, 'length, 'thumbnail, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, video_note: Option<&'video_note str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, duration: Option<i32>, length: Option<i32>, thumbnail: Option<&'thumbnail str>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVideoNoteSuccess>, Error<PostSendVideoNoteError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5608,7 +5626,10 @@ impl DefaultApi for DefaultApiClient {
         if let Some(local_var_param_value) = message_thread_id {
             local_var_form = local_var_form.text("message_thread_id", local_var_param_value.to_string());
         }
-        local_var_form = local_var_form.text("video_note", video_note.to_string());
+        match video_note {
+            Some(local_var_param_value) => { local_var_form = local_var_form.text("video_note", local_var_param_value.to_string()); },
+            None => { local_var_form = local_var_form.text("video_note", ""); },
+        }
         if let Some(local_var_param_value) = duration {
             local_var_form = local_var_form.text("duration", local_var_param_value.to_string());
         }
@@ -5656,7 +5677,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS, or in .MP3 format, or in .M4A format (other formats may be sent as [Audio](https://core.telegram.org/bots/api/#audio) or [Document](https://core.telegram.org/bots/api/#document)). On success, the sent [Message](https://core.telegram.org/bots/api/#message) is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-    async fn post_send_voice<'chat_id, 'voice, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'duration, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, voice: models::models::PostSendVoiceRequestVoice, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, duration: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::PostSendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVoiceSuccess>, Error<PostSendVoiceError>> {
+    async fn post_send_voice<'chat_id, 'voice, 'business_connection_id, 'message_thread_id, 'caption, 'parse_mode, 'caption_entities, 'duration, 'disable_notification, 'protect_content, 'allow_paid_broadcast, 'message_effect_id, 'reply_parameters, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, voice: Option<&'voice str>, business_connection_id: Option<&'business_connection_id str>, message_thread_id: Option<i32>, caption: Option<&'caption str>, parse_mode: Option<&'parse_mode str>, caption_entities: Option<Vec<models::MessageEntity>>, duration: Option<i32>, disable_notification: Option<bool>, protect_content: Option<bool>, allow_paid_broadcast: Option<bool>, message_effect_id: Option<&'message_effect_id str>, reply_parameters: Option<models::models::ReplyParameters>, reply_markup: Option<models::models::SendMessageRequestReplyMarkup>) -> Result<ResponseContent<PostSendVoiceSuccess>, Error<PostSendVoiceError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5675,7 +5696,10 @@ impl DefaultApi for DefaultApiClient {
         if let Some(local_var_param_value) = message_thread_id {
             local_var_form = local_var_form.text("message_thread_id", local_var_param_value.to_string());
         }
-        local_var_form = local_var_form.text("voice", voice.to_string());
+        match voice {
+            Some(local_var_param_value) => { local_var_form = local_var_form.text("voice", local_var_param_value.to_string()); },
+            None => { local_var_form = local_var_form.text("voice", ""); },
+        }
         if let Some(local_var_param_value) = caption {
             local_var_form = local_var_form.text("caption", local_var_param_value.to_string());
         }
@@ -5907,7 +5931,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns *True* on success.
-    async fn post_set_chat_administrator_custom_title<'chat_id, 'user_id, 'custom_title>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, user_id: i32, custom_title: &'custom_title str) -> Result<ResponseContent<PostSetChatAdministratorCustomTitleSuccess>, Error<PostSetChatAdministratorCustomTitleError>> {
+    async fn post_set_chat_administrator_custom_title<'chat_id, 'user_id, 'custom_title>(&self, chat_id: models::models::BotCommandScopeChatChatId, user_id: i32, custom_title: &'custom_title str) -> Result<ResponseContent<PostSetChatAdministratorCustomTitleSuccess>, Error<PostSetChatAdministratorCustomTitleError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -5942,7 +5966,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_set_chat_description<'chat_id, 'description>(&self, chat_id: models::models::PostSendMessageRequestChatId, description: Option<&'description str>) -> Result<ResponseContent<PostSetChatDescriptionSuccess>, Error<PostSetChatDescriptionError>> {
+    async fn post_set_chat_description<'chat_id, 'description>(&self, chat_id: models::models::SendMessageRequestChatId, description: Option<&'description str>) -> Result<ResponseContent<PostSetChatDescriptionSuccess>, Error<PostSetChatDescriptionError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -6016,7 +6040,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the *can\\_restrict\\_members* administrator rights. Returns *True* on success.
-    async fn post_set_chat_permissions<'chat_id, 'permissions, 'use_independent_chat_permissions>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, permissions: models::models::ChatPermissions, use_independent_chat_permissions: Option<bool>) -> Result<ResponseContent<PostSetChatPermissionsSuccess>, Error<PostSetChatPermissionsError>> {
+    async fn post_set_chat_permissions<'chat_id, 'permissions, 'use_independent_chat_permissions>(&self, chat_id: models::models::BotCommandScopeChatChatId, permissions: models::models::ChatPermissions, use_independent_chat_permissions: Option<bool>) -> Result<ResponseContent<PostSetChatPermissionsSuccess>, Error<PostSetChatPermissionsError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -6053,7 +6077,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_set_chat_photo<'chat_id, 'photo>(&self, chat_id: models::models::PostSendMessageRequestChatId, photo: Option<models::serde_json::Value>) -> Result<ResponseContent<PostSetChatPhotoSuccess>, Error<PostSetChatPhotoError>> {
+    async fn post_set_chat_photo<'chat_id, 'photo>(&self, chat_id: models::models::SendMessageRequestChatId, photo: Option<models::serde_json::Value>) -> Result<ResponseContent<PostSetChatPhotoSuccess>, Error<PostSetChatPhotoError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -6090,7 +6114,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field *can\\_set\\_sticker\\_set* optionally returned in [getChat](https://core.telegram.org/bots/api/#getchat) requests to check if the bot can use this method. Returns *True* on success.
-    async fn post_set_chat_sticker_set<'chat_id, 'sticker_set_name>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, sticker_set_name: &'sticker_set_name str) -> Result<ResponseContent<PostSetChatStickerSetSuccess>, Error<PostSetChatStickerSetError>> {
+    async fn post_set_chat_sticker_set<'chat_id, 'sticker_set_name>(&self, chat_id: models::models::BotCommandScopeChatChatId, sticker_set_name: &'sticker_set_name str) -> Result<ResponseContent<PostSetChatStickerSetSuccess>, Error<PostSetChatStickerSetError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -6124,7 +6148,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to change the title of a chat. Titles can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_set_chat_title<'chat_id, 'title>(&self, chat_id: models::models::PostSendMessageRequestChatId, title: &'title str) -> Result<ResponseContent<PostSetChatTitleSuccess>, Error<PostSetChatTitleError>> {
+    async fn post_set_chat_title<'chat_id, 'title>(&self, chat_id: models::models::SendMessageRequestChatId, title: &'title str) -> Result<ResponseContent<PostSetChatTitleSuccess>, Error<PostSetChatTitleError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -6243,7 +6267,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to change the chosen reactions on a message. Service messages of some types can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Bots can't use paid reactions. Returns *True* on success.
-    async fn post_set_message_reaction<'chat_id, 'message_id, 'reaction, 'is_big>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_id: i32, reaction: Option<Vec<models::ReactionType>>, is_big: Option<bool>) -> Result<ResponseContent<PostSetMessageReactionSuccess>, Error<PostSetMessageReactionError>> {
+    async fn post_set_message_reaction<'chat_id, 'message_id, 'reaction, 'is_big>(&self, chat_id: models::models::SendMessageRequestChatId, message_id: i32, reaction: Option<Vec<models::ReactionType>>, is_big: Option<bool>) -> Result<ResponseContent<PostSetMessageReactionSuccess>, Error<PostSetMessageReactionError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -6648,7 +6672,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to set the thumbnail of a regular or mask sticker set. The format of the thumbnail file must match the format of the stickers in the set. Returns *True* on success.
-    async fn post_set_sticker_set_thumbnail<'name, 'user_id, 'format, 'thumbnail>(&self, name: &'name str, user_id: i32, format: &'format str, thumbnail: Option<models::models::PostSetStickerSetThumbnailRequestThumbnail>) -> Result<ResponseContent<PostSetStickerSetThumbnailSuccess>, Error<PostSetStickerSetThumbnailError>> {
+    async fn post_set_sticker_set_thumbnail<'name, 'user_id, 'format, 'thumbnail>(&self, name: &'name str, user_id: i32, format: &'format str, thumbnail: Option<&'thumbnail str>) -> Result<ResponseContent<PostSetStickerSetThumbnailSuccess>, Error<PostSetStickerSetThumbnailError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -6810,7 +6834,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to stop updating a live location message before *live\\_period* expires. On success, if the message is not an inline message, the edited [Message](https://core.telegram.org/bots/api/#message) is returned, otherwise *True* is returned.
-    async fn post_stop_message_live_location<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::PostEditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostStopMessageLiveLocationSuccess>, Error<PostStopMessageLiveLocationError>> {
+    async fn post_stop_message_live_location<'business_connection_id, 'chat_id, 'message_id, 'inline_message_id, 'reply_markup>(&self, business_connection_id: Option<&'business_connection_id str>, chat_id: Option<models::models::EditMessageTextRequestChatId>, message_id: Option<i32>, inline_message_id: Option<&'inline_message_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostStopMessageLiveLocationSuccess>, Error<PostStopMessageLiveLocationError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -6857,7 +6881,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to stop a poll which was sent by the bot. On success, the stopped [Poll](https://core.telegram.org/bots/api/#poll) is returned.
-    async fn post_stop_poll<'chat_id, 'message_id, 'business_connection_id, 'reply_markup>(&self, chat_id: models::models::PostSendMessageRequestChatId, message_id: i32, business_connection_id: Option<&'business_connection_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostStopPollSuccess>, Error<PostStopPollError>> {
+    async fn post_stop_poll<'chat_id, 'message_id, 'business_connection_id, 'reply_markup>(&self, chat_id: models::models::SendMessageRequestChatId, message_id: i32, business_connection_id: Option<&'business_connection_id str>, reply_markup: Option<models::models::InlineKeyboardMarkup>) -> Result<ResponseContent<PostStopPollSuccess>, Error<PostStopPollError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -6969,7 +6993,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to unban a previously banned user in a supergroup or channel. The user will **not** return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be **removed** from the chat. If you don't want this, use the parameter *only\\_if\\_banned*. Returns *True* on success.
-    async fn post_unban_chat_member<'chat_id, 'user_id, 'only_if_banned>(&self, chat_id: models::models::PostBanChatMemberRequestChatId, user_id: i32, only_if_banned: Option<bool>) -> Result<ResponseContent<PostUnbanChatMemberSuccess>, Error<PostUnbanChatMemberError>> {
+    async fn post_unban_chat_member<'chat_id, 'user_id, 'only_if_banned>(&self, chat_id: models::models::BanChatMemberRequestChatId, user_id: i32, only_if_banned: Option<bool>) -> Result<ResponseContent<PostUnbanChatMemberSuccess>, Error<PostUnbanChatMemberError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -7006,7 +7030,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns *True* on success.
-    async fn post_unban_chat_sender_chat<'chat_id, 'sender_chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, sender_chat_id: i32) -> Result<ResponseContent<PostUnbanChatSenderChatSuccess>, Error<PostUnbanChatSenderChatError>> {
+    async fn post_unban_chat_sender_chat<'chat_id, 'sender_chat_id>(&self, chat_id: models::models::SendMessageRequestChatId, sender_chat_id: i32) -> Result<ResponseContent<PostUnbanChatSenderChatSuccess>, Error<PostUnbanChatSenderChatError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -7040,7 +7064,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\\_manage\\_topics* administrator rights. Returns *True* on success.
-    async fn post_unhide_general_forum_topic<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostUnhideGeneralForumTopicSuccess>, Error<PostUnhideGeneralForumTopicError>> {
+    async fn post_unhide_general_forum_topic<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostUnhideGeneralForumTopicSuccess>, Error<PostUnhideGeneralForumTopicError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -7073,7 +7097,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can\\_pin\\_messages' administrator right in a supergroup or 'can\\_edit\\_messages' administrator right in a channel. Returns *True* on success.
-    async fn post_unpin_all_chat_messages<'chat_id>(&self, chat_id: models::models::PostSendMessageRequestChatId) -> Result<ResponseContent<PostUnpinAllChatMessagesSuccess>, Error<PostUnpinAllChatMessagesError>> {
+    async fn post_unpin_all_chat_messages<'chat_id>(&self, chat_id: models::models::SendMessageRequestChatId) -> Result<ResponseContent<PostUnpinAllChatMessagesSuccess>, Error<PostUnpinAllChatMessagesError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -7106,7 +7130,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the *can\\_pin\\_messages* administrator right in the supergroup. Returns *True* on success.
-    async fn post_unpin_all_forum_topic_messages<'chat_id, 'message_thread_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId, message_thread_id: i32) -> Result<ResponseContent<PostUnpinAllForumTopicMessagesSuccess>, Error<PostUnpinAllForumTopicMessagesError>> {
+    async fn post_unpin_all_forum_topic_messages<'chat_id, 'message_thread_id>(&self, chat_id: models::models::BotCommandScopeChatChatId, message_thread_id: i32) -> Result<ResponseContent<PostUnpinAllForumTopicMessagesSuccess>, Error<PostUnpinAllForumTopicMessagesError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -7140,7 +7164,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the *can\\_pin\\_messages* administrator right in the supergroup. Returns *True* on success.
-    async fn post_unpin_all_general_forum_topic_messages<'chat_id>(&self, chat_id: models::models::PostRestrictChatMemberRequestChatId) -> Result<ResponseContent<PostUnpinAllGeneralForumTopicMessagesSuccess>, Error<PostUnpinAllGeneralForumTopicMessagesError>> {
+    async fn post_unpin_all_general_forum_topic_messages<'chat_id>(&self, chat_id: models::models::BotCommandScopeChatChatId) -> Result<ResponseContent<PostUnpinAllGeneralForumTopicMessagesSuccess>, Error<PostUnpinAllGeneralForumTopicMessagesError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -7173,7 +7197,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can\\_pin\\_messages' administrator right in a supergroup or 'can\\_edit\\_messages' administrator right in a channel. Returns *True* on success.
-    async fn post_unpin_chat_message<'chat_id, 'business_connection_id, 'message_id>(&self, chat_id: models::models::PostSendMessageRequestChatId, business_connection_id: Option<&'business_connection_id str>, message_id: Option<i32>) -> Result<ResponseContent<PostUnpinChatMessageSuccess>, Error<PostUnpinChatMessageError>> {
+    async fn post_unpin_chat_message<'chat_id, 'business_connection_id, 'message_id>(&self, chat_id: models::models::SendMessageRequestChatId, business_connection_id: Option<&'business_connection_id str>, message_id: Option<i32>) -> Result<ResponseContent<PostUnpinChatMessageSuccess>, Error<PostUnpinChatMessageError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -7290,7 +7314,7 @@ impl DefaultApi for DefaultApiClient {
     }
 
     /// Verifies a chat [on behalf of the organization](https://telegram.org/verify#third-party-verification) which is represented by the bot. Returns *True* on success.
-    async fn post_verify_chat<'chat_id, 'custom_description>(&self, chat_id: models::models::PostSendMessageRequestChatId, custom_description: Option<&'custom_description str>) -> Result<ResponseContent<PostVerifyChatSuccess>, Error<PostVerifyChatError>> {
+    async fn post_verify_chat<'chat_id, 'custom_description>(&self, chat_id: models::models::SendMessageRequestChatId, custom_description: Option<&'custom_description str>) -> Result<ResponseContent<PostVerifyChatSuccess>, Error<PostVerifyChatError>> {
         let local_var_configuration = &self.configuration;
 
         let local_var_client = &local_var_configuration.client;
@@ -7367,7 +7391,7 @@ impl DefaultApi for DefaultApiClient {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostAddStickerToSetSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::AddStickerToSetResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7375,7 +7399,7 @@ pub enum PostAddStickerToSetSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostAnswerCallbackQuerySuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::AnswerCallbackQueryResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7383,7 +7407,7 @@ pub enum PostAnswerCallbackQuerySuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostAnswerInlineQuerySuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::AnswerInlineQueryResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7391,7 +7415,7 @@ pub enum PostAnswerInlineQuerySuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostAnswerPreCheckoutQuerySuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::AnswerPreCheckoutQueryResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7399,7 +7423,7 @@ pub enum PostAnswerPreCheckoutQuerySuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostAnswerShippingQuerySuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::AnswerShippingQueryResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7407,7 +7431,7 @@ pub enum PostAnswerShippingQuerySuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostAnswerWebAppQuerySuccess {
-    Status200(models::PostAnswerWebAppQuery200Response),
+    Status200(models::AnswerWebAppQueryResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7415,7 +7439,7 @@ pub enum PostAnswerWebAppQuerySuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostApproveChatJoinRequestSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::ApproveChatJoinRequestResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7423,7 +7447,7 @@ pub enum PostApproveChatJoinRequestSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostBanChatMemberSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::BanChatMemberResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7431,7 +7455,7 @@ pub enum PostBanChatMemberSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostBanChatSenderChatSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::BanChatSenderChatResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7439,7 +7463,7 @@ pub enum PostBanChatSenderChatSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCloseSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::CloseResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7447,7 +7471,7 @@ pub enum PostCloseSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCloseForumTopicSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::CloseForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7455,7 +7479,7 @@ pub enum PostCloseForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCloseGeneralForumTopicSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::CloseGeneralForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7463,7 +7487,7 @@ pub enum PostCloseGeneralForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostConvertGiftToStarsSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::ConvertGiftToStarsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7471,7 +7495,7 @@ pub enum PostConvertGiftToStarsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCopyMessageSuccess {
-    Status200(models::PostCopyMessage200Response),
+    Status200(models::CopyMessageResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7479,7 +7503,7 @@ pub enum PostCopyMessageSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCopyMessagesSuccess {
-    Status200(models::PostForwardMessages200Response),
+    Status200(models::CopyMessagesResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7487,7 +7511,7 @@ pub enum PostCopyMessagesSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCreateChatInviteLinkSuccess {
-    Status200(models::PostCreateChatInviteLink200Response),
+    Status200(models::CreateChatInviteLinkResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7495,7 +7519,7 @@ pub enum PostCreateChatInviteLinkSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCreateChatSubscriptionInviteLinkSuccess {
-    Status200(models::PostCreateChatInviteLink200Response),
+    Status200(models::CreateChatSubscriptionInviteLinkResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7503,7 +7527,7 @@ pub enum PostCreateChatSubscriptionInviteLinkSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCreateForumTopicSuccess {
-    Status200(models::PostCreateForumTopic200Response),
+    Status200(models::CreateForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7511,7 +7535,7 @@ pub enum PostCreateForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCreateInvoiceLinkSuccess {
-    Status200(models::PostExportChatInviteLink200Response),
+    Status200(models::CreateInvoiceLinkResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7519,7 +7543,7 @@ pub enum PostCreateInvoiceLinkSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostCreateNewStickerSetSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::CreateNewStickerSetResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7527,7 +7551,7 @@ pub enum PostCreateNewStickerSetSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeclineChatJoinRequestSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeclineChatJoinRequestResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7535,7 +7559,7 @@ pub enum PostDeclineChatJoinRequestSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteBusinessMessagesSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteBusinessMessagesResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7543,7 +7567,7 @@ pub enum PostDeleteBusinessMessagesSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteChatPhotoSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteChatPhotoResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7551,7 +7575,7 @@ pub enum PostDeleteChatPhotoSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteChatStickerSetSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteChatStickerSetResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7559,7 +7583,7 @@ pub enum PostDeleteChatStickerSetSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteForumTopicSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7567,7 +7591,7 @@ pub enum PostDeleteForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteMessageSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteMessageResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7575,7 +7599,7 @@ pub enum PostDeleteMessageSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteMessagesSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteMessagesResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7583,7 +7607,7 @@ pub enum PostDeleteMessagesSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteMyCommandsSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteMyCommandsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7591,7 +7615,7 @@ pub enum PostDeleteMyCommandsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteStickerFromSetSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteStickerFromSetResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7599,7 +7623,7 @@ pub enum PostDeleteStickerFromSetSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteStickerSetSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteStickerSetResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7607,7 +7631,7 @@ pub enum PostDeleteStickerSetSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteStorySuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteStoryResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7615,7 +7639,7 @@ pub enum PostDeleteStorySuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostDeleteWebhookSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::DeleteWebhookResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7623,7 +7647,7 @@ pub enum PostDeleteWebhookSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditChatInviteLinkSuccess {
-    Status200(models::PostCreateChatInviteLink200Response),
+    Status200(models::EditChatInviteLinkResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7631,7 +7655,7 @@ pub enum PostEditChatInviteLinkSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditChatSubscriptionInviteLinkSuccess {
-    Status200(models::PostCreateChatInviteLink200Response),
+    Status200(models::EditChatSubscriptionInviteLinkResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7639,7 +7663,7 @@ pub enum PostEditChatSubscriptionInviteLinkSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditForumTopicSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::EditForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7647,7 +7671,7 @@ pub enum PostEditForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditGeneralForumTopicSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::EditGeneralForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7655,7 +7679,7 @@ pub enum PostEditGeneralForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditMessageCaptionSuccess {
-    Status200(models::PostEditMessageText200Response),
+    Status200(models::EditMessageCaptionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7663,7 +7687,7 @@ pub enum PostEditMessageCaptionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditMessageLiveLocationSuccess {
-    Status200(models::PostEditMessageText200Response),
+    Status200(models::EditMessageLiveLocationResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7671,7 +7695,7 @@ pub enum PostEditMessageLiveLocationSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditMessageMediaSuccess {
-    Status200(models::PostEditMessageText200Response),
+    Status200(models::EditMessageMediaResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7679,7 +7703,7 @@ pub enum PostEditMessageMediaSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditMessageReplyMarkupSuccess {
-    Status200(models::PostEditMessageText200Response),
+    Status200(models::EditMessageReplyMarkupResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7687,7 +7711,7 @@ pub enum PostEditMessageReplyMarkupSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditMessageTextSuccess {
-    Status200(models::PostEditMessageText200Response),
+    Status200(models::EditMessageTextResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7695,7 +7719,7 @@ pub enum PostEditMessageTextSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditStorySuccess {
-    Status200(models::PostPostStory200Response),
+    Status200(models::EditStoryResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7703,7 +7727,7 @@ pub enum PostEditStorySuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostEditUserStarSubscriptionSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::EditUserStarSubscriptionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7711,7 +7735,7 @@ pub enum PostEditUserStarSubscriptionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostExportChatInviteLinkSuccess {
-    Status200(models::PostExportChatInviteLink200Response),
+    Status200(models::ExportChatInviteLinkResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7719,7 +7743,7 @@ pub enum PostExportChatInviteLinkSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostForwardMessageSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::ForwardMessageResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7727,7 +7751,7 @@ pub enum PostForwardMessageSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostForwardMessagesSuccess {
-    Status200(models::PostForwardMessages200Response),
+    Status200(models::ForwardMessagesResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7735,7 +7759,7 @@ pub enum PostForwardMessagesSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetAvailableGiftsSuccess {
-    Status200(models::PostGetAvailableGifts200Response),
+    Status200(models::GetAvailableGiftsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7743,7 +7767,7 @@ pub enum PostGetAvailableGiftsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetBusinessAccountGiftsSuccess {
-    Status200(models::PostGetBusinessAccountGifts200Response),
+    Status200(models::GetBusinessAccountGiftsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7751,7 +7775,7 @@ pub enum PostGetBusinessAccountGiftsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetBusinessAccountStarBalanceSuccess {
-    Status200(models::PostGetBusinessAccountStarBalance200Response),
+    Status200(models::GetBusinessAccountStarBalanceResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7759,7 +7783,7 @@ pub enum PostGetBusinessAccountStarBalanceSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetBusinessConnectionSuccess {
-    Status200(models::PostGetBusinessConnection200Response),
+    Status200(models::GetBusinessConnectionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7767,7 +7791,7 @@ pub enum PostGetBusinessConnectionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetChatSuccess {
-    Status200(models::PostGetChat200Response),
+    Status200(models::GetChatResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7775,7 +7799,7 @@ pub enum PostGetChatSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetChatAdministratorsSuccess {
-    Status200(models::PostGetChatAdministrators200Response),
+    Status200(models::GetChatAdministratorsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7783,7 +7807,7 @@ pub enum PostGetChatAdministratorsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetChatMemberSuccess {
-    Status200(models::PostGetChatMember200Response),
+    Status200(models::GetChatMemberResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7791,7 +7815,7 @@ pub enum PostGetChatMemberSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetChatMemberCountSuccess {
-    Status200(models::PostGetChatMemberCount200Response),
+    Status200(models::GetChatMemberCountResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7799,7 +7823,7 @@ pub enum PostGetChatMemberCountSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetChatMenuButtonSuccess {
-    Status200(models::PostGetChatMenuButton200Response),
+    Status200(models::GetChatMenuButtonResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7807,7 +7831,7 @@ pub enum PostGetChatMenuButtonSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetCustomEmojiStickersSuccess {
-    Status200(models::PostGetForumTopicIconStickers200Response),
+    Status200(models::GetCustomEmojiStickersResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7815,7 +7839,7 @@ pub enum PostGetCustomEmojiStickersSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetFileSuccess {
-    Status200(models::PostGetFile200Response),
+    Status200(models::GetFileResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7823,7 +7847,7 @@ pub enum PostGetFileSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetForumTopicIconStickersSuccess {
-    Status200(models::PostGetForumTopicIconStickers200Response),
+    Status200(models::GetForumTopicIconStickersResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7831,7 +7855,7 @@ pub enum PostGetForumTopicIconStickersSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetGameHighScoresSuccess {
-    Status200(models::PostGetGameHighScores200Response),
+    Status200(models::GetGameHighScoresResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7839,7 +7863,7 @@ pub enum PostGetGameHighScoresSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetMeSuccess {
-    Status200(models::PostGetMe200Response),
+    Status200(models::GetMeResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7847,7 +7871,7 @@ pub enum PostGetMeSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetMyCommandsSuccess {
-    Status200(models::PostGetMyCommands200Response),
+    Status200(models::GetMyCommandsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7855,7 +7879,7 @@ pub enum PostGetMyCommandsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetMyDefaultAdministratorRightsSuccess {
-    Status200(models::PostGetMyDefaultAdministratorRights200Response),
+    Status200(models::GetMyDefaultAdministratorRightsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7863,7 +7887,7 @@ pub enum PostGetMyDefaultAdministratorRightsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetMyDescriptionSuccess {
-    Status200(models::PostGetMyDescription200Response),
+    Status200(models::GetMyDescriptionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7871,7 +7895,7 @@ pub enum PostGetMyDescriptionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetMyNameSuccess {
-    Status200(models::PostGetMyName200Response),
+    Status200(models::GetMyNameResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7879,7 +7903,7 @@ pub enum PostGetMyNameSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetMyShortDescriptionSuccess {
-    Status200(models::PostGetMyShortDescription200Response),
+    Status200(models::GetMyShortDescriptionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7887,7 +7911,7 @@ pub enum PostGetMyShortDescriptionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetStarTransactionsSuccess {
-    Status200(models::PostGetStarTransactions200Response),
+    Status200(models::GetStarTransactionsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7895,7 +7919,7 @@ pub enum PostGetStarTransactionsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetStickerSetSuccess {
-    Status200(models::PostGetStickerSet200Response),
+    Status200(models::GetStickerSetResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7903,7 +7927,7 @@ pub enum PostGetStickerSetSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetUpdatesSuccess {
-    Status200(models::PostGetUpdates200Response),
+    Status200(models::GetUpdatesResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7911,7 +7935,7 @@ pub enum PostGetUpdatesSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetUserChatBoostsSuccess {
-    Status200(models::PostGetUserChatBoosts200Response),
+    Status200(models::GetUserChatBoostsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7919,7 +7943,7 @@ pub enum PostGetUserChatBoostsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetUserProfilePhotosSuccess {
-    Status200(models::PostGetUserProfilePhotos200Response),
+    Status200(models::GetUserProfilePhotosResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7927,7 +7951,7 @@ pub enum PostGetUserProfilePhotosSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGetWebhookInfoSuccess {
-    Status200(models::PostGetWebhookInfo200Response),
+    Status200(models::GetWebhookInfoResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7935,7 +7959,7 @@ pub enum PostGetWebhookInfoSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostGiftPremiumSubscriptionSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::GiftPremiumSubscriptionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7943,7 +7967,7 @@ pub enum PostGiftPremiumSubscriptionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostHideGeneralForumTopicSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::HideGeneralForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7951,7 +7975,7 @@ pub enum PostHideGeneralForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostLeaveChatSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::LeaveChatResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7959,7 +7983,7 @@ pub enum PostLeaveChatSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostLogOutSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::LogOutResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7967,7 +7991,7 @@ pub enum PostLogOutSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostPinChatMessageSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::PinChatMessageResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7975,7 +7999,7 @@ pub enum PostPinChatMessageSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostPostStorySuccess {
-    Status200(models::PostPostStory200Response),
+    Status200(models::PostStoryResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7983,7 +8007,7 @@ pub enum PostPostStorySuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostPromoteChatMemberSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::PromoteChatMemberResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7991,7 +8015,7 @@ pub enum PostPromoteChatMemberSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostReadBusinessMessageSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::ReadBusinessMessageResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -7999,7 +8023,7 @@ pub enum PostReadBusinessMessageSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostRefundStarPaymentSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::RefundStarPaymentResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8007,7 +8031,7 @@ pub enum PostRefundStarPaymentSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostRemoveBusinessAccountProfilePhotoSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::RemoveBusinessAccountProfilePhotoResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8015,7 +8039,7 @@ pub enum PostRemoveBusinessAccountProfilePhotoSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostRemoveChatVerificationSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::RemoveChatVerificationResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8023,7 +8047,7 @@ pub enum PostRemoveChatVerificationSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostRemoveUserVerificationSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::RemoveUserVerificationResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8031,7 +8055,7 @@ pub enum PostRemoveUserVerificationSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostReopenForumTopicSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::ReopenForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8039,7 +8063,7 @@ pub enum PostReopenForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostReopenGeneralForumTopicSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::ReopenGeneralForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8047,7 +8071,7 @@ pub enum PostReopenGeneralForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostReplaceStickerInSetSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::ReplaceStickerInSetResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8055,7 +8079,7 @@ pub enum PostReplaceStickerInSetSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostRestrictChatMemberSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::RestrictChatMemberResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8063,7 +8087,7 @@ pub enum PostRestrictChatMemberSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostRevokeChatInviteLinkSuccess {
-    Status200(models::PostCreateChatInviteLink200Response),
+    Status200(models::RevokeChatInviteLinkResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8071,7 +8095,7 @@ pub enum PostRevokeChatInviteLinkSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSavePreparedInlineMessageSuccess {
-    Status200(models::PostSavePreparedInlineMessage200Response),
+    Status200(models::SavePreparedInlineMessageResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8079,7 +8103,7 @@ pub enum PostSavePreparedInlineMessageSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendAnimationSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendAnimationResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8087,7 +8111,7 @@ pub enum PostSendAnimationSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendAudioSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendAudioResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8095,7 +8119,7 @@ pub enum PostSendAudioSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendChatActionSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SendChatActionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8103,7 +8127,7 @@ pub enum PostSendChatActionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendContactSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendContactResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8111,7 +8135,7 @@ pub enum PostSendContactSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendDiceSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendDiceResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8119,7 +8143,7 @@ pub enum PostSendDiceSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendDocumentSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendDocumentResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8127,7 +8151,7 @@ pub enum PostSendDocumentSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendGameSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendGameResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8135,7 +8159,7 @@ pub enum PostSendGameSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendGiftSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SendGiftResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8143,7 +8167,7 @@ pub enum PostSendGiftSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendInvoiceSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendInvoiceResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8151,7 +8175,7 @@ pub enum PostSendInvoiceSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendLocationSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendLocationResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8159,7 +8183,7 @@ pub enum PostSendLocationSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendMediaGroupSuccess {
-    Status200(models::PostSendMediaGroup200Response),
+    Status200(models::SendMediaGroupResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8167,7 +8191,7 @@ pub enum PostSendMediaGroupSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendMessageSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendMessageResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8175,7 +8199,7 @@ pub enum PostSendMessageSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendPaidMediaSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendPaidMediaResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8183,7 +8207,7 @@ pub enum PostSendPaidMediaSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendPhotoSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendPhotoResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8191,7 +8215,7 @@ pub enum PostSendPhotoSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendPollSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendPollResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8199,7 +8223,7 @@ pub enum PostSendPollSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendStickerSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendStickerResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8207,7 +8231,7 @@ pub enum PostSendStickerSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendVenueSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendVenueResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8215,7 +8239,7 @@ pub enum PostSendVenueSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendVideoSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendVideoResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8223,7 +8247,7 @@ pub enum PostSendVideoSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendVideoNoteSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendVideoNoteResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8231,7 +8255,7 @@ pub enum PostSendVideoNoteSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSendVoiceSuccess {
-    Status200(models::PostSendMessage200Response),
+    Status200(models::SendVoiceResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8239,7 +8263,7 @@ pub enum PostSendVoiceSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetBusinessAccountBioSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetBusinessAccountBioResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8247,7 +8271,7 @@ pub enum PostSetBusinessAccountBioSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetBusinessAccountGiftSettingsSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetBusinessAccountGiftSettingsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8255,7 +8279,7 @@ pub enum PostSetBusinessAccountGiftSettingsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetBusinessAccountNameSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetBusinessAccountNameResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8263,7 +8287,7 @@ pub enum PostSetBusinessAccountNameSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetBusinessAccountProfilePhotoSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetBusinessAccountProfilePhotoResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8271,7 +8295,7 @@ pub enum PostSetBusinessAccountProfilePhotoSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetBusinessAccountUsernameSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetBusinessAccountUsernameResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8279,7 +8303,7 @@ pub enum PostSetBusinessAccountUsernameSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetChatAdministratorCustomTitleSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetChatAdministratorCustomTitleResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8287,7 +8311,7 @@ pub enum PostSetChatAdministratorCustomTitleSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetChatDescriptionSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetChatDescriptionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8295,7 +8319,7 @@ pub enum PostSetChatDescriptionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetChatMenuButtonSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetChatMenuButtonResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8303,7 +8327,7 @@ pub enum PostSetChatMenuButtonSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetChatPermissionsSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetChatPermissionsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8311,7 +8335,7 @@ pub enum PostSetChatPermissionsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetChatPhotoSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetChatPhotoResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8319,7 +8343,7 @@ pub enum PostSetChatPhotoSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetChatStickerSetSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetChatStickerSetResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8327,7 +8351,7 @@ pub enum PostSetChatStickerSetSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetChatTitleSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetChatTitleResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8335,7 +8359,7 @@ pub enum PostSetChatTitleSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetCustomEmojiStickerSetThumbnailSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetCustomEmojiStickerSetThumbnailResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8343,7 +8367,7 @@ pub enum PostSetCustomEmojiStickerSetThumbnailSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetGameScoreSuccess {
-    Status200(models::PostEditMessageText200Response),
+    Status200(models::SetGameScoreResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8351,7 +8375,7 @@ pub enum PostSetGameScoreSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetMessageReactionSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetMessageReactionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8359,7 +8383,7 @@ pub enum PostSetMessageReactionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetMyCommandsSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetMyCommandsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8367,7 +8391,7 @@ pub enum PostSetMyCommandsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetMyDefaultAdministratorRightsSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetMyDefaultAdministratorRightsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8375,7 +8399,7 @@ pub enum PostSetMyDefaultAdministratorRightsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetMyDescriptionSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetMyDescriptionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8383,7 +8407,7 @@ pub enum PostSetMyDescriptionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetMyNameSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetMyNameResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8391,7 +8415,7 @@ pub enum PostSetMyNameSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetMyShortDescriptionSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetMyShortDescriptionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8399,7 +8423,7 @@ pub enum PostSetMyShortDescriptionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetPassportDataErrorsSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetPassportDataErrorsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8407,7 +8431,7 @@ pub enum PostSetPassportDataErrorsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetStickerEmojiListSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetStickerEmojiListResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8415,7 +8439,7 @@ pub enum PostSetStickerEmojiListSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetStickerKeywordsSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetStickerKeywordsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8423,7 +8447,7 @@ pub enum PostSetStickerKeywordsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetStickerMaskPositionSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetStickerMaskPositionResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8431,7 +8455,7 @@ pub enum PostSetStickerMaskPositionSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetStickerPositionInSetSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetStickerPositionInSetResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8439,7 +8463,7 @@ pub enum PostSetStickerPositionInSetSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetStickerSetThumbnailSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetStickerSetThumbnailResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8447,7 +8471,7 @@ pub enum PostSetStickerSetThumbnailSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetStickerSetTitleSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetStickerSetTitleResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8455,7 +8479,7 @@ pub enum PostSetStickerSetTitleSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetUserEmojiStatusSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetUserEmojiStatusResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8463,7 +8487,7 @@ pub enum PostSetUserEmojiStatusSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostSetWebhookSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::SetWebhookResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8471,7 +8495,7 @@ pub enum PostSetWebhookSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostStopMessageLiveLocationSuccess {
-    Status200(models::PostEditMessageText200Response),
+    Status200(models::StopMessageLiveLocationResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8479,7 +8503,7 @@ pub enum PostStopMessageLiveLocationSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostStopPollSuccess {
-    Status200(models::PostStopPoll200Response),
+    Status200(models::StopPollResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8487,7 +8511,7 @@ pub enum PostStopPollSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostTransferBusinessAccountStarsSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::TransferBusinessAccountStarsResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8495,7 +8519,7 @@ pub enum PostTransferBusinessAccountStarsSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostTransferGiftSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::TransferGiftResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8503,7 +8527,7 @@ pub enum PostTransferGiftSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostUnbanChatMemberSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::UnbanChatMemberResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8511,7 +8535,7 @@ pub enum PostUnbanChatMemberSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostUnbanChatSenderChatSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::UnbanChatSenderChatResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8519,7 +8543,7 @@ pub enum PostUnbanChatSenderChatSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostUnhideGeneralForumTopicSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::UnhideGeneralForumTopicResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8527,7 +8551,7 @@ pub enum PostUnhideGeneralForumTopicSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostUnpinAllChatMessagesSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::UnpinAllChatMessagesResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8535,7 +8559,7 @@ pub enum PostUnpinAllChatMessagesSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostUnpinAllForumTopicMessagesSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::UnpinAllForumTopicMessagesResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8543,7 +8567,7 @@ pub enum PostUnpinAllForumTopicMessagesSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostUnpinAllGeneralForumTopicMessagesSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::UnpinAllGeneralForumTopicMessagesResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8551,7 +8575,7 @@ pub enum PostUnpinAllGeneralForumTopicMessagesSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostUnpinChatMessageSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::UnpinChatMessageResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8559,7 +8583,7 @@ pub enum PostUnpinChatMessageSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostUpgradeGiftSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::UpgradeGiftResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8567,7 +8591,7 @@ pub enum PostUpgradeGiftSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostUploadStickerFileSuccess {
-    Status200(models::PostGetFile200Response),
+    Status200(models::UploadStickerFileResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8575,7 +8599,7 @@ pub enum PostUploadStickerFileSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostVerifyChatSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::VerifyChatResponse),
     UnknownValue(serde_json::Value),
 }
 
@@ -8583,7 +8607,7 @@ pub enum PostVerifyChatSuccess {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PostVerifyUserSuccess {
-    Status200(models::PostSetWebhook200Response),
+    Status200(models::VerifyUserResponse),
     UnknownValue(serde_json::Value),
 }
 
