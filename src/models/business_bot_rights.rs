@@ -7,7 +7,7 @@
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-02T07:03:16.715318580Z[Etc/UTC]
+//! - **Modified**: 2025-07-02T09:17:04.370667370Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -54,8 +54,8 @@ pub struct BusinessBotRights {
     #[serde(rename = "can_read_messages", skip_serializing_if = "Option::is_none")]
     pub can_read_messages: Option<bool>,
     /// *Optional*. True, if the bot can delete messages sent by the bot
-    #[serde(rename = "can_delete_sent_messages", skip_serializing_if = "Option::is_none")]
-    pub can_delete_sent_messages: Option<bool>,
+    #[serde(rename = "can_delete_outgoing_messages", skip_serializing_if = "Option::is_none")]
+    pub can_delete_outgoing_messages: Option<bool>,
     /// *Optional*. True, if the bot can delete all private messages in managed chats
     #[serde(rename = "can_delete_all_messages", skip_serializing_if = "Option::is_none")]
     pub can_delete_all_messages: Option<bool>,
@@ -97,7 +97,7 @@ impl BusinessBotRights {
         BusinessBotRights {
             can_reply: None,
             can_read_messages: None,
-            can_delete_sent_messages: None,
+            can_delete_outgoing_messages: None,
             can_delete_all_messages: None,
             can_edit_name: None,
             can_edit_bio: None,
