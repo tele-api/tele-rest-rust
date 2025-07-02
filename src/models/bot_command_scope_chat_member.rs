@@ -7,7 +7,7 @@
 //! - **Copyright**: Copyright (c) 2025 Qntx
 //! - **Author**: ΣX <gitctrlx@gmail.com>
 //! - **Version**: 9.0.0
-//! - **Modified**: 2025-07-01T14:36:16.092164073Z[Etc/UTC]
+//! - **Modified**: 2025-07-02T07:03:16.715318580Z[Etc/UTC]
 //! - **Generator Version**: 7.14.0
 //!
 //! <details>
@@ -51,7 +51,7 @@ pub struct BotCommandScopeChatMember {
     #[serde(rename = "type")]
     pub r#type: String,
     #[serde(rename = "chat_id")]
-    pub chat_id: Box<models::RestrictChatMemberPostRequestChatId>,
+    pub chat_id: Box<models::PostRestrictChatMemberRequestChatId>,
     /// Unique identifier of the target user
     #[serde(rename = "user_id")]
     pub user_id: i32,
@@ -59,7 +59,7 @@ pub struct BotCommandScopeChatMember {
 
 impl BotCommandScopeChatMember {
     /// Represents the [scope](https://core.telegram.org/bots/api/#botcommandscope) of bot commands, covering a specific member of a group or supergroup chat.
-    pub fn new(r#type: String, chat_id: models::RestrictChatMemberPostRequestChatId, user_id: i32) -> BotCommandScopeChatMember {
+    pub fn new(r#type: String, chat_id: models::PostRestrictChatMemberRequestChatId, user_id: i32) -> BotCommandScopeChatMember {
         BotCommandScopeChatMember {
             r#type,
             chat_id: Box::new(chat_id),

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **r#type** | **String** | Scope type, must be *chat\\_member* | [default to chat_member]
-**chat_id** | [**models::RestrictChatMemberPostRequestChatId**](_restrictChatMember_post_request_chat_id.md) |  | 
+**chat_id** | [**models::PostRestrictChatMemberRequestChatId**](post_restrictChatMember_request_chat_id.md) |  | 
 **user_id** | **i32** | Unique identifier of the target user | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
